@@ -24,4 +24,32 @@ main .header-image img {
   background: linear-gradient(0deg, rgba(100, 100, 100, 0.33), rgba(100, 100, 100, 0.33));
 }
 
+footer {
+  position: absolute;
+  width: 100%;
+  height: 46px;
+  left: 0;
+  top: 850px;
+  background: rgba(31, 31, 31, 0.92);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: rgba(221, 221, 221, 0.95);
+}
+footer .footer-text {
+  position: absolute;
+  left: 3.14%;
+  top: 19.57%;
+  bottom: 23.91%;
+}
+footer .footer-icon {
+  font-size: 22px;
+  position: absolute;
+  left: 75%;
+  top: 19.57%;
+  bottom: 23.91%;
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=main.css.map */

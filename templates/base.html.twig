@@ -54,9 +54,16 @@
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
+    <!--Footer-->
     <footer>
-        <p>Royal Charleroi Villette</p>
+        <span class="footer-text">Royal Charleroi Villette</span>
+        <span class="footer-icon">
+            <a href="" class="link-dark"><i class="icofont-phone"></i></a>
+            <a href="" class="link-dark"><i class="icofont-youtube-play"></i></a>
+            <a href="" class="link-dark"><i class="icofont-facebook"></i></a>
+        </span>
     </footer>
+    <!--End Footer-->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     </body>
 </html>
