@@ -3,5 +3,33 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-
+<main>
+    <!--Header-->
+    <div class="header-image">
+        <img src="{{ asset('img/tennis_de_table-3.jpg') }}" alt="">
+    </div>
+    <!--End Header-->
+    <!--Login-->
+    <div class="login">
+        <h1 class="login-title my-3">Espace Membre:</h1>
+        <a class="login-button my-2 mx-auto align-content-center">
+            Se connecter
+        </a>
+    </div>
+    <!--End Login-->
+    <!--About-->
+    <div class="about">
+        <div class="about-box">
+            <h2>A propos du ctt</h2>
+            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores, consectetur cumque
+                dicta eum in magni, modi nisi omnis optio quaerat quasi quia, quis reiciendis soluta tempora ullam? Ab
+                consequuntur illum ipsum molestias nisi odit recusandae sed sequi sint veniam!...</p>
+            <div class="about-more">
+                <a>En savoir plus</a>
+            </div>
+        </div>
+    </div>
+    <!--End About-->
+    <!--Footer-->
+</main>
 {% endblock %}
