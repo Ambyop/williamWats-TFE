@@ -82,6 +82,7 @@ main .about .about-box .about-more {
   border-radius: 10px;
 }
 main .about .about-box .about-more a {
+  position: absolute;
   font-style: normal;
   font-weight: 500;
   font-size: 22px;
@@ -91,6 +92,59 @@ main .about .about-box .about-more a {
   text-align: center;
   text-transform: capitalize;
   color: #DDDDDD;
+}
+
+/* Desktop */
+@media screen and (min-width: 768px) {
+  main .about {
+    width: 50%;
+    height: 500px;
+    top: 407px;
+  }
+  main .about .about-box {
+    width: 90%;
+    height: 95%;
+    left: 37px;
+  }
+  main .about .about-box h2 {
+    height: 54px;
+    left: 23px;
+    top: 20px;
+    font-size: 38px;
+    line-height: 57px;
+  }
+  main .about .about-box p {
+    width: 92%;
+    height: 339px;
+    left: 27px;
+    top: 100px;
+    font-size: 22px;
+    line-height: 33px;
+  }
+  main .about .about-box .about-more {
+    width: 300px;
+    height: 70px;
+    left: 35%;
+    top: 74%;
+  }
+  main .about .about-box .about-more a {
+    width: 300px;
+    left: 15%;
+    top: 15px;
+    font-size: 28px;
+    line-height: 45px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  main .login {
+    position: absolute;
+    width: 50%;
+    height: 500px;
+    left: 50%;
+    top: 407px;
+    background: linear-gradient(0deg, rgba(50, 50, 50, 0.42), rgba(50, 50, 50, 0.42)), url(../img/doubleRaquette-960x640.jpg);
+  }
 }
 
 /*# sourceMappingURL=homePage.css.map */
