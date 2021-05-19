@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -20,17 +21,50 @@ class User
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=100, unique=true)
+     */
+    private $email;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $pseudo;
 
     /**
+     * @var string The hashed password
      * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\Length(
+     *     min = 1,
+     *     max= 60,
+     *     minMessage= "Votre nom doit contenir au moins {{ limit }} caractères",
+     *     maxMessage= "Votre nom ne peut contenir plus de {{ limit }} caractères"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[a-zA-ZÀ-ÿœ']+$/",
+     *     match=true,
+     *     message="Merci de mettre uniquement que des lettres"
+     * )
      */
     private $lastname;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
+     * @Assert\Length(
+     *     min = 1,
+     *     max= 60,
+     *     minMessage= "Le prénom doit contenir au moins {{ limit }} caractères",
+     *     maxMessage= "Le prénom ne peut contenir plus de {{ limit }} caractères"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[a-zA-ZÀ-ÿœ]+$/",
+     *     match=true,
+     *     message="Merci de mettre uniquement que des lettres"
+     * )
      */
     private $firstname;
 
@@ -50,14 +84,9 @@ class User
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime")
      */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
+    private $lastLogAt;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -72,7 +101,7 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Ranking;
+    private $ranking;
 
     public function __construct()
     {
@@ -156,6 +185,18 @@ class User
         return $this;
     }
 
+    public function getLastLogAt(): ?\DateTimeInterface
+    {
+        return $this->lastLogAt;
+    }
+
+    public function setLastLogAt(\DateTimeInterface $lastLogAt): self
+    {
+        $this->lastLogAt = $lastLogAt;
+
+        return $this;
+    }
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -218,12 +259,12 @@ class User
 
     public function getRanking(): ?string
     {
-        return $this->Ranking;
+        return $this->ranking;
     }
 
-    public function setRanking(string $Ranking): self
+    public function setRanking(string $ranking): self
     {
-        $this->Ranking = $Ranking;
+        $this->ranking = $ranking;
 
         return $this;
     }
