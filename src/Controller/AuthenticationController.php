@@ -15,27 +15,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AuthenticationController extends AbstractController
 {
     /**
-     * @Route("/login", name="login")
-     */
-    public function login(AuthenticationUtils $authenticationUtils): Response
-    {
-        // Informe s'il y a une erreur d'authentication
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // Dernier identifiant utilisé par le visiteur
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('authentication/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
-    }
-
-    /**
-     * @Route("/logout", name="app_logout")
-     */
-    public function logout()
-    {
-        throw new \LogicException();
-    }
-
-    /**
      * @Route("/register", name="app_register")
      * @param EntityManagerInterface $manager
      * @param Request $request
@@ -69,5 +48,28 @@ class AuthenticationController extends AbstractController
         return $this->render("authentication/register.html.twig", [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function login(AuthenticationUtils $authenticationUtils): Response
+    {
+        // if ($this->getUser()) {
+        //     return $this->redirectToRoute('target_path');
+        // }
+
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('authentication/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+    }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logout()
+    {
+        throw new \LogicException();
     }
 }
