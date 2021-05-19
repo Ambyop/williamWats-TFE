@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegisterType;
+use App\Form\UserRegisterType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,16 +46,16 @@ class AuthenticationController extends AbstractController
     public function register(EntityManagerInterface $manager, Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         $user = new User();
-        $form = $this->createForm(RegisterType::class, $user);
+        $form = $this->createForm(UserRegisterType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
             $user->setCreatedAt($now)
-                ->setRoles(["USER"])
-                ->setLastLogAt($now)
+                ->setRoles("USER")
+                ->setCreatedAt($now)
                 ->setUpdatedAt($now)
-                ->setImage('default.png')
-                ->setIsDisabled('false')
+                ->setLastLogAt($now)
+                ->setRanking('')
             ;
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
 
@@ -63,10 +63,10 @@ class AuthenticationController extends AbstractController
             $manager->flush();
             $this->addFlash('success', 'L\'utilisateur ' . $user->getFirstname() . ' ' . $user->getLastname() . ' a bien été créé.');
 
-            return $this->redirectToRoute('user');
+            return $this->redirectToRoute('homepage');
         }
 
-        return $this->render("security/register.html.twig", [
+        return $this->render("authentication/register.html.twig", [
             'form' => $form->createView()
         ]);
     }

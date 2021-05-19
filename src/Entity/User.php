@@ -32,11 +32,6 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $pseudo;
-
-    /**
      * @var string The hashed password
      * @ORM\Column(type="string", length=255)
      */
