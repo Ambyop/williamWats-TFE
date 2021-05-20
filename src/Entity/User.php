@@ -95,18 +95,18 @@ class User implements UserInterface
     private $roles;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Teams::class, inversedBy="users")
+     * @ORM\ManyToOne(targetEntity=Teams::class, inversedBy="users")
      */
     private $team;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $ranking;
 
     public function __construct()
     {
-        $this->team = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -239,42 +239,6 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Teams[]
-     */
-    public function getTeam(): Collection
-    {
-        return $this->team;
-    }
-
-    public function addTeam(Teams $team): self
-    {
-        if (!$this->team->contains($team)) {
-            $this->team[] = $team;
-        }
-
-        return $this;
-    }
-
-    public function removeTeam(Teams $team): self
-    {
-        $this->team->removeElement($team);
-
-        return $this;
-    }
-
-    public function getRanking(): ?string
-    {
-        return $this->ranking;
-    }
-
-    public function setRanking(string $ranking): self
-    {
-        $this->ranking = $ranking;
-
-        return $this;
-    }
-
     public function getSalt()
     {
         // TODO: Implement getSalt() method.
@@ -288,5 +252,29 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getTeam(): ?Teams
+    {
+        return $this->team;
+    }
+
+    public function setTeam(?Teams $team): self
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    public function getRanking(): ?string
+    {
+        return $this->ranking;
+    }
+
+    public function setRanking(?string $ranking): self
+    {
+        $this->ranking = $ranking;
+
+        return $this;
     }
 }

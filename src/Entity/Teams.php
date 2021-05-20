@@ -25,9 +25,14 @@ class Teams
     private $division;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="team")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="team")
      */
     private $users;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $name;
 
     public function __construct()
     {
@@ -63,7 +68,7 @@ class Teams
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->addTeam($this);
+            $user->setTeam($this);
         }
 
         return $this;
@@ -72,8 +77,23 @@ class Teams
     public function removeUser(User $user): self
     {
         if ($this->users->removeElement($user)) {
-            $user->removeTeam($this);
+            // set the owning side to null (unless already changed)
+            if ($user->getTeam() === $this) {
+                $user->setTeam(null);
+            }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

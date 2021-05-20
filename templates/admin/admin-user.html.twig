@@ -17,24 +17,26 @@
             <th>Dernière mise à jour</th>
             <th>Dernière connexion</th>
             <th>Rôles</th>
-            <th>Actif</th>
         </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
-                <td><img src="" alt="{{ user.id }}"
-                         class="admin-img-user align-middle"></td>
+                <td><img src="" alt="{{ user.id }}" class="admin-img-user align-middle"></td>
                 <td class="align-middle">{{ user.firstname }}</td>
                 <td class="align-middle">{{ user.lastname }}</td>
                 <td class="align-middle">{{ user.ranking }}</td>
+                {% if user.team %}
+                    <td class="align-middle">{{ user.team.name }}</td>
+                {% else %}
+                    <td class="align-middle">-</td>
+                {% endif %}
                 <td class="align-middle">{{ user.email }}</td>
                 <td class="align-middle">{{ user.createdAt|date("d/m/Y  H:i:s") }}</td>
                 <td class="align-middle">{{ user.updatedAt|date("d/m/Y  H:i:s") }}</td>
                 <td class="align-middle">{{ user.lastlogAt|date("d/m/Y  H:i:s") }}</td>
                 <td class="align-middle">
                     {% for role in user.roles %}
-                        {# {{ role }} #}
                         {% if role == 'ROLE_USER' %}
                             <a href="" class="btn btn-danger disabled" title="Utilisateur"><i class="icofont-ui-user"></i></a>
                             <a href="" class="btn btn-primary" title="Joueur"><i class="icofont-tennis-player"></i></a>
@@ -57,15 +59,6 @@
                             <a href="" class="btn btn-danger disabled" title="Super Administrateur">SA</a>
                         {% endif %}
                     {% endfor %}
-                </td>
-                <td class="align-middle">
-                    {% if not true %}
-                        <a href="" class="btn btn-success icofont-2x"
-                           title="Activé"><i class="icofont-user-alt-5"></i></a>
-                    {% else %}
-                        <a href="" class="btn btn-danger icofont-2x"
-                           title="Désactivé"><i class="icofont-user-alt-7"></i></a>
-                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
