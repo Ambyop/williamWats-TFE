@@ -90,7 +90,7 @@ class User implements UserInterface
     private $lastLogAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
     private $roles;
 
@@ -222,12 +222,17 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getRoles(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+
+        return array_unique($roles);
     }
 
-    public function setRoles(string $roles): self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 

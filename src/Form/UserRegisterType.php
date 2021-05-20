@@ -16,6 +16,10 @@ class UserRegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('email', EmailType::class, [
+                'label' => 'Email de l\'utilisateur',
+                'required' => true
+            ])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom de l\'utilisateur',
                 'required' => true
@@ -24,19 +28,11 @@ class UserRegisterType extends AbstractType
                 'label' => 'Nom de l\'utilisateur',
                 'required' => true
             ])
-            ->add('pseudo', TextType::class, [
-                'label' => 'Votre identifiant',
-                'required' => true
-            ])
             ->add('birthday', BirthdayType::class, [
                 'label' => 'Quand êtes-vous né?',
                 'format' => 'd/MM/yyyy',
                 'years' => range(date('Y')-80, date('Y') - 5),
                 'required' => true,
-            ])
-            ->add('email', EmailType::class, [
-                'label' => 'Email de l\'utilisateur',
-                'required' => true
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',

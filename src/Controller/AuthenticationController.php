@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AuthenticationController extends AbstractController
 {
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/register", name="register")
      * @param EntityManagerInterface $manager
      * @param Request $request
      * @param UserPasswordEncoderInterface $encoder
@@ -30,7 +30,7 @@ class AuthenticationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
             $user->setCreatedAt($now)
-                ->setRoles("USER")
+                ->setRoles(["ROLE_USER"])
                 ->setCreatedAt($now)
                 ->setUpdatedAt($now)
                 ->setLastLogAt($now)
