@@ -1,0 +1,103 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 pl-md-4 menu">
+            <h2 class="my-5">Menu</h2>
+            <div class="card mb-3">
+                <div class="card-header" id="headingOne">
+                    <h4 class="mb-0">
+                        {{ app.user.firstname }} {{ app.user.lastname }}
+                    </h4>
+                </div>
+            </div>
+            <div class="accordion" id="accordionExample">
+                {#COURSES#}
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <i class="icofont-page"></i>
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                 Les cours
+                            </button>
+                        </h2>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body card-menu align">
+                            <a href="{{ path('admin_course') }}">Gestion des cours</a><br>
+                            <a href="{{ path('admin_course_add') }}">Ajoutez un cours</a>
+                        </div>
+                    </div>
+                </div>
+                {#COMMENTS#}
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h2 class="mb-0">
+                            <i class="icofont-speech-comments"></i>
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Les commentaires
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body card-menu align">
+                            <a href="{{ path('admin_comment') }}">Gestion des commentaires</a><br>
+{#                            <a href="">Publier des commentaires</a><br>#}
+                            <a href="">Contactez l'auteur</a><br>
+                        </div>
+                    </div>
+                </div>
+                {#INSCRIPTIONS#}
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h2 class="mb-0">
+                            <i class="icofont-tasks-alt"></i>
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Les inscriptions
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body align">
+                            <a href="{{ path('admin_registration_course') }}">Gestion des enregistrements</a>
+                        </div>
+                    </div>
+                </div>
+                {#NEWS#}
+                <div class="card">
+                    <div class="card-header" id="headingFive">
+                        <h2 class="mb-0">
+                            <i class="icofont-light-bulb"></i>
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                Les actualités
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                        <div class="card-body card-menu align">
+                            <a href="{{ path('admin_news') }}">Gestion des actualités</a><br>
+                            <a href="{{ path('admin_news_add') }}">Ajoutez une actualité</a>
+                        </div>
+                    </div>
+                </div>
+                {#MEMBERS#}
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <div class="card">
+                    <div class="card-header" id="headingFour">
+                        <h2 class="mb-0">
+                            <i class="icofont-users-alt-6"></i>
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Les utilisateurs
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                        <div class="card-body card-menu align">
+                            <a href="{{ path('admin_user') }}">Gestion des membres</a><br>
+                            <a href="{{ path('admin_user_add') }}">Ajoutez un membre</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-9">
+

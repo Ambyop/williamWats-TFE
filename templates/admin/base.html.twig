@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Admin Portal - {% endblock %}</title>
+    <link rel="icon" href="{{ asset('img/design/favicon.png') }}">
+    <link rel="stylesheet" href="{{ asset('css/icofont.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    {# CSS DataTable #}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% include 'admin/partials/header.html.twig' %}
+{#{% include 'admin/partials/menu.html.twig' %}#}
+{% block body %}{% endblock %}
+{% include 'admin/partials/footer.html.twig' %}
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+{# Javascript DataTable #}
+<script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable( {
+                "info": false,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                }
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        })
+    </script>
+{% endblock %}
+
+</body>
+</html>
+

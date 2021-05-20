@@ -9,7 +9,6 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Pseudo</th>
                 <th>Lastname</th>
                 <th>Firstname</th>
                 <th>Birthday</th>
@@ -26,7 +25,6 @@
         {% for user in users %}
             <tr>
                 <td>{{ user.id }}</td>
-                <td>{{ user.pseudo }}</td>
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
@@ -34,7 +32,7 @@
                 <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.password }}</td>
-                <td>{{ user.roles }}</td>
+                <td>{{ user.roles[0] }}</td>
                 <td>{{ user.Ranking }}</td>
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>

@@ -1,0 +1,66 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ parent() }}User{% endblock %}
+
+{% block body %}
+    <h2 class="my-4">Gestion des Utilisateurs</h2>
+    <table class="table table-hover" id="myTable"> <!-- id pour le DataTable id="myTable" -->
+        <thead>
+        <tr>
+            <th>Image</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Création du compte</th>
+            {# <th>Dernière modification du compte</th> #}
+            {# <th>Dernière connexion</th> #}
+            <th>Rôles</th>
+            <th>Actif</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><img src="" alt="{{ user.id }}"
+                         class="admin-img-user align-middle"></td>
+                <td class="align-middle">{{ user.lastname }}</td>
+                <td class="align-middle">{{ user.firstname }}</td>
+                <td class="align-middle">{{ user.email }}</td>
+                <td class="align-middle">{{ user.createdAt|date("d/m/Y") }}</td>
+                {# <td class="align-middle">{{ user.updatedAt|date("d/m/Y") }}</td> #}
+                {# <td class="align-middle">{{ user.lastlogAt|date("d/m/Y") }}</td> #}
+                <td class="align-middle">
+                    {% for role in user.roles %}
+                        {# {{ role }} #}
+                        {% if role == 'ROLE_USER' %}
+                            <a href="" class="btn btn-success disabled" title="User">U</a>
+                            <a href="" class="btn btn-outline-secondary">A</a>
+                            <a href="" class="btn btn-outline-secondary">SA</a>
+                        {% elseif role == 'ROLE_ADMIN' %}
+                            <a href="" class="btn btn-outline-secondary">U</a>
+                            <a href="" class="btn btn-success disabled" title="Admin">A</a>
+                            <a href="" class="btn btn-outline-secondary">SA</a>
+                        {% else %}
+                            <a href="" class="btn btn-outline-secondary">U</a>
+                            <a href="" class="btn btn-outline-secondary">A</a>
+                            <a href="" class="btn btn-success disabled" title="Super Administrateur">SA</a>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td class="align-middle">
+                    {% if not true %}
+                        <a href="" class="btn btn-success icofont-2x"
+                           title="Activé"><i class="icofont-user-alt-5"></i></a>
+                    {% else %}
+                        <a href="" class="btn btn-danger icofont-2x"
+                           title="Désactivé"><i class="icofont-user-alt-7"></i></a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+{% endblock %}
