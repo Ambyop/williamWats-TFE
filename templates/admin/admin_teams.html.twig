@@ -1,0 +1,32 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello AdminTeamsController!{% endblock %}
+
+{% block body %}
+    <h2 class="my-4 mx-4">Gestion des Equipes</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Equipe</th>
+            <th>division</th>
+            <th>Joueur 1</th>
+            <th>Joueur 2</th>
+            <th>Joueur 3</th>
+            <th>Joueur 4</th>
+            <th>Paramètres</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for team in teams %}
+            <tr>
+                <td>{{ team.name }}</td>
+                <td>{{ team.division }}</td>
+                {% for user in team.users %}
+                <td>{{ user.firstname }}  {{ user.lastname }}</td>
+                {% endfor %}
+                <td>dd</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
