@@ -210,9 +210,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPassword(): ?string
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->password;
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
@@ -239,16 +242,26 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @see UserInterface
+     */
     public function getSalt()
     {
         // TODO: Implement getSalt() method.
     }
 
+    /**
+     * @see UserInterface
+     */
     public function getUsername()
     {
-        // TODO: Implement getUsername() method.
+        $username = $this->firstname . ' ' . $this->lastname;
+        return (string) $username;
     }
 
+    /**
+     * @see UserInterface
+     */
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
