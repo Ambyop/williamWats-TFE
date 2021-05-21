@@ -32,7 +32,7 @@ class UserRegisterType extends AbstractType
             ->add('birthday', BirthdayType::class, [
                 'label' => 'Quand êtes-vous né?',
                 'format' => 'd/MM/yyyy',
-                'years' => range(date('Y')-80, date('Y') - 5),
+                'years' => range(date('Y') - 80, date('Y') - 5),
                 'required' => true,
             ])
             ->add('password', RepeatedType::class, [
@@ -42,14 +42,13 @@ class UserRegisterType extends AbstractType
                     'attr' => ['class' => 'password-field'
                     ]],
                 'required' => true,
-                'first_options'  => [
+                'first_options' => [
                     'label' => 'Mot de passe'
                 ],
                 'second_options' => [
                     'label' => 'Confirmation du mot de passe'
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

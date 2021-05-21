@@ -220,7 +220,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
@@ -261,7 +261,7 @@ class User implements UserInterface
     public function getUsername()
     {
         $username = $this->firstname . ' ' . $this->lastname;
-        return (string) $username;
+        return (string)$username;
     }
 
     /**
@@ -301,15 +301,15 @@ class User implements UserInterface
         return [
             'id' => $this->id,
             'email' => $this->email,
-            'password'=>$this->password,
-            'firstname'=>$this->firstname,
-            'lastname'=>$this->lastname,
-            'birthday'=>$this->birthday,
-            'createdAt'=>$this->createdAt,
-            'updatedAt'=>$this->updatedAt,
-            'lastLogAt'=>$this->lastLogAt,
-            'team'=>$this->team,
-            'ranking'=>$this->ranking,
+            'password' => $this->password,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'birthday' => $this->birthday,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt,
+            'lastLogAt' => $this->lastLogAt,
+            'team' => $this->team,
+            'ranking' => $this->ranking,
             'roles' => $this->roles,
         ];
     }

@@ -83,13 +83,13 @@
                 {% endif %}
                 <td class="align-middle">
                     {% if not user.isdisabled %}
-                        <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-success icofont-2x"
+                        <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-success"
                            title="Activé"><i class="icofont-user-alt-2"></i></a>
                     {% else %}
-                        <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-danger icofont-2x"
+                        <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-danger"
                            title="Désactivé"><i class="icofont-user-alt-2"></i></a>
                     {% endif %}
-                    <a href="{{ path('admin_user_remove', {"id" : user.id}) }}" class="btn btn-warning icofont-2x"
+                    <a href="{{ path('admin_user_remove', {"id" : user.id}) }}" class="btn btn-warning"
                        title="Supprimer"><i class="icofont-bin"></i></a>
                 </td>
             </tr>

@@ -83,8 +83,7 @@ class SecurityAuthenticator extends AbstractFormLoginAuthenticator implements Pa
             if ($user->getIsDisabled()) {
                 throw new CustomUserMessageAuthenticationException('Votre compte est désactivé.');
             }
-        }
-        else {
+        } else {
             throw new CustomUserMessageAuthenticationException('Mot de passe incorrect');
         }
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);

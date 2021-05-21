@@ -36,8 +36,7 @@ class TeamType extends AbstractType
                     'Provinciale 3B' => 'Provinciale 3B',
                 ],
                 'required' => true
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

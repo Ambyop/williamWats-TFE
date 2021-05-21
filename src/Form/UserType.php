@@ -36,14 +36,13 @@ class UserType extends AbstractType
                     'attr' => ['class' => 'password-field'
                     ]],
                 'required' => true,
-                'first_options'  => [
+                'first_options' => [
                     'label' => 'Mot de passe'
                 ],
                 'second_options' => [
                     'label' => 'Confirmation du mot de passe'
                 ],
             ])
-
             ->add('roles', ChoiceType::class, [
                 'label' => 'Rôle(s)',
                 'multiple' => true,
@@ -56,8 +55,7 @@ class UserType extends AbstractType
                 ],
                 'required' => true
             ])
-            ->add('Ranking')
-//            ->add('team')
+            ->add('Ranking')//            ->add('team')
         ;
     }
 
