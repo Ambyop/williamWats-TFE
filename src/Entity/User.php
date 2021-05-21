@@ -104,6 +104,11 @@ class User implements UserInterface
      */
     private $ranking;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isDisabled;
+
     public function __construct()
     {
 
@@ -323,6 +328,18 @@ class User implements UserInterface
         $this->team = $serialized['team'];
         $this->ranking = $serialized['ranking'];
         $this->roles = $serialized['roles'];
+        return $this;
+    }
+
+    public function getIsDisabled(): ?bool
+    {
+        return $this->isDisabled;
+    }
+
+    public function setIsDisabled(bool $isDisabled): self
+    {
+        $this->isDisabled = $isDisabled;
+
         return $this;
     }
 

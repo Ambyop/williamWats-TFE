@@ -3,9 +3,9 @@
 {% block title %}{{ parent() }}User{% endblock %}
 
 {% block body %}
-    <div class="container-fluid my-4 mx-4">
+    <div class="container-fluid my-4">
         <h2 class="d-inline">Gestion des Utilisateurs</h2>
-        <a href="{{ path('admin_user_add') }}" class="d-inline btn btn-primary float-end mx-4 my-2">Ajouter un utilisateur</a>
+        <a href="{{ path('admin_user_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un utilisateur</a>
     </div>
     <table class="table table-striped">
         <thead>
@@ -20,6 +20,7 @@
             <th>Dernière connexion</th>
             <th>Dernière mise à jour</th>
             <th>Rôles</th>
+            <th>Gestion</th>
         </tr>
         </thead>
         <tbody>
@@ -80,6 +81,17 @@
                         </select>
                     </td>
                 {% endif %}
+                <td class="align-middle">
+                    {% if not user.isdisabled %}
+                        <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-success icofont-2x"
+                           title="Activé"><i class="icofont-user-alt-2"></i></a>
+                    {% else %}
+                        <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-danger icofont-2x"
+                           title="Désactivé"><i class="icofont-user-alt-2"></i></a>
+                    {% endif %}
+                    <a href="{{ path('admin_user_remove', {"id" : user.id}) }}" class="btn btn-warning icofont-2x"
+                       title="Supprimer"><i class="icofont-bin"></i></a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

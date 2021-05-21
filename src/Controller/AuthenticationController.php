@@ -34,6 +34,7 @@ class AuthenticationController extends AbstractController
                 ->setCreatedAt($now)
                 ->setUpdatedAt($now)
                 ->setLastLogAt($now)
+                ->setIsDisabled(false)
                 ->setRanking('')
             ;
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
@@ -55,9 +56,9 @@ class AuthenticationController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+         if ($this->getUser()) {
+             return $this->redirectToRoute('homepage');
+         }
 
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();

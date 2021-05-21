@@ -63,7 +63,8 @@ class AdminUserController extends AbstractController
             $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
             $user->setCreatedAt($now)
                 ->setLastLogAt($now)
-                ->setUpdatedAt($now);
+                ->setUpdatedAt($now)
+                ->setIsDisabled(false);
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
 
             $manager->persist($user);
@@ -76,5 +77,32 @@ class AdminUserController extends AbstractController
         return $this->render("admin/create_user.html.twig", [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/admin/user/activation/{id}", name="admin_user_activation")
+     * @param User $user ;
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    public function viewUser(User $user, EntityManagerInterface $manager): Response
+    {
+        $user->setIsDisabled(!$user->getIsDisabled());
+        $manager->flush();
+        return $this->redirectToRoute('admin_user');
+    }
+
+    /**
+     * @Route("/admin/user/remove/{id}", name="admin_user_remove")
+     * @param User $user ;
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    public function removeUser(User $user, EntityManagerInterface $manager): Response
+    {
+        $manager->remove($user);
+        $manager->flush();
+        $this->addFlash('success', 'L\'utilisateur ' . $user->getEmail() . ' a été supprimé');
+        return $this->redirectToRoute('admin_user');
     }
 }

@@ -71,7 +71,7 @@ class SecurityAuthenticator extends AbstractFormLoginAuthenticator implements Pa
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email could not be found.');
+            throw new CustomUserMessageAuthenticationException('Cet Email n\'existe pas.');
         }
 
         return $user;
@@ -79,6 +79,14 @@ class SecurityAuthenticator extends AbstractFormLoginAuthenticator implements Pa
 
     public function checkCredentials($credentials, UserInterface $user)
     {
+        if ($this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
+            if ($user->getIsDisabled()) {
+                throw new CustomUserMessageAuthenticationException('Votre compte est désactivé.');
+            }
+        }
+        else {
+            throw new CustomUserMessageAuthenticationException('Mot de passe incorrect');
+        }
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
