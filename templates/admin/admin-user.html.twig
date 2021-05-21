@@ -14,9 +14,9 @@
             <th>Equipe</th>
             <th>Email</th>
             <th>Création du compte</th>
-            <th>Dernière mise à jour</th>
             <th>Dernière connexion</th>
-            <th>Rôle</th>
+            <th>Dernière mise à jour</th>
+            <th>Rôles</th>
         </tr>
         </thead>
         <tbody>
@@ -33,8 +33,8 @@
                 {% endif %}
                 <td class="align-middle">{{ user.email }}</td>
                 <td class="align-middle">{{ user.createdAt|date("d/m/Y  H:i:s") }}</td>
-                <td class="align-middle">{{ user.updatedAt|date("d/m/Y  H:i:s") }}</td>
                 <td class="align-middle">{{ user.lastlogAt|date("d/m/Y  H:i:s") }}</td>
+                <td class="align-middle">{{ user.updatedAt|date("d/m/Y  H:i:s") }}</td>
                 {% if app.user != user %}
                     <td class="align-middle">
                         <select class="form-select" aria-label="Default select example" onchange="document.location.href=this.value">
@@ -67,11 +67,13 @@
                     <td class="align-middle">
                         <select class="form-select" aria-label="Default select example" onchange="document.location.href=this.value"
                                 title="Vous ne pouvez pas changer votre propre grade" disabled>
-                            {% if role == 'ROLE_ADMIN' %}
-                                <option selected>Administrateur</option>
-                            {% elseif == 'ROLE_SUPER_ADMIN' %}
-                                <option selected>Administrateur</option>
-                            {% endif %}
+                            {% for role in user.roles %}
+                                {% if role == 'ROLE_ADMIN' %}
+                                    <option selected>Administrateur</option>
+                                {% elseif role == 'ROLE_SUPER_ADMIN' %}
+                                    <option selected>Administrateur</option>
+                                {% endif %}
+                            {% endfor %}
                         </select>
                     </td>
                 {% endif %}
