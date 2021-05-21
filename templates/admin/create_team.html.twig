@@ -1,0 +1,15 @@
+{% extends 'admin/base.html.twig' %}
+{% block title %}{{ parent() }}Création d'équipe{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="my-3 col-md-8 offset-md-1">
+                <h1 class="m-4">Créer une nouvelle équipe</h1>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button type="submit" class="btn btn-outline-secondary">Création de l'utilisateur</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

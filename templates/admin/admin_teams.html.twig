@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container-fluid my-4">
         <h2 class="d-inline">Gestion des Equipes</h2>
-        <button type="button" class="d-inline btn btn-primary float-end my-2 mx-4">Creer une équipe</button>
+        <a href="{{ path('admin_teams_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Creer une équipe</a>
     </div>
     <table class="table table-striped">
         <thead>
@@ -21,13 +21,17 @@
         </thead>
         <tbody>
         {% for team in teams %}
+            {% set index = 4 %}
             <tr>
-                <td>{{ team.name }}</td>
-                <td>{{ team.division }}</td>
+                <td class="align-middle">{{ team.name }}</td>
+                <td class="align-middle">{{ team.division }}</td>
                 {% for user in team.users %}
-                <td>{{ user.firstname }}  {{ user.lastname }}</td>
+                <td class="align-middle">{{ user.firstname }}  {{ user.lastname }}</td>
+                    {% set index = index-1 %}
                 {% endfor %}
-                <td>dd</td>
+                {% for key in 1..index %}
+                <td class="align-middle">Aucun joueur</td>
+                {% endfor %}
             </tr>
         {% endfor %}
         </tbody>
