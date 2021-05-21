@@ -3,8 +3,11 @@
 {% block title %}{{ parent() }}User{% endblock %}
 
 {% block body %}
-    <h2 class="my-4 mx-4">Gestion des Utilisateurs</h2>
-    <table class="table table-striped" >
+    <div class="container-fluid my-4 mx-4">
+        <h2 class="d-inline">Gestion des Utilisateurs</h2>
+        <a href="{{ path('admin_user_add') }}" class="d-inline btn btn-primary float-end mx-4 my-2">Ajouter un utilisateur</a>
+    </div>
+    <table class="table table-striped">
         <thead>
         <tr>
             <th>Image</th>

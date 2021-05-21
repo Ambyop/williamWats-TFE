@@ -61,6 +61,14 @@
             </div>
         </div>
     </nav>
+    <!-- View flash messages -->
+    {% block flash %}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}"> {{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+    {% endblock %}
 </header>
 {% block body %}{% endblock %}
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>

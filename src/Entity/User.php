@@ -70,7 +70,7 @@ class User implements UserInterface
     private $firstname;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $birthday;
 
@@ -92,7 +92,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles;
+    private $roles = [];
 
     /**
      * @ORM\ManyToOne(targetEntity=Teams::class, inversedBy="users")
@@ -290,4 +290,40 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function __serialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'password'=>$this->password,
+            'firstname'=>$this->firstname,
+            'lastname'=>$this->lastname,
+            'birthday'=>$this->birthday,
+            'createdAt'=>$this->createdAt,
+            'updatedAt'=>$this->updatedAt,
+            'lastLogAt'=>$this->lastLogAt,
+            'team'=>$this->team,
+            'ranking'=>$this->ranking,
+            'roles' => $this->roles,
+        ];
+    }
+
+    public function __unserialize(array $serialized)
+    {
+        $this->id = $serialized['id'];
+        $this->email = $serialized['email'];
+        $this->password = $serialized['password'];
+        $this->firstname = $serialized['firstname'];
+        $this->lastname = $serialized['lastname'];
+        $this->birthday = $serialized['birthday'];
+        $this->createdAt = $serialized['createdAt'];
+        $this->updatedAt = $serialized['updatedAt'];
+        $this->lastLogAt = $serialized['lastLogAt'];
+        $this->team = $serialized['team'];
+        $this->ranking = $serialized['ranking'];
+        $this->roles = $serialized['roles'];
+        return $this;
+    }
+
 }
