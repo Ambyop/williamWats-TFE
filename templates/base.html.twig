@@ -46,7 +46,8 @@
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav d-flex">
+                {# Account #}
+                <ul class="navbar-nav mb-lg-0">
                     {% if not app.user %}
                         <li class="nav-item">
                             <a href="{{ path('register') }}" class="btn btn-secondary">Inscription</a>
@@ -59,18 +60,22 @@
                                 {# <img src="{{ asset('img/avatar/') ~ app.user.image }}" alt="{{ app.user.firstname }}" class="avatar-mini">&nbsp;&nbsp; #}
                                 {{ app.user.firstname }} {{ app.user.lastname }}
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Mon profil</a></li>
                                 <li><a class="dropdown-item" href="#">Mon équipe</a></li>
                                 <li><a class="dropdown-item" href="#">Mes Matchs</a></li>
                                 <li><a class="dropdown-item" href="#">Mes Entrainements</a></li>
-                                {% if is_granted('ADMIN') %}
-                                <li><a class="dropdown-item" href="#">Administration</a></li>
+
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ path('admin_user') }}">Administration</a></li>
                                 {% endif %}
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="logout" href="{{ path('logout') }}">Se déconnecter</a></li>
+                                <li><a class="dropdown-item logout" href="{{ path('logout') }}">Se déconnecter</a></li>
                             </ul>
                         </li>
                     {% endif %}

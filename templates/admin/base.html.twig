@@ -7,37 +7,67 @@
     <link rel="stylesheet" href="{{ asset('css/icofont.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    {# CSS DataTable #}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     {% block stylesheets %}{% endblock %}
 </head>
 <body>
-{% include 'admin/partials/header.html.twig' %}
-{#{% include 'admin/partials/menu.html.twig' %}#}
+<header>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Panneau D'administration</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+                    aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor03">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin_user') }}"><i class="fas fa-chart-line"></i>Membres</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Equipes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Interclubs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Articles</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Stages</a>
+                    </li>
+                </ul>
+                {# Account #}
+                <ul class="navbar-nav mb-lg-0">
+                    <li class="nav-item"><a href="{{ path('homepage') }}" class="nav-link" target="_blank">Retour au site</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            {# <img src="{{ asset('img/avatar/') ~ app.user.image }}" alt="{{ app.user.firstname }}" class="avatar-mini">&nbsp;&nbsp; #}
+                            {{ app.user.firstname }} {{ app.user.lastname }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Mon profil</a></li>
+                            <li><a class="dropdown-item" href="#">Mon équipe</a></li>
+                            <li><a class="dropdown-item" href="#">Mes Matchs</a></li>
+                            <li><a class="dropdown-item" href="#">Mes Entrainements</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item logout" href="{{ path('logout') }}">Se déconnecter</a></li>
+                        </ul>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+{# {% include 'admin/partials/menu.html.twig' %} #}
 {% block body %}{% endblock %}
 {% include 'admin/partials/footer.html.twig' %}
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-{# Javascript DataTable #}
-<script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% block javascripts %}
-    <script>
-        $(document).ready(function () {
-            $('#myTable').DataTable( {
-                "info": false,
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
-                }
-            });
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            bsCustomFileInput.init()
-        })
-    </script>
+
 {% endblock %}
 
 </body>

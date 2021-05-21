@@ -16,7 +16,7 @@
             <th>Création du compte</th>
             <th>Dernière mise à jour</th>
             <th>Dernière connexion</th>
-            <th>Rôles</th>
+            <th>Rôle</th>
         </tr>
         </thead>
         <tbody>
@@ -36,35 +36,34 @@
                 <td class="align-middle">{{ user.updatedAt|date("d/m/Y  H:i:s") }}</td>
                 <td class="align-middle">{{ user.lastlogAt|date("d/m/Y  H:i:s") }}</td>
                 <td class="align-middle">
+                    <select class="form-select" aria-label="Default select example" onchange="document.location.href=this.value">
                     {% for role in user.roles %}
                         {% if role == 'ROLE_USER' %}
-                            <a href="" class="btn btn-danger disabled" title="Utilisateur"><i class="icofont-ui-user"></i></a>
-                            <a href="" class="btn btn-primary" title="Joueur"><i class="icofont-tennis-player"></i></a>
-                            <a href="" class="btn btn-primary">A</a>
-                            <a href="" class="btn btn-primary">SA</a>
+                            <option selected>Utilisateur</option>
+                            <option value="{{ path('admin_user_rank', {"id":user.id, "role":"ROLE_PLAYER"}) }}">Joueur</option>
+                            <option value="{{ path('admin_user_rank', {"id":user.id, "role":"ROLE_COACH"}) }}">Entraineur</option>
+                            <option value="{{ path('admin_user_rank', {"id":user.id, "role":"ROLE_ADMIN"}) }}">Administrateur</option>
                         {% elseif role == 'ROLE_PLAYER' %}
-                            <a href="" class="btn btn-primary" title="Utilisateur"><i class="icofont-ui-user"></i></a>
-                            <a href="" class="btn btn-success disabled" title="Joueur"><i class="icofont-tennis-player"></i></a>
-                            <a href="" class="btn btn-danger" title="Admin">A</a>
-                            <a href="" class="btn btn-primary">SA</a>
+                            <option value="{{ path('admin_user_rank', {"id":user.id, "role":"ROLE_USER"}) }}">Utilisateur</option>
+                            <option selected>Joueur</option>
+                            <option value="{{ path('admin_user_rank', {"id":user.id, "role":"ROLE_COACH"}) }}">Entraineur</option>
+                            <option value="{{ path('admin_user_rank', {"id":user.id, "role":"ROLE_ADMIN"}) }}">Administrateur</option>
+                        {% elseif role == 'ROLE_COACH' %}
+                            <option value="{{ path('admin_user_rank', {"id":user.id, "role":"ROLE_USER"}) }}">Utilisateur</option>
+                            <option value="{{ path('admin_user_rank', {"id":user.id, "role":"ROLE_PLAYER"}) }}">Joueur</option>
+                            <option selected>Entraineur</option>
+                            <option value="{{ path('admin_user_rank', {"id":user.id, "role":"ROLE_ADMIN"}) }}">Administrateur</option>
                         {% elseif role == 'ROLE_ADMIN' %}
-                            <a href="" class="btn btn-primary" title="Utilisateur"><i class="icofont-ui-user"></i></a>
-                            <a href="" class="btn btn-primary" title="Joueur"><i class="icofont-tennis-player"></i></a>
-                            <a href="" class="btn btn-danger disabled" title="Admin">A</a>
-                            <a href="" class="btn btn-primary">SA</a>
-                        {% else %}
-                            <a href="" class="btn btn-primary" title="Utilisateur"><i class="icofont-ui-user"></i></a>
-                            <a href="" class="btn btn-primary" title="Joueur"><i class="icofont-tennis-player"></i></a>
-                            <a href="" class="btn btn-primary">A</a>
-                            <a href="" class="btn btn-danger disabled" title="Super Administrateur">SA</a>
+                            <option value="{{ path('admin_user_rank', {"id":user.id, "role":"ROLE_USER"}) }}">Utilisateur</option>
+                            <option value="{{ path('admin_user_rank', {"id":user.id, "role":"ROLE_PLAYER"}) }}">Joueur</option>
+                            <option value="{{ path('admin_user_rank', {"id":user.id, "role":"ROLE_COACH"}) }}">Entraineur</option>
+                            <option selected>Administrateur</option>
                         {% endif %}
                     {% endfor %}
+                    </select>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    </div>
-    </div>
-    </div>
 {% endblock %}
