@@ -34,6 +34,7 @@ class AdminUserController extends AbstractController
      * @param EntityManagerInterface $manager
      * @param $role
      * @return Response
+     * @throws \Exception
      */
     public function promoteUser(User $user, EntityManagerInterface $manager, $role): Response
     {
@@ -53,7 +54,7 @@ class AdminUserController extends AbstractController
      * @return Response
      * @throws \Exception
      */
-    public function addUser(EntityManagerInterface $manager, Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function createUser(EntityManagerInterface $manager, Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -61,6 +62,7 @@ class AdminUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
             $user->setCreatedAt($now)
+                ->setImage('default.png')
                 ->setLastLogAt($now)
                 ->setUpdatedAt($now)
                 ->setIsDisabled(false);
