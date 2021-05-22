@@ -17,8 +17,9 @@ class AdminTeamsController extends AbstractController
 {
     /**
      * @Route("/admin/teams", name="admin_teams")
-     * @param UserRepository $userRepository
      * @param TeamsRepository $teamsRepository
+     * @param UserRepository $userRepository
+     * @return Response
      */
     public function index(TeamsRepository $teamsRepository, UserRepository $userRepository): Response
     {
@@ -78,16 +79,25 @@ class AdminTeamsController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/remove/{id}", name="admin_team_remove")
+     * @Route("/admin/team/delete/{id}", name="admin_team_delete")
      * @param Teams $team
      * @param EntityManagerInterface $manager
+     * @param UserRepository $userRepository
      * @return Response
      */
-    public function removeUser(Teams $team, EntityManagerInterface $manager): Response
+    public function removeUser(Teams $team, EntityManagerInterface $manager, UserRepository $userRepository): Response
     {
+        $users = $userRepository->findBy([
+            'team' => $team->getId()
+        ]);
+        foreach ($users as $user){
+            $team->removeUser($user);
+        }
         $manager->remove($team);
         $manager->flush();
         $this->addFlash('success', 'L\'équipe ' . $team->getName() . ' a été supprimé');
         return $this->redirectToRoute('admin_teams');
     }
+
+
 }
