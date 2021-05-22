@@ -44,6 +44,9 @@ class AdminTeamsController extends AbstractController
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+            $team->setCreatedAt($now)
+                ->setUpdatedAt($now);
             $manager->persist($team);
             $manager->flush();
             $this->addFlash('success', 'L\'Equipe ' . $team->getName() . ' a bien été créé.');
@@ -62,12 +65,15 @@ class AdminTeamsController extends AbstractController
      * @param EntityManagerInterface $manager
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws \Exception
      */
     public function editTeam(Teams $team, EntityManagerInterface $manager, Request $request)
     {
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+            $team->setUpdatedAt($now);
             $manager->persist($team);
             $manager->flush();
             $this->addFlash('success', 'Le cours ' . $team->getName() . ' a bien été édité');
@@ -92,7 +98,7 @@ class AdminTeamsController extends AbstractController
         $users = $userRepository->findBy([
             'team' => $team->getId()
         ]);
-        foreach ($users as $user){
+        foreach ($users as $user) {
             $team->removeUser($user);
         }
         $manager->remove($team);
@@ -107,10 +113,14 @@ class AdminTeamsController extends AbstractController
      * @param User $user
      * @param EntityManagerInterface $manager
      * @return Response
+     * @throws \Exception
      */
-    public function removeUserFromTeam(Teams $team, User $user, EntityManagerInterface $manager ): Response
+    public function removeUserFromTeam(Teams $team, User $user, EntityManagerInterface $manager): Response
     {
-        $team->removeUser($user);
+        $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+        $team->removeUser($user)
+            ->setUpdatedAt($now);
+        $user->setUpdatedAt($now);
         $manager->flush();
         return $this->redirectToRoute('admin_teams');
     }
@@ -121,13 +131,15 @@ class AdminTeamsController extends AbstractController
      * @param User $user
      * @param EntityManagerInterface $manager
      * @return Response
+     * @throws \Exception
      */
-    public function addUserToTeam(Teams $team, User $user, EntityManagerInterface $manager ): Response
+    public function addUserToTeam(Teams $team, User $user, EntityManagerInterface $manager): Response
     {
-        $team->addUser($user);
+        $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+        $team->addUser($user)
+            ->setUpdatedAt($now);
+        $user->setUpdatedAt($now);
         $manager->flush();
         return $this->redirectToRoute('admin_teams');
     }
-
-
 }
