@@ -33,7 +33,7 @@
                 {% if user.team %}
                     <td class="align-middle">{{ user.team.name }}</td>
                 {% else %}
-                    <td class="align-middle">-</td>
+                    <td class="align-middle">Aucune Equipe</td>
                 {% endif %}
                 <td class="align-middle">{{ user.email }}</td>
                 <td class="align-middle">{{ user.createdAt|date("d/m/Y  H:i:s") }}</td>

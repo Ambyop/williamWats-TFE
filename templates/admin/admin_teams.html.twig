@@ -26,14 +26,17 @@
                 <td class="align-middle">{{ team.name }}</td>
                 <td class="align-middle">{{ team.division }}</td>
                 {% for user in team.users %}
-                    <td class="align-middle">{{ user.firstname }}  {{ user.lastname }} <a href="" class="btn btn-danger btn-sm" title="Retirer le joueur"><i class="icofont-delete"></i></a></td>
+                    <td class="align-middle">{{ user.firstname }}  {{ user.lastname }} <a href="{{ path('admin_team_remove_user', { 'team': team.id, 'user': user.id}) }}" class="btn btn-danger btn-sm" title="Retirer le joueur"><i class="icofont-delete"></i></a></td>
                     {% set index = index-1 %}
                 {% endfor %}
                 {% for key in 1..index %}
-                    <td class="align-middle">Aucun joueur</td>
+                    <td class="align-middle">Aucun joueur
+                        {% if key == 1 %}
+                            <a href="" class="btn btn-success btn-sm" title="Ajouter un joueur"><i class="icofont-people"></i></a>
+                        {% endif %}
+                    </td>
                 {% endfor %}
                 <td>
-                    <a href="" class="btn btn-success" title="Ajouter un joueur"><i class="icofont-people"></i></a>
                     <a href="{{ path('admin_team_edit', { 'id': team.id}) }}" class="btn btn-secondary" title="Modifier"><i class="icofont-pencil-alt-5"></i></a>
                     <a href="{{ path('admin_team_delete', { 'id': team.id}) }}" class="btn btn-warning" title="Supprimer"><i class="icofont-bin"></i></a>
                 </td>
