@@ -26,22 +26,58 @@
                 <td class="align-middle">{{ team.name }}</td>
                 <td class="align-middle">{{ team.division }}</td>
                 {% for user in team.users %}
-                    <td class="align-middle">{{ user.firstname }}  {{ user.lastname }} <a href="{{ path('admin_team_remove_user', { 'team': team.id, 'user': user.id}) }}" class="btn btn-danger btn-sm" title="Retirer le joueur"><i class="icofont-delete"></i></a></td>
+                    <td class="align-middle">{{ user.firstname }}  {{ user.lastname }} <a
+                                href="{{ path('admin_team_remove_user', { 'team': team.id, 'user': user.id}) }}" class="btn btn-danger btn-sm"
+                                title="Retirer le joueur"><i class="icofont-delete"></i></a></td>
                     {% set index = index-1 %}
                 {% endfor %}
                 {% for key in 1..index %}
                     <td class="align-middle">Aucun joueur
                         {% if key == 1 %}
-                            <a href="" class="btn btn-success btn-sm" title="Ajouter un joueur"><i class="icofont-people"></i></a>
+                            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#addUserTeam-{{ team.id }}-Modal" title="Ajouter un joueur"><i class="icofont-people"></i>
+                            </button>
                         {% endif %}
                     </td>
                 {% endfor %}
                 <td>
-                    <a href="{{ path('admin_team_edit', { 'id': team.id}) }}" class="btn btn-secondary" title="Modifier"><i class="icofont-pencil-alt-5"></i></a>
+                    <a href="{{ path('admin_team_edit', { 'id': team.id}) }}" class="btn btn-secondary" title="Modifier"><i
+                                class="icofont-pencil-alt-5"></i></a>
                     <a href="{{ path('admin_team_delete', { 'id': team.id}) }}" class="btn btn-warning" title="Supprimer"><i class="icofont-bin"></i></a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <!-- Add User to team Modal -->
+    {% for team in teams %}
+        <div class="modal fade" id="addUserTeam-{{ team.id }}-Modal" tabindex="-1" aria-labelledby="addUserTeam-{{ team.id }}-ModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addUserTeam-{{ team.id }}-ModalLabel">Ajouter un joueur à "{{ team.name }}"</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group">
+                            {% set index = 0 %}
+                            {% for user in users %}
+                                {% if user.team is null %}
+                                    <li class="list-group-item">{{ user.firstname }} {{ user.lastname }}
+                                        <a class="btn btn-outline-success float-end"
+                                           href="{{ path('admin_team_add_user', {'team':team.id, 'user':user.id}) }}">
+                                            <i class="icofont-check-alt"></i></a></li>
+                                    {% set index = index + 1 %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if index == 0 %}
+                                <li class="list-group-item">Aucun joueur n'est disponible</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}

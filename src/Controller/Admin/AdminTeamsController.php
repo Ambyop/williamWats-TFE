@@ -24,8 +24,10 @@ class AdminTeamsController extends AbstractController
     public function index(TeamsRepository $teamsRepository, UserRepository $userRepository): Response
     {
         $teams = $teamsRepository->findAll();
+        $user = $userRepository->findAll();
         return $this->render('admin/admin_teams.html.twig', [
             'teams' => $teams,
+            'users' => $user,
         ]);
     }
 
@@ -109,6 +111,20 @@ class AdminTeamsController extends AbstractController
     public function removeUserFromTeam(Teams $team, User $user, EntityManagerInterface $manager ): Response
     {
         $team->removeUser($user);
+        $manager->flush();
+        return $this->redirectToRoute('admin_teams');
+    }
+
+    /**
+     * @Route("/admin/team/{team}/add/user/{user}", name="admin_team_add_user")
+     * @param Teams $team
+     * @param User $user
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    public function addUserToTeam(Teams $team, User $user, EntityManagerInterface $manager ): Response
+    {
+        $team->addUser($user);
         $manager->flush();
         return $this->redirectToRoute('admin_teams');
     }
