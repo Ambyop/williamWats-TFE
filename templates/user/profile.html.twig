@@ -62,6 +62,10 @@
                         <div class="tab-pane fade" id="editProfile" role="tabpanel" aria-labelledby="editProfile-tab">
                             <div class="mb-2 my-2">
                                 <h4>Modifier mes informations</h4>
+                                {{ form_start(editProfileForm) }}
+                                {{ form_widget(editProfileForm) }}
+                                <button type="submit" class="btn btn-outline-primary">Modifier profil</button>
+                                {{ form_end(editProfileForm) }}
                             </div>
                             <div class="mb-2 my-2">
                                 <h4>Modification de mon mot de passe</h4>

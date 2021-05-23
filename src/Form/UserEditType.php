@@ -6,13 +6,12 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
-class UserRegisterType extends AbstractType
+class UserEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -26,22 +25,20 @@ class UserRegisterType extends AbstractType
                 'required' => true
             ])
             ->add('lastname', TextType::class, [
-                'label' => 'Nom de l\'utilisateur',
-                'required' => true
+                'label' => 'Nom de l\'utilisateur'
             ])
-            ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'invalid_message' => 'Les mots de passe ne correspondent pas',
-                'options' => [
-                    'attr' => ['class' => 'password-field'
-                    ]],
+            ->add('birthday', BirthdayType::class, [
+                'label' => 'Quand êtes-vous né?',
+                'format' => 'd/MM/yyyy',
+                'years' => range(date('Y') - 70, date('Y') - 5),
                 'required' => true,
-                'first_options' => [
-                    'label' => 'Mot de passe'
-                ],
-                'second_options' => [
-                    'label' => 'Confirmation du mot de passe'
-                ],
+            ])
+            ->add('imageFile',VichImageType::class, [
+                'label' => 'Image du cours',
+                'required' => false,
+                'allow_delete' => false,
+                'download_uri' => false,
+                'image_uri'=> false
             ]);
     }
 
