@@ -29,7 +29,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/promote/{id}/{role}",name="admin_user_rank")
+     * @Route("/admin/promote/{id}/{role}",name="admin_user_role")
      * @param User $user
      * @param EntityManagerInterface $manager
      * @param $role
@@ -104,6 +104,24 @@ class AdminUserController extends AbstractController
         $manager->remove($user);
         $manager->flush();
         $this->addFlash('success', 'L\'utilisateur ' . $user->getEmail() . ' a été supprimé');
+        return $this->redirectToRoute('admin_user');
+    }
+
+    /**
+     * @Route("/admin/ranking/{id}/{ranking}",name="admin_user_roleing")
+     * @param User $user
+     * @param EntityManagerInterface $manager
+     * @param $ranking
+     * @return Response
+     * @throws \Exception
+     */
+    public function changeUserRanking(User $user, EntityManagerInterface $manager, $ranking): Response
+    {
+        $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+        $user->setRanking($ranking);
+        $user->setUpdatedAt($now);
+        $manager->flush();
+
         return $this->redirectToRoute('admin_user');
     }
 }
