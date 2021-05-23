@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Administration - {% endblock %}</title>
-    <link rel="icon" href="{{ asset('img/design/favicon.png') }}">
+    <link rel="icon" href="{{ asset('img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('css/icofont.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -47,7 +47,7 @@
                             {{ app.user.firstname }} {{ app.user.lastname }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Mon profil</a></li>
+                            <li><a class="dropdown-item" href="{{ path('user_profile') }}">Mon profil</a></li>
                             <li><a class="dropdown-item" href="#">Mon équipe</a></li>
                             <li><a class="dropdown-item" href="#">Mes Matchs</a></li>
                             <li><a class="dropdown-item" href="#">Mes Entrainements</a></li>

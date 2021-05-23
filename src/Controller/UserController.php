@@ -20,8 +20,10 @@ class UserController extends AbstractController
     {
         // load user Data
         $user = $userRepository->find($tokenStorage->getToken()->getUser());
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
+
+        // generate Edit Profile Form
+        return $this->render('user/profile.html.twig', [
+            'user' => $user,
         ]);
     }
 }

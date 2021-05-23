@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}Profil{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="container">
+            <div class="row my-2">
+                <div class="col-lg-8 order-lg-2">
+                    <ul class="nav nav-tabs" id="profileTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
+                                    aria-controls="home" aria-selected="true">Profil
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pouet-tab" data-bs-toggle="tab" data-bs-target="#pouet" type="button" role="tab"
+                                    aria-controls="pouet" aria-selected="false">Pouet
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="editProfile-tab" data-bs-toggle="tab" data-bs-target="#editProfile" type="button" role="tab"
+                                    aria-controls="contact" aria-selected="false">Modifier mon profil
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="profileTabContent">
+                        <div class="tab-pane fade show active my-2" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <h4 class="mb-3">Profil d'utilisateur</h4>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>Nom de l'utilisateur:</h5>
+                                    <p>
+                                        {{ app.user.firstname }} {{ app.user.lastname|upper }}
+                                    </p>
+                                    <h5>Email</h5>
+                                    <p>
+                                        {{ app.user.email }}
+                                    </p>
+                                    <h5>Classement:</h5>
+                                    <p>
+                                        {{ app.user.ranking }}
+                                    </p>
+                                    <h5>Rôle:</h5>
+                                    <button type="button" class="btn btn-outline-primary" data-toggle="tooltip"
+                                            data-placement="bottom" title="{{ app.user.roles|json_encode }}">
+                                        {% if app.user.roles|json_encode == '["ROLE_ADMIN"]' %} Administrateur
+                                        {% elseif app.user.roles|json_encode == '["ROLE_SUPER_ADMIN"]' %} Super-Administrateur
+                                        {% elseif app.user.roles|json_encode == '["ROLE_PLAYER"]' %} Joueur
+                                        {% elseif app.user.roles|json_encode == '["ROLE_COACH"]' %} Entraîneur
+                                        {% else %} Utilisateur
+                                        {% endif %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade my-2" id="pouet" role="tabpanel" aria-labelledby="pouet-tab">
+                            <div class="alert alert-warning">
+                                Vous n'avez aucun commentaire
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="editProfile" role="tabpanel" aria-labelledby="editProfile-tab">
+                            <div class="mb-2 my-2">
+                                <h4>Modifier mes informations</h4>
+                            </div>
+                            <div class="mb-2 my-2">
+                                <h4>Modification de mon mot de passe</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 order-lg-1 text-center">
+                    <img src="{{ asset('img/users/') ~ app.user.image }}" class="mx-auto img-fluid img-circle d-block"
+                         alt="Image de profil">
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

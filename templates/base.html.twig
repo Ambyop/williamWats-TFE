@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Accueil{% endblock %}</title>
-    {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" href="{{ asset('img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/icofont.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -25,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                        <a class="nav-link active" aria-current="page" href="{{ path('homepage') }}">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Stages</a>
@@ -61,7 +60,7 @@
                                 {{ app.user.firstname }} {{ app.user.lastname }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Mon profil</a></li>
+                                <li><a class="dropdown-item" href="{{ path('user_profile') }}">Mon profil</a></li>
                                 <li><a class="dropdown-item" href="#">Mon équipe</a></li>
                                 <li><a class="dropdown-item" href="#">Mes Matchs</a></li>
                                 <li><a class="dropdown-item" href="#">Mes Entrainements</a></li>
