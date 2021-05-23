@@ -29,7 +29,17 @@
                 <td><img src="{{ asset('img/users/') ~ app.user.image }}" alt="{{ user.id }}" class="admin-user-avatar align-middle"></td>
                 <td class="align-middle">{{ user.firstname }}</td>
                 <td class="align-middle">{{ user.lastname }}</td>
-                <td class="align-middle">{{ user.ranking }}</td>
+                <td class="align-middle">
+                    <div class="ranking-box">
+                        <a id="ranking-down" data-user-id="{{ user.id }}"><i class="icofont-arrow-down"></i></a>
+                        {% if user.ranking %}
+                        <span id="ranking-show-{{ user.id }}" data-user-ranking="{{ user.ranking }}">{{ user.ranking }}</span>
+                            {% else %}
+                            <span id="ranking-show-{{ user.id }}" data-user-ranking="NC">NC</span>
+                            {% endif %}
+                        <a id="ranking-up" data-user-id="{{ user.id }}"><i class="icofont-arrow-up"></i></a>
+                    </div>
+                </td>
                 {% if user.team %}
                     <td class="align-middle">{{ user.team.name }}</td>
                 {% else %}
@@ -96,4 +106,8 @@
         {% endfor %}
         </tbody>
     </table>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/AdminUser.js') }}"></script>
 {% endblock %}

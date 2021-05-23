@@ -108,7 +108,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/ranking/{id}/{ranking}",name="admin_user_roleing")
+     * @Route("/admin/ranking/{id}/{ranking}",name="admin_user_ranking")
      * @param User $user
      * @param EntityManagerInterface $manager
      * @param $ranking
