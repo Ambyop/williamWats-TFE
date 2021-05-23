@@ -12,6 +12,12 @@ header {
   height: 56px;
   nav {
     z-index: 99;
+
+    .avatar-navbar {
+      border-radius: 50%;
+      width: 40px;
+      max-height: 90%;
+    }
   }
 }
 

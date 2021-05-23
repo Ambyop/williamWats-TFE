@@ -13,6 +13,11 @@ header {
 header nav {
   z-index: 99;
 }
+header nav .avatar-navbar {
+  border-radius: 50%;
+  width: 40px;
+  max-height: 90%;
+}
 
 main .header-image {
   width: 100%;
