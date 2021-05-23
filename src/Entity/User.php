@@ -71,6 +71,15 @@ class User implements UserInterface
     private $firstname;
 
     /**
+     * @ORM\Column(type="string", length=10)
+     * @Assert\Regex(
+     *     pattern="/^((\+|00)32\s?|0)4(60|[789]\d)(\s?\d{2}){3}$/",
+     *     message="Ce numéro de téléphone n'est pas correct"
+     * )
+     */
+    private $phoneNumber;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $image;
@@ -376,6 +385,18 @@ class User implements UserInterface
     public function setIsDisabled(bool $isDisabled): self
     {
         $this->isDisabled = $isDisabled;
+
+        return $this;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(string $phoneNumber): self
+    {
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
