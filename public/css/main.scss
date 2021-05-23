@@ -72,8 +72,11 @@ footer {
       height: 338px;
       left: 0;
       top: 69px;
+      overflow: hidden;
       img {
-        height: 100%;
+        position: relative;
+        height: auto;
+        top: -420px;
         background: linear-gradient(0deg, rgba(72, 70, 70, 0.57), rgba(72, 70, 70, 0.57));
       }
     }
