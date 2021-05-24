@@ -12,27 +12,27 @@
                         <div class="col-6">
                             <h5>Nom de l'utilisateur:</h5>
                             <p>
-                                {{ app.user.firstname }} {{ app.user.lastname|upper }}
+                                {{ user.firstname }} {{ user.lastname|upper }}
                             </p>
                             <h5>Email</h5>
                             <p>
-                                {{ app.user.email }}
+                                {{ user.email }}
                             </p>
                             <h5>Numéro de téléphone</h5>
                             <p>
-                                {{ app.user.phoneNumber }}
+                                {{ user.phoneNumber }}
                             </p>
                             <h5>Classement:</h5>
                             <p>
-                                {{ app.user.ranking }}
+                                {{ user.ranking }}
                             </p>
                             <h5>Rôle:</h5>
                             <button type="button" class="btn btn-outline-primary disabled" data-toggle="tooltip"
-                                    data-placement="bottom" title="{{ app.user.roles|json_encode }}">
-                                {% if app.user.roles|json_encode == '["ROLE_ADMIN"]' %} Administrateur
-                                {% elseif app.user.roles|json_encode == '["ROLE_SUPER_ADMIN"]' %} Super-Administrateur
-                                {% elseif app.user.roles|json_encode == '["ROLE_PLAYER"]' %} Joueur
-                                {% elseif app.user.roles|json_encode == '["ROLE_COACH"]' %} Entraîneur
+                                    data-placement="bottom" title="{{ user.roles|json_encode }}">
+                                {% if user.roles|json_encode == '["ROLE_ADMIN"]' %} Administrateur
+                                {% elseif user.roles|json_encode == '["ROLE_SUPER_ADMIN"]' %} Super-Administrateur
+                                {% elseif user.roles|json_encode == '["ROLE_PLAYER"]' %} Joueur
+                                {% elseif user.roles|json_encode == '["ROLE_COACH"]' %} Entraîneur
                                 {% else %} Utilisateur
                                 {% endif %}
                             </button>
@@ -40,8 +40,8 @@
                     </div>
                 </div>
                 <div class="col-lg-4 order-lg-1 text-center">
-                    {% if app.user.image %}
-                        <img src="{{ asset('img/users/') ~ app.user.image }}" class="mx-auto img-fluid img-circle d-block"
+                    {% if user.image %}
+                        <img src="{{ asset('img/users/') ~ user.image }}" class="mx-auto img-fluid img-circle d-block"
                              alt="Image de profil">
                     {% else %}
                         <img src="{{ asset('img/users/') ~ 'default.png' }}" class="mx-auto img-fluid img-circle d-block"
