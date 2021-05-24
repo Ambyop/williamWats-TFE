@@ -1,0 +1,74 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ parent() }}Presse et médias{% endblock %}
+
+{% block body %}
+    <div class="container-fluid my-4">
+        <h2 class="d-inline">Gestion des Articles</h2>
+        <a href="{{ path('admin_teams_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un article</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Aperçu</th>
+            <th>Adresse</th>
+            <th>Date de création</th>
+            <th>Dernière modification</th>
+            <th>Paramètres</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            {% set index = 4 %}
+            <tr>
+                <td class="align-middle">{{ article.title }}</td>
+                <td class="align-middle">aperçu</td>
+                <td class="align-middle">{{ article.slug }}</td>
+                <td>{{ article.createdAt|date("d/m/Y H:i") }}</td>
+                <td>{{ article.updatedAt|date("d/m/Y H:i") }}</td>
+                <td>
+                    {% if article.isEnabled %}
+                        <a href="" class="btn btn-secondary" title="Modifier"><i class="icofont-toggle-on"></i></a>
+                    {% else %}
+                        <a href="" class="btn btn-secondary" title="Modifier"><i class="icofont-toggle-off"></i></a>
+                    {% endif %}
+                    <a href="" class="btn btn-secondary" title="Modifier"><i class="icofont-pencil-alt-5"></i></a>
+                    <a href="" class="btn btn-warning" title="Supprimer"><i class="icofont-bin"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <!-- Add User to team Modal -->
+    {% for team in teams %}
+        <div class="modal fade" id="addUserTeam-{{ team.id }}-Modal" tabindex="-1" aria-labelledby="addUserTeam-{{ team.id }}-ModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addUserTeam-{{ team.id }}-ModalLabel">Ajouter un joueur à "{{ team.name }}"</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-group">
+                            {% set index = 0 %}
+                            {% for user in users %}
+                                {% if user.team is null %}
+                                    <li class="list-group-item">{{ user.firstname }} {{ user.lastname }}
+                                        <a class="btn btn-outline-success float-end"
+                                           href="{{ path('admin_team_add_user', {'team':team.id, 'user':user.id}) }}">
+                                            <i class="icofont-check-alt"></i></a></li>
+                                    {% set index = index + 1 %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if index == 0 %}
+                                <li class="list-group-item">Aucun joueur n'est disponible</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
