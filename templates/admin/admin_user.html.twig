@@ -134,7 +134,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="user-{{ user.id }}-profile">Visuel du profil de: <strong>{{ user.firstname }} {{ user.lastname }}</strong></h5>
+                        <h5 class="modal-title" id="user-{{ user.id }}-profile">Visuel du profil de: <strong>{{ user.firstname }} {{ user.lastname|upper }}</strong></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -185,8 +185,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
