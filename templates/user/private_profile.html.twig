@@ -46,7 +46,7 @@
                                         {{ app.user.ranking }}
                                     </p>
                                     <h5>Rôle:</h5>
-                                    <button type="button" class="btn btn-outline-primary" data-toggle="tooltip"
+                                    <button type="button" class="btn btn-outline-primary disabled" data-toggle="tooltip"
                                             data-placement="bottom" title="{{ app.user.roles|json_encode }}">
                                         {% if app.user.roles|json_encode == '["ROLE_ADMIN"]' %} Administrateur
                                         {% elseif app.user.roles|json_encode == '["ROLE_SUPER_ADMIN"]' %} Super-Administrateur
