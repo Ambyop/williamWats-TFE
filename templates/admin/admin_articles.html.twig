@@ -41,34 +41,4 @@
         </tbody>
     </table>
     <!-- Add User to team Modal -->
-    {% for team in teams %}
-        <div class="modal fade" id="addUserTeam-{{ team.id }}-Modal" tabindex="-1" aria-labelledby="addUserTeam-{{ team.id }}-ModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addUserTeam-{{ team.id }}-ModalLabel">Ajouter un joueur à "{{ team.name }}"</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <ul class="list-group">
-                            {% set index = 0 %}
-                            {% for user in users %}
-                                {% if user.team is null %}
-                                    <li class="list-group-item">{{ user.firstname }} {{ user.lastname }}
-                                        <a class="btn btn-outline-success float-end"
-                                           href="{{ path('admin_team_add_user', {'team':team.id, 'user':user.id}) }}">
-                                            <i class="icofont-check-alt"></i></a></li>
-                                    {% set index = index + 1 %}
-                                {% endif %}
-                            {% endfor %}
-                            {% if index == 0 %}
-                                <li class="list-group-item">Aucun joueur n'est disponible</li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
 {% endblock %}
