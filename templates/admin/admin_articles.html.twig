@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container-fluid my-4">
         <h2 class="d-inline">Gestion des Articles</h2>
-        <a href="{{ path('admin_teams_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un article</a>
+        <a href="{{ path('admin_articles_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un article</a>
     </div>
     <table class="table table-striped">
         <thead>
@@ -40,5 +40,4 @@
         {% endfor %}
         </tbody>
     </table>
-    <!-- Add User to team Modal -->
 {% endblock %}

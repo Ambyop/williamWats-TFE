@@ -53,7 +53,6 @@ class AdminTeamsController extends AbstractController
 
             return $this->redirectToRoute('admin_teams');
         }
-
         return $this->render("admin/create_team.html.twig", [
             'form' => $form->createView()
         ]);
@@ -64,10 +63,10 @@ class AdminTeamsController extends AbstractController
      * @param Teams $team
      * @param EntityManagerInterface $manager
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @return Response
      * @throws \Exception
      */
-    public function editTeam(Teams $team, EntityManagerInterface $manager, Request $request)
+    public function editTeam(Teams $team, EntityManagerInterface $manager, Request $request): Response
     {
         $form = $this->createForm(TeamType::class, $team);
         $form->handleRequest($request);

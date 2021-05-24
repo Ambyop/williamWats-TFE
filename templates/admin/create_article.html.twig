@@ -1,0 +1,15 @@
+{% extends 'admin/base.html.twig' %}
+{% block title %}{{ parent() }}Nouvel Article{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="my-3 col-md-8 offset-md-1">
+                <h1 class="m-4">Ajouter un article</h1>
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button type="submit" class="btn btn-outline-primary">Création de l'annonce</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

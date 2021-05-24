@@ -51,12 +51,12 @@ class Articles
     private $slug;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
 
     /**
-     * @Vich\UploadableField(mapping="article_image", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="articles_image", fileNameProperty="image")
      * @var File|null
      */
     private $imageFile;
