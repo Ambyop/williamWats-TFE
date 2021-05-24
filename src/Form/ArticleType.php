@@ -23,7 +23,10 @@ class ArticleType extends AbstractType
             ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image de l\'annonce',
-                'required' => false
+                'required' => false,
+                'allow_delete' => true,
+                'download_uri' => false,
+                'image_uri'=> false
             ]);
     }
 

@@ -29,12 +29,20 @@
                 <td>{{ article.updatedAt|date("d/m/Y H:i") }}</td>
                 <td>
                     {% if article.isEnabled %}
-                        <a href="" class="btn btn-secondary" title="Modifier"><i class="icofont-toggle-on"></i></a>
+                        <a href="{{ path('admin_article_activation',{'id': article.id}) }}" class="btn btn-success" title="Modifier">
+                            <i class="icofont-toggle-on"></i>
+                        </a>
                     {% else %}
-                        <a href="" class="btn btn-secondary" title="Modifier"><i class="icofont-toggle-off"></i></a>
+                        <a href="{{ path('admin_article_activation',{'id': article.id}) }}" class="btn btn-danger" title="Modifier">
+                            <i class="icofont-toggle-off"></i>
+                        </a>
                     {% endif %}
-                    <a href="" class="btn btn-secondary" title="Modifier"><i class="icofont-pencil-alt-5"></i></a>
-                    <a href="" class="btn btn-warning" title="Supprimer"><i class="icofont-bin"></i></a>
+                    <a href="{{ path('admin_article_edit', {'id': article.id}) }}" class="btn btn-secondary" title="Modifier">
+                        <i class="icofont-pencil-alt-5"></i>
+                    </a>
+                    <a href="{{ path('admin_article_remove', {'id': article.id}) }}" class="btn btn-warning" title="Supprimer">
+                        <i class="icofont-bin"></i>
+                    </a>
                 </td>
             </tr>
         {% endfor %}
