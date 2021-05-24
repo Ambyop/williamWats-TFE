@@ -62,7 +62,6 @@ class AdminUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
             $user->setCreatedAt($now)
-                ->setImage('default.png')
                 ->setLastLogAt($now)
                 ->setUpdatedAt($now)
                 ->setIsDisabled(false);

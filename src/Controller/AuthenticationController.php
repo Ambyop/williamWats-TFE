@@ -31,7 +31,6 @@ class AuthenticationController extends AbstractController
             $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
             $user->setCreatedAt($now)
                 ->setRoles(["ROLE_USER"])
-                ->setImage('default.png')
                 ->setCreatedAt($now)
                 ->setUpdatedAt($now)
                 ->setLastLogAt($now)

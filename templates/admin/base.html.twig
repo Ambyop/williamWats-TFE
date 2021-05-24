@@ -66,15 +66,18 @@
             </div>
         </div>
     </nav>
-    <!-- View flash messages -->
-    {% block flash %}
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="alert alert-{{ label }}"> {{ message }}</div>
-            {% endfor %}
-        {% endfor %}
-    {% endblock %}
 </header>
+<!-- View flash messages -->
+{% block flash %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="my-3 alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                <i class="icofont-check-circled"></i> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
 {% block body %}{% endblock %}
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 {% block javascripts %}

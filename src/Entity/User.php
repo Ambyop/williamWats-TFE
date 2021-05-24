@@ -63,7 +63,7 @@ class User implements UserInterface
      *     maxMessage= "Le prénom ne peut contenir plus de {{ limit }} caractères"
      * )
      * @Assert\Regex(
-     *     pattern="/^[a-zA-ZÀ-ÿœ]+$/",
+     *     pattern="/^[a-zA-ZÀ-ÿœ-]+$/",
      *     match=true,
      *     message="Merci de mettre uniquement que des lettres"
      * )
@@ -71,7 +71,7 @@ class User implements UserInterface
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=60, nullable=true)
      * @Assert\Regex(
      *     pattern="/^((\+|00)32\s?|0)4(60|[789]\d)(\s?\d{2}){3}$/",
      *     message="Ce numéro de téléphone n'est pas correct"

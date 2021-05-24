@@ -56,10 +56,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                aria-expanded="false">
-                                 {% if app.user.image %}
-                                <img src="{{ asset('img/users/') ~ app.user.image }}" alt="{{ app.user.firstname }}" class="avatar-navbar">
+                                {% if app.user.image %}
+                                    <img src="{{ asset('img/users/') ~ app.user.image }}" alt="{{ app.user.firstname }}" class="avatar-navbar">
                                 {% else %}
-                                <img src="{{ asset('img/users/') ~ 'default.png' }}" alt="{{ app.user.firstname }}" class="avatar-navbar">
+                                    <img src="{{ asset('img/users/') ~ 'default.png' }}" alt="{{ app.user.firstname }}" class="avatar-navbar">
                                 {% endif %}
                                 &nbsp;&nbsp;{{ app.user.firstname }} {{ app.user.lastname }}
                             </a>
@@ -92,6 +92,18 @@
         </div>
     </nav>
 </header>
+<!-- View flash messages -->
+{% block flash %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="my-3 alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                <i class="icofont-check-circled"></i> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
 {% block body %}{% endblock %}
 {% block javascripts %}
     {# {{ encore_entry_script_tags('app') }} #}
