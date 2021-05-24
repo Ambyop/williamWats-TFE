@@ -43,8 +43,12 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
-                             <img src="{{ asset('img/users/') ~ app.user.image }}" alt="{{ app.user.firstname }}" class="avatar-navbar">&nbsp;&nbsp;
-                            {{ app.user.firstname }} {{ app.user.lastname }}
+                            {% if app.user.image %}
+                                <img src="{{ asset('img/users/') ~ app.user.image }}" alt="{{ app.user.firstname }}" class="avatar-navbar">
+                            {% else %}
+                                <img src="{{ asset('img/users/') ~ 'default.png' }}" alt="{{ app.user.firstname }}" class="avatar-navbar">
+                            {% endif %}
+                            &nbsp;&nbsp;{{ app.user.firstname }} {{ app.user.lastname }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{ path('user_profile') }}">Mon profil</a></li>

@@ -27,7 +27,13 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td><img src="{{ asset('img/users/') ~  user.image }}" alt="{{ user.id }}" class="admin-user-avatar align-middle"></td>
+                <td>
+                    {% if user.image %}
+                        <img src="{{ asset('img/users/') ~  user.image }}" alt="{{ user.id }}" class="admin-user-avatar align-middle">
+                    {% else %}
+                        <img src="{{ asset('img/users/') ~  'default.png' }}" alt="{{ user.id }}" class="admin-user-avatar align-middle">
+                    {% endif %}
+                </td>
                 <td class="align-middle">{{ user.firstname }}</td>
                 <td class="align-middle">{{ user.lastname }}</td>
                 <td class="align-middle">

@@ -19,6 +19,7 @@ class UserController extends AbstractController
      * @param TokenStorageInterface $tokenStorage
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function profile(UserRepository $userRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
     {

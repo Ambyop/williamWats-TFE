@@ -86,7 +86,6 @@ class User implements UserInterface
 
     /**
      * @Vich\UploadableField(mapping="user_image", fileNameProperty="image")
-     *
      * @var File|null
      */
     private $imageFile;

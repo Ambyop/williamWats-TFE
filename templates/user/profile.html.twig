@@ -74,8 +74,13 @@
                     </div>
                 </div>
                 <div class="col-lg-4 order-lg-1 text-center">
-                    <img src="{{ asset('img/users/') ~ app.user.image }}" class="mx-auto img-fluid img-circle d-block"
-                         alt="Image de profil">
+                    {% if app.user.image %}
+                        <img src="{{ asset('img/users/') ~ app.user.image }}" class="mx-auto img-fluid img-circle d-block"
+                             alt="Image de profil">
+                    {% else %}
+                        <img src="{{ asset('img/users/') ~ 'default.png' }}" class="mx-auto img-fluid img-circle d-block"
+                             alt="Image de profil">
+                    {% endif %}
                 </div>
             </div>
         </div>
