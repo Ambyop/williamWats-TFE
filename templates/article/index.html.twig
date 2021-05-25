@@ -22,10 +22,31 @@
                     <h3>{{ article.title }}</h3>
                     <p>{{ article.content }}</p>
                     <div class="article-more">
-                        <a href="" class="align-content-center">More</a>
+                        <a class="align-content-center" data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">More...</a>
                     </div>
                 </div>
             {% endfor %}
         </section>
     </main>
+
+    <!-- Modal -->
+    {% for article in articles %}
+        <!-- {{ article.id }} -->
+        <div class="modal fade" id="articleModal-{{ article.id }}" tabindex="-1" aria-labelledby="articleModal-{{ article.id }}Label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl modal-fullscreen-lg-down">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="articleModal-{{ article.id }}Label">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
