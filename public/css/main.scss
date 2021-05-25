@@ -9,9 +9,10 @@
 
 header {
   width: 100%;
-  height: 56px;
+  height: 70px;
   nav {
     z-index: 99;
+    height: 85.85px;
 
     .avatar-navbar {
       border-radius: 50%;
@@ -22,7 +23,6 @@ header {
 }
 
 main {
-  margin-top: 50px;
   .header-image {
     width: 100%;
     height: 162px;
@@ -67,6 +67,9 @@ footer {
 
 /* Desktop */
 @media screen and (min-width: 768px) {
+  header {
+    height: 85.85px;
+  }
   main {
     .header-image {
       position: absolute;

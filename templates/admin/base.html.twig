@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Administration - {% endblock %}</title>
     <link rel="icon" href="{{ asset('img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('css/icofont.min.css') }}">
@@ -71,7 +72,7 @@
 {% block flash %}
     {% for label, messages in app.flashes %}
         {% for message in messages %}
-            <div class="my-3 alert alert-{{ label }} alert-dismissible fade show" role="alert">
+            <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
                 <i class="icofont-check-circled"></i> {{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>

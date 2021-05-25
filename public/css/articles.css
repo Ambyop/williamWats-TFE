@@ -1,0 +1,116 @@
+main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  background: linear-gradient(0deg, rgba(55, 55, 55, 0.45), rgba(55, 55, 55, 0.45)), url(../img/cttSalle.jpg) no-repeat;
+  overflow: scroll;
+  /* Desktop */
+}
+main .title-box {
+  height: 100px;
+}
+main .title-box h1 {
+  position: absolute;
+  left: 25px;
+  top: 20px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  color: #EEEEEE;
+}
+main section .article-box {
+  width: 85%;
+  height: 416px;
+  margin: 35px 0 0 7.5%;
+  background: rgba(34, 34, 34, 0.52);
+  border-radius: 30px;
+}
+main section .article-box img {
+  border-radius: 5%;
+  width: 80%;
+  height: 130px;
+  margin: 20px 10% 0 10%;
+}
+main section .article-box h3 {
+  margin: 10px 10% 5px 10%;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 33px;
+  display: flex;
+  align-items: center;
+  color: #D0D0D0;
+}
+main section .article-box p {
+  margin: 10px 10% 0 10%;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  max-height: 139px;
+  overflow: hidden;
+  color: #CCCCCC;
+}
+main section .article-box .article-more {
+  margin: 2% 0 0 29%;
+  width: 42%;
+  height: 50px;
+  background: rgba(130, 130, 130, 0.9);
+}
+main section .article-box .article-more a {
+  width: 100%;
+  height: 50px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-variant: small-caps;
+  color: #DDDDDD;
+}
+main section :first-child {
+  margin: 0 0 0 7.5%;
+}
+@media screen and (min-width: 768px) {
+  main header {
+    height: 85.85px;
+  }
+  main .title-box {
+    height: 100px;
+  }
+  main .title-box h1 {
+    position: absolute;
+    left: 25px;
+    top: 20px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    color: #EEEEEE;
+  }
+  main section .article-box {
+    width: 70%;
+    height: 500px;
+    margin-left: 15%;
+    margin-right: 15%;
+  }
+  main section .article-box img {
+    max-width: 80%;
+    height: 31%;
+  }
+  main section .article-box h3 {
+    font-weight: 500;
+    font-size: 50px;
+    margin-top: 1.5%;
+  }
+  main section .article-box p {
+    margin-top: 1.5%;
+  }
+}
+
+/*# sourceMappingURL=articles.css.map */

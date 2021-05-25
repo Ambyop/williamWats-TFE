@@ -3,8 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Articles;
-use App\Entity\NewActu;
-use App\Entity\User;
 use App\Form\ArticleType;
 use App\Repository\ArticlesRepository;
 use Cocur\Slugify\Slugify;
@@ -110,7 +108,7 @@ class AdminArticlesController extends AbstractController
     {
         $manager->remove($article);
         $manager->flush();
-        $this->addFlash('success', 'L\'annonce ' . $new->getName() . ' a bien été supprimé');
+        $this->addFlash('success', 'L\'article a bien été supprimé');
         return $this->redirectToRoute('admin_articles');
     }
 }

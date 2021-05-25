@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/articles.css') }}">
+{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="title-box">
+            <h1>Presse et Media</h1>
+        </div>
+        <section>
+            {% for article in articles %}
+                <div class="article-box">
+                    {% if article.image %}
+                        <img src="{{ asset('img/articles/') ~  article.image }}" alt="">
+                    {% else %}
+                        <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
+                    {% endif %}
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.content }}</p>
+                    <div class="article-more">
+                        <a href="" class="align-content-center">More</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </section>
+    </main>
+{% endblock %}

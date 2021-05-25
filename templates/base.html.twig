@@ -39,7 +39,7 @@
                         <a class="nav-link" href="#">SuperDivision</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Presse et media</a>
+                        <a class="nav-link" href="{{ path('articles') }}">Presse et media</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
@@ -96,7 +96,7 @@
 {% block flash %}
     {% for label, messages in app.flashes %}
         {% for message in messages %}
-            <div class="my-3 alert alert-{{ label }} alert-dismissible fade show" role="alert">
+            <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
                 <i class="icofont-check-circled"></i> {{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
