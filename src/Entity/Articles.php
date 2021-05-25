@@ -46,6 +46,11 @@ class Articles
     private $content;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $slug;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
