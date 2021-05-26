@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ArticleController!{% endblock %}
+{% block title %}Presse et Médias{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/articles.css') }}">
@@ -9,21 +9,27 @@
 {% block body %}
     <main>
         <div class="title-box">
-            <h1>Presse et Media</h1>
+            <h1>Presse et Médias</h1>
         </div>
         <section>
             {% for article in articles %}
                 <div class="article-box">
-                    {% if article.image %}
-                        <img src="{{ asset('img/articles/') ~  article.image }}" alt="">
+                    {% if not article.isIntegration %}
+                        {% if article.image %}
+                            <img src="{{ asset('img/articles/') ~  article.image }}" alt="">
+                        {% else %}
+                            <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
+                        {% endif %}
+                        <h3>{{ article.title }}</h3>
+                        <p>{{ article.content }}</p>
+                        <div class="article-more">
+                            <a class="align-content-center" data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">More...</a>
+                        </div>
                     {% else %}
-                        <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
+                        <!-- Article {{ article.id }} Facebook integration -->
+                        <div class="fb-post" data-href="{{ article.content }}" data-width="750" data-show-text="true">
+                        </div>
                     {% endif %}
-                    <h3>{{ article.title }}</h3>
-                    <p>{{ article.content }}</p>
-                    <div class="article-more">
-                        <a class="align-content-center" data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">More...</a>
-                    </div>
                 </div>
             {% endfor %}
         </section>
@@ -31,16 +37,23 @@
 
     <!-- Modal -->
     {% for article in articles %}
-        <!-- {{ article.id }} -->
-        <div class="modal fade" id="articleModal-{{ article.id }}" tabindex="-1" aria-labelledby="articleModal-{{ article.id }}Label" aria-hidden="true">
+        {% if not article.isIntegration %}
+        <!-- article {{ article.id }} Modal -->
+        <div class="modal fade" id="articleModal-{{ article.id }}" tabindex="-1" aria-labelledby="articleModal-{{ article.id }}Label"
+             aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl modal-fullscreen-lg-down">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="articleModal-{{ article.id }}Label">Modal title</h5>
+                        <h5 class="modal-title" id="articleModal-{{ article.id }}Label">{{ article.title }}</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        {% if article.image %}
+                            <img src="{{ asset('img/articles/') ~  article.image }}" alt="">
+                        {% else %}
+                            <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
+                        {% endif %}
+                        article.content
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
@@ -48,5 +61,10 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v10.0" nonce="Bmrg95e4"></script>
 {% endblock %}

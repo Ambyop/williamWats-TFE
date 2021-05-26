@@ -46,11 +46,6 @@ class Articles
     private $content;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $slug;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
@@ -75,6 +70,11 @@ class Articles
      * @ORM\Column(type="boolean")
      */
     private $isEnabled;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isIntegration;
 
     public function getId(): ?int
     {
@@ -101,18 +101,6 @@ class Articles
     public function setContent(string $content): self
     {
         $this->content = $content;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
 
         return $this;
     }
@@ -183,6 +171,18 @@ class Articles
     public function setIsEnabled(bool $isEnabled): self
     {
         $this->isEnabled = $isEnabled;
+
+        return $this;
+    }
+
+    public function getIsIntegration(): ?bool
+    {
+        return $this->isIntegration;
+    }
+
+    public function setIsIntegration(bool $isIntegration): self
+    {
+        $this->isIntegration = $isIntegration;
 
         return $this;
     }

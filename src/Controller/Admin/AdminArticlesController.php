@@ -42,9 +42,9 @@ class AdminArticlesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $slugify = new Slugify();
             $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
-            $article->setSlug($slugify->slugify($article->getTitle()))
-                ->setCreatedAt($now)
+            $article->setCreatedAt($now)
                 ->setUpdatedAt($now)
+                ->setIsIntegration(1)
                 ->setIsEnabled(true);
             $manager->persist($article);
             $manager->flush();
@@ -72,8 +72,7 @@ class AdminArticlesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $slugify = new Slugify();
             $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
-            $article->setSlug($slugify->slugify($article->getTitle()))
-                ->setUpdatedAt($now);
+            $article->setUpdatedAt($now);
             $manager->persist($article);
             $manager->flush();
             $this->addFlash('success', 'L\'actualité ' . $article->getTitle() . ' a bien été créée.');
