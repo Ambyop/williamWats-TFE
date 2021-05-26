@@ -23,7 +23,7 @@
                         <h3>{{ article.title }}</h3>
                         <p>{{ article.content }}</p>
                         <div class="article-more">
-                            <a class="align-content-center" data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">More...</a>
+                            <a class="align-content-center" data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">Voir en grand</a>
                         </div>
                     {% else %}
                         <!-- Article {{ article.id }} Facebook integration -->
@@ -53,10 +53,10 @@
                         {% else %}
                             <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
                         {% endif %}
-                        article.content
+                        {{ article.content }}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>
                     </div>
                 </div>
             </div>

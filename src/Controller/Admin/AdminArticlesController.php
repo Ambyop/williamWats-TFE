@@ -40,7 +40,6 @@ class AdminArticlesController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $slugify = new Slugify();
             $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
             $article->setCreatedAt($now)
                 ->setUpdatedAt($now)
@@ -65,12 +64,11 @@ class AdminArticlesController extends AbstractController
      * @return Response
      * @throws \Exception
      */
-    public function updateArticle(Articles $article,EntityManagerInterface $manager, Request $request): Response
+    public function updateArticle(Articles $article, EntityManagerInterface $manager, Request $request): Response
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $slugify = new Slugify();
             $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
             $article->setUpdatedAt($now);
             $manager->persist($article);
@@ -80,7 +78,7 @@ class AdminArticlesController extends AbstractController
             return $this->redirectToRoute('admin_articles');
         }
         return $this->render("admin/edit_article.html.twig", [
-            'article'=> $article,
+            'article' => $article,
             'form' => $form->createView()
         ]);
     }
@@ -93,7 +91,9 @@ class AdminArticlesController extends AbstractController
      */
     public function viewUser(Articles $article, EntityManagerInterface $manager): Response
     {
-        $article->setIsEnabled(!$article->getIsEnabled());
+        $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+        $article->setUpdatedAt($now)
+            ->setIsEnabled(!$article->getIsEnabled());
         $manager->flush();
         return $this->redirectToRoute('admin_articles');
     }
