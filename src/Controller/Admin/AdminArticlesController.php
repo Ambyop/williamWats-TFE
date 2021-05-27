@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Articles;
 use App\Form\ArticleType;
 use App\Repository\ArticlesRepository;
-use Cocur\Slugify\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

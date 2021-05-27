@@ -6,6 +6,7 @@
 parameters:
     app.path.users_images: /img/users
     app.path.articles_images: /img/articles
+    senderEmails: { administration: 'williamwats98@gmail.com', noreply: 'williamwats98@gmail.com' }
 
 services:
     # default configuration for services in *this* file
