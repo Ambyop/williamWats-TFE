@@ -47,7 +47,7 @@ class User implements UserInterface
      *     maxMessage= "Votre nom ne peut contenir plus de {{ limit }} caractères"
      * )
      * @Assert\Regex(
-     *     pattern="/^[a-zA-ZÀ-ÿœ']+$/",
+     *     pattern="/^[a-zA-ZÀ-ÿœ' ]+$/",
      *     match=true,
      *     message="Merci de mettre uniquement que des lettres"
      * )
@@ -129,6 +129,21 @@ class User implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private $isDisabled;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Token;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $tokenValidity;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $verifiedAt;
 
     public function __construct()
     {
@@ -396,6 +411,42 @@ class User implements UserInterface
     public function setPhoneNumber(string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->Token;
+    }
+
+    public function setToken(?string $Token): self
+    {
+        $this->Token = $Token;
+
+        return $this;
+    }
+
+    public function getTokenValidity(): ?\DateTimeInterface
+    {
+        return $this->tokenValidity;
+    }
+
+    public function setTokenValidity(?\DateTimeInterface $tokenValidity): self
+    {
+        $this->tokenValidity = $tokenValidity;
+
+        return $this;
+    }
+
+    public function getVerifiedAt(): ?\DateTimeInterface
+    {
+        return $this->verifiedAt;
+    }
+
+    public function setVerifiedAt(\DateTimeInterface $verifiedAt): self
+    {
+        $this->verifiedAt = $verifiedAt;
 
         return $this;
     }

@@ -1,0 +1,11 @@
+{% extends 'email/baseEmail.html.twig' %}
+{% block body %}
+    <h1 style="margin-bottom: 2rem;">Bienvenue, {{ firstName }} {{ lastName }} !</h1>
+    <p>
+        Votre inscription sur le site du CTT <strong>AF Royal Charleroi Villette (H001)</strong>  a bien été effectuée
+        <br><br>
+        Nous vous invitons à valider votre compte en cliquant sur le lien suivant : www.dff.be
+        <br><br>
+
+    </p>
+{% endblock %}

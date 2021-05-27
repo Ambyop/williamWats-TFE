@@ -51,7 +51,8 @@ class EmailController extends AbstractController
             //->priority(Email::PRIORITY_HIGH)
             ->subject($emailType->getSubject())
             ->htmlTemplate($emailType->getTwigFilePath())
-            ->context($twigContext);
+            ->context($twigContext)
+            ->embedFromPath('img/laVilette.jpg', 'villette-logo');
 
         $this->mailer->send($email);
     }
@@ -80,8 +81,8 @@ class EmailController extends AbstractController
             ->htmlTemplate('email/test.html.twig')
             ->context([
                 'data' => $data
-            ]);
-//            ->embedFromPath('resources/images/hdm-shop/logo.png', 'hdm-shop-logo');
+            ])
+            ->embedFromPath('img/laVilette.jpg', 'villette-logo');
 
         $this->mailer->send($email);
     }

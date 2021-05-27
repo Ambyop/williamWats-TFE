@@ -2,18 +2,29 @@
 
 namespace App\Controller;
 
+use App\Service\EmailType;
 use App\Entity\User;
 use App\Form\UserRegisterType;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AuthenticationController extends AbstractController
 {
+    private EmailController $emailController;
+
+    public function __construct(EmailController $emailController)
+    {
+        $this->emailController = $emailController;
+    }
+
     /**
      * @Route("/register", name="register")
      * @param EntityManagerInterface $manager
@@ -37,6 +48,8 @@ class AuthenticationController extends AbstractController
                 ->setIsDisabled(false)
                 ->setRanking('');
             $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
+
+            $this->sendSignUpConfirmationEmail($user);
 
             $manager->persist($user);
             $manager->flush();
@@ -71,5 +84,19 @@ class AuthenticationController extends AbstractController
     public function logout()
     {
         throw new \LogicException();
+    }
+
+    /**
+     * @param User $user
+     * @throws TransportExceptionInterface
+     */
+    private function sendSignUpConfirmationEmail(User $user)
+    {
+        $twigContext = [
+            'firstName' => $user->getFirstName(),
+            'lastName' => $user->getLastName(),
+        ];
+
+        $this->emailController->sendNoReplyEmail($user->getEmail(), new EmailType(EmailType::REGISTER), $twigContext);
     }
 }

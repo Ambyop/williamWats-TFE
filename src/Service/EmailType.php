@@ -7,7 +7,7 @@ class EmailType
     private array $value;
 
     public const PASSWORD_CHANGED = ['twigFile' => 'passwordChanged', 'subject' => 'Villette - Mot de passe changé !'];
-    public const SIGN_UP = ['twigFile' => 'signUp', 'subject' => 'Villette - Bienvenue au CTT La villette-Charleroi !'];
+    public const REGISTER = ['twigFile' => 'register', 'subject' => 'Villette - Bienvenue au CTT La villette-Charleroi !'];
 
     /**
      * EmailType constructor.
@@ -31,7 +31,7 @@ class EmailType
      */
     public function getTwigFilePath() : String
     {
-        return 'emails/' . $this->value['twigFile'] . '.html.twig';
+        return 'email/' . $this->value['twigFile'] . '.html.twig';
     }
 
     /**
