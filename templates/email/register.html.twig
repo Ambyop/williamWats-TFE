@@ -2,10 +2,11 @@
 {% block body %}
     <h1 style="margin-bottom: 2rem;">Bienvenue, {{ firstName }} {{ lastName }} !</h1>
     <p>
-        Votre inscription sur le site du CTT <strong>AF Royal Charleroi Villette (H001)</strong>  a bien été effectuée
+        Votre inscription sur le site du CTT <strong>AF Royal Charleroi Villette (H001)</strong> a bien été effectuée
         <br><br>
-        Nous vous invitons à valider votre compte en cliquant sur le lien suivant : www.dff.be
+        Nous vous invitons à valider votre compte en cliquant sur le lien suivant :&nbsp;
+        <br>
+        <a href="http://127.0.0.1:8000/verif-account/{{ token }}">https://www.villette-charleroi.be/verif-account/{{ token }}</a>
         <br><br>
-
     </p>
 {% endblock %}
