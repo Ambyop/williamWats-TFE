@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }}Profil{% endblock %}
+{% block title %}{{ parent() }}Profil - {{ user.firstname }} {{ user.lastname }}{% endblock %}
 
 {% block body %}
     <main>
@@ -17,6 +17,10 @@
                             <h5>Email</h5>
                             <p>
                                 {{ user.email }}
+                            </p>
+                            <h5>Date d'anniversaire</h5>
+                            <p>
+                                {{ user.birthday|date("d F Y") }}
                             </p>
                             <h5>Numéro de téléphone</h5>
                             <p>

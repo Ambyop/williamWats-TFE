@@ -1,0 +1,45 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ parent() }}Matchs{% endblock %}
+
+{% block body %}
+    <div class="container-fluid my-4">
+        <h2 class="d-inline">Gestion des matchs</h2>
+        <a href="" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un match</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Date et heure</th>
+            <th>Lieu</th>
+            <th>Equipe</th>
+            <th>Joueurs Inscrits</th>
+            <th>Dernière modification</th>
+            <th>Paramètres</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for match in matchs %}
+            {% set index = 4 %}
+            <tr>
+                <td class="align-middle">{{ match.date|date("d/m/Y à H:i") }}</td>
+                <td class="align-middle">{{ match.location }}</td>
+                <td class="align-middle">{{ match.team.name }}</td>
+                <td class="align-middle">{{ match.user.count }}</td>
+                <td class="align-middle">{{ match.updatedAt|date("d/m/Y H:i") }}</td>
+                <td class="align-middle"></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    {% for match in matchs %}
+        <!-- match {{ match.id }} Modal -->
+
+    {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v10.0" nonce="Bmrg95e4"></script>
+{% endblock %}
