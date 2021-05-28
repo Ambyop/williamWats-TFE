@@ -7,25 +7,29 @@ function addListenerForWishList() {
         upgradeRankingButtons.forEach((button) =>
             button.addEventListener('click', () => {
                 const userId = parseInt(button.getAttribute('data-user-id'));
-                const currentRankingHtml = document.getElementById('ranking-show-' + userId);
-                const currentRanking = currentRankingHtml.getAttribute('data-user-ranking');
+                const currentRankingShowingHTML = document.getElementById('ranking-show-' + userId);
+                const currentRankingProfileHTML = document.getElementById('ranking-profile-' + userId);
+                const currentRanking = currentRankingShowingHTML.getAttribute('data-user-ranking');
                 let currentRankingPosition = differentClassification.indexOf(currentRanking);
                 if (currentRankingPosition !== differentClassification.length - 1) {
                     const newRanking = differentClassification[currentRankingPosition + 1];
                     updateRanking(userId, newRanking);
-                    currentRankingHtml.outerHTML = `<span id="ranking-show-${userId}" data-user-ranking="${newRanking}">${newRanking}</span>`;
+                    currentRankingShowingHTML.outerHTML = `<span id="ranking-show-${userId}" data-user-ranking="${newRanking}">${newRanking}</span>`;
+                    currentRankingProfileHTML.outerHTML = `<p id="ranking-profile-${userId}">${newRanking}</p>`;
                 }
             }))
         downgradeRankingButtons.forEach((button) =>
             button.addEventListener('click', () => {
                 const userId = parseInt(button.getAttribute('data-user-id'));
-                const currentRankingHtml = document.getElementById('ranking-show-' + userId);
-                const currentRanking = currentRankingHtml.getAttribute('data-user-ranking');
+                const currentRankingShowingHTML = document.getElementById('ranking-show-' + userId);
+                const currentRankingProfileHTML = document.getElementById('ranking-profile-' + userId);
+                const currentRanking = currentRankingShowingHTML.getAttribute('data-user-ranking');
                 let currentRankingPosition = differentClassification.indexOf(currentRanking);
                 if (currentRankingPosition !== 0) {
                     const newRanking = differentClassification[currentRankingPosition - 1];
                     updateRanking(userId, newRanking);
-                    currentRankingHtml.outerHTML = `<span id="ranking-show-${userId}" data-user-ranking="${newRanking}">${newRanking}</span>`;
+                    currentRankingShowingHTML.outerHTML = `<span id="ranking-show-${userId}" data-user-ranking="${newRanking}">${newRanking}</span>`;
+                    currentRankingProfileHTML.outerHTML = `<p id="ranking-profile-${userId}">${newRanking}</p>`;
                 }
             }))
     }

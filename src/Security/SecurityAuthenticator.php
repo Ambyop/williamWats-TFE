@@ -26,10 +26,10 @@ class SecurityAuthenticator extends AbstractFormLoginAuthenticator implements Pa
 
     public const LOGIN_ROUTE = 'login';
 
-    private $entityManager;
-    private $urlGenerator;
-    private $csrfTokenManager;
-    private $passwordEncoder;
+    private EntityManagerInterface $entityManager;
+    private UrlGeneratorInterface $urlGenerator;
+    private CsrfTokenManagerInterface $csrfTokenManager;
+    private UserPasswordEncoderInterface $passwordEncoder;
 
     public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -77,12 +77,19 @@ class SecurityAuthenticator extends AbstractFormLoginAuthenticator implements Pa
         return $user;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function checkCredentials($credentials, UserInterface $user)
     {
         if ($this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
             if ($user->getIsDisabled()) {
                 throw new CustomUserMessageAuthenticationException('Votre compte est désactivé.');
             }
+            $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+            $user->setLastLogAt($now);
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
         } else {
             throw new CustomUserMessageAuthenticationException('Mot de passe incorrect');
         }

@@ -14,8 +14,14 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserEditType extends AbstractType
 {
+    /**
+     * @throws \Exception
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $now = ( new \DateTime('now', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
+        $minimumDate = ( new \DateTime('-70 years', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
+
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'Email de l\'utilisateur',
@@ -34,9 +40,12 @@ class UserEditType extends AbstractType
             ])
             ->add('birthday', BirthdayType::class, [
                 'label' => 'Quand êtes-vous né?',
-                'format' => 'd/MM/yyyy',
-                'years' => range(date('Y') - 70, date('Y') - 5),
+                'widget' => 'single_text',
                 'required' => true,
+                'attr' => array(
+                    'max' => $now,
+                    'min' => $minimumDate,
+                )
             ])
             ->add('imageFile',VichImageType::class, [
                 'label' => 'Image du cours',
