@@ -73,6 +73,10 @@
                             </div>
                             <div class="mb-2 my-2">
                                 <h4>Modification de mon mot de passe</h4>
+                                {{ form_start(editPasswordForm) }}
+                                {{ form_widget(editPasswordForm) }}
+                                <button type="submit" class="btn btn-outline-primary">Changer de mot de passe</button>
+                                {{ form_end(editPasswordForm) }}
                             </div>
                         </div>
                     </div>
