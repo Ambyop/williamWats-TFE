@@ -7,6 +7,7 @@ class EmailType
     private array $value;
 
     public const PASSWORD_CHANGED = ['twigFile' => 'passwordChanged', 'subject' => 'Villette - Mot de passe changé !'];
+    public const PASSWORD_LOST = ['twigFile' => 'passwordLost', 'subject' => 'Villette - Récupération de mot de passe'];
     public const REGISTER = ['twigFile' => 'register', 'subject' => 'Villette - Bienvenue au CTT La villette-Charleroi !'];
     public const ACCOUNT_CONFIRMATION = ['twigFile' => 'confirmation', 'subject' => 'Villette - Votre compte a été activé !'];
 
