@@ -14,7 +14,7 @@
                     {% if app.user %}
                         <div class="alert alert-warning">
                             Vous êtes déjà connecté en tant que {{ app.user.username }}, <a
-                                    href="{{ path('app_logout') }}">Se
+                                    href="{{ path('logout') }}">Se
                                 déconnecter</a>
                         </div>
                     {% endif %}
@@ -36,6 +36,7 @@
                         Se connecter
                     </button>
                 </div>
+                <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié</a>
             </section>
         </main>
     </form>

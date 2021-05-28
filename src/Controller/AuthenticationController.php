@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\LostPasswordType;
 use App\Repository\UserRepository;
 use App\Service\EmailType;
 use App\Entity\User;
@@ -37,6 +38,10 @@ class AuthenticationController extends AbstractController
      */
     public function register(EntityManagerInterface $manager, Request $request, UserPasswordEncoderInterface $encoder): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('homepage');
+        }
+
         $user = new User();
         $form = $this->createForm(UserRegisterType::class, $user);
         $form->handleRequest($request);
@@ -78,6 +83,10 @@ class AuthenticationController extends AbstractController
      */
     public function accountVerification($token,UserRepository $userRepository, EntityManagerInterface $manager): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('homepage');
+        }
+
         $user = $userRepository->findOneBy([
             'token' => $token
         ]);
@@ -106,7 +115,6 @@ class AuthenticationController extends AbstractController
             $this->sendAccountCreationConfirmationEmail($user);
             return $this->redirectToRoute('login');
         }
-
     }
 
     /**
@@ -159,5 +167,33 @@ class AuthenticationController extends AbstractController
         ];
 
         $this->emailController->sendNoReplyEmail($user->getEmail(), new EmailType(EmailType::ACCOUNT_CONFIRMATION), $twigContext);
+    }
+
+    /**
+     * @param User $user
+     * @throws TransportExceptionInterface
+     */
+    private function sendPasswordLostEmail(User $user)
+    {
+        $twigContext = [
+            'firstName' => $user->getFirstName(),
+            'lastName' => $user->getLastName(),
+        ];
+
+        $this->emailController->sendNoReplyEmail($user->getEmail(), new EmailType(EmailType::PASSWORD_LOST), $twigContext);
+    }
+
+    /**
+     * @param User $user
+     * @throws TransportExceptionInterface
+     */
+    private function sendPasswordChangedEmail(User $user)
+    {
+        $twigContext = [
+            'firstName' => $user->getFirstName(),
+            'lastName' => $user->getLastName(),
+        ];
+
+        $this->emailController->sendNoReplyEmail($user->getEmail(), new EmailType(EmailType::PASSWORD_CHANGED), $twigContext);
     }
 }
