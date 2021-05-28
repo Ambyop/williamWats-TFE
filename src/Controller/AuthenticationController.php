@@ -33,6 +33,7 @@ class AuthenticationController extends AbstractController
      * @param UserPasswordEncoderInterface $encoder
      * @return Response
      * @throws \Exception
+     * @throws TransportExceptionInterface
      */
     public function register(EntityManagerInterface $manager, Request $request, UserPasswordEncoderInterface $encoder): Response
     {
