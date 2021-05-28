@@ -7,6 +7,7 @@ use App\Entity\Teams;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,17 +20,18 @@ class MatchType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $now = ( new \DateTime('+2 years', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
-        $minimumDate = ( new \DateTime('now', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
+        $now = ( new \DateTime('+1 days', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
+        $maximumDate = ( new \DateTime('+2 years', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
 
         $builder
-            ->add('date', DateType::class, [
+            ->add('date', DateTimeType::class, [
                 'label' => 'Quand êtes-vous né?',
+                'input_format' => 'Y-m-d H:i:s',
                 'widget' => 'single_text',
                 'required' => true,
                 'attr' => array(
-                    'max' => $now,
-                    'min' => $minimumDate,
+                    'max' => $maximumDate,
+                    'min' => $now,
                 )
             ])
             ->add('location',TextType::class, [

@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Form\LostPasswordType;
 use App\Repository\UserRepository;
 use App\Service\EmailType;
 use App\Entity\User;

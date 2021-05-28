@@ -37,6 +37,10 @@
                                     <p>
                                         {{ app.user.email }}
                                     </p>
+                                    <h5>Date d'anniversaire</h5>
+                                    <p>
+                                        {{ user.birthday|format_datetime(locale='fr',pattern="dd MMMM YYYY") }}
+                                    </p>
                                     <h5>Numéro de téléphone</h5>
                                     <p>
                                         {{ app.user.phoneNumber }}

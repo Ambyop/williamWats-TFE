@@ -25,7 +25,7 @@ class AdminMatchController extends AbstractController
     }
 
     /**
-     * @Route("/admin/match/create", name="admin_articles_add")
+     * @Route("/admin/match/create", name="admin_match_add")
      * @param EntityManagerInterface $manager
      * @param Request $request
      * @return Response
@@ -41,12 +41,52 @@ class AdminMatchController extends AbstractController
             $match->setUpdatedAt($now);
             $manager->persist($match);
             $manager->flush();
-            $this->addFlash('success', 'Le Match du' . $match->getDate() . 'à' . $match->getLocation() . ' a bien été créée.');
+            $this->addFlash('success', 'Le Match du ' . date_format($match->getDate(),"d F Y") . ' à ' . $match->getLocation() . '</strong> a bien été créée.');
 
             return $this->redirectToRoute('admin_match');
         }
         return $this->render("admin/create_match.html.twig", [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/admin/match/edit/{id}", name="admin_match_edit")
+     * @param MatchList $match
+     * @param EntityManagerInterface $manager
+     * @param Request $request
+     * @return Response
+     * @throws \Exception
+     */
+    public function updateArticle(MatchList $match, EntityManagerInterface $manager, Request $request): Response
+    {
+        $form = $this->createForm(MatchType::class, $match);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+            $match->setUpdatedAt($now);
+            $manager->persist($match);
+            $manager->flush();
+            $this->addFlash('success', 'Le Match du ' . date_format($match->getDate(),"d F Y") . ' à ' . $match->getLocation() . '</strong> a bien été modifié.');
+
+            return $this->redirectToRoute('admin_match');
+        }
+        return $this->render("admin/edit_match.html.twig", [
+            'match' => $match,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /** @Route("/admin/match/remove/{id}", name="admin_match_remove")
+     * @param MatchList $match
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    public function deleteArticle(MatchList $match, EntityManagerInterface $manager): Response
+    {
+        $manager->remove($match);
+        $manager->flush();
+        $this->addFlash('success', 'Le match a bien été supprimé');
+        return $this->redirectToRoute('admin_match');
     }
 }

@@ -5,7 +5,7 @@
 {% block body %}
     <div class="container-fluid my-4">
         <h2 class="d-inline">Gestion des matchs</h2>
-        <a href="" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un match</a>
+        <a href="{{ path('admin_match_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un match</a>
     </div>
     <table class="table table-striped">
         <thead>
@@ -27,7 +27,11 @@
                 <td class="align-middle">{{ match.team.name }}</td>
                 <td class="align-middle">{{ match.user.count }}</td>
                 <td class="align-middle">{{ match.updatedAt|date("d/m/Y H:i") }}</td>
-                <td class="align-middle"></td>
+                <td  class="align-middle">
+                    <a href="{{ path('admin_match_edit', { 'id': match.id}) }}" class="btn btn-secondary" title="Modifier"><i
+                                class="icofont-pencil-alt-5"></i></a>
+                    <a href="{{ path('admin_match_remove', { 'id': match.id}) }}" class="btn btn-warning" title="Supprimer"><i class="icofont-bin"></i></a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
