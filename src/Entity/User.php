@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
@@ -145,9 +147,14 @@ class User implements UserInterface
      */
     private $verifiedAt;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=MatchList::class, mappedBy="user")
+     */
+    private $matchLists;
+
     public function __construct()
     {
-
+        $this->matchLists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -447,6 +454,33 @@ class User implements UserInterface
     public function setVerifiedAt(\DateTimeInterface $verifiedAt): self
     {
         $this->verifiedAt = $verifiedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MatchList[]
+     */
+    public function getMatchLists(): Collection
+    {
+        return $this->matchLists;
+    }
+
+    public function addMatchList(MatchList $matchList): self
+    {
+        if (!$this->matchLists->contains($matchList)) {
+            $this->matchLists[] = $matchList;
+            $matchList->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatchList(MatchList $matchList): self
+    {
+        if ($this->matchLists->removeElement($matchList)) {
+            $matchList->removeUser($this);
+        }
 
         return $this;
     }

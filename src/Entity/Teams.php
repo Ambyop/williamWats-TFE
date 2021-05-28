@@ -44,9 +44,15 @@ class Teams
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=MatchList::class, mappedBy="team")
+     */
+    private $team;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->team = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -130,5 +136,13 @@ class Teams
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|MatchList[]
+     */
+    public function getTeam(): Collection
+    {
+        return $this->team;
     }
 }
