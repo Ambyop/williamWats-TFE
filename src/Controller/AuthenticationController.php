@@ -56,7 +56,7 @@ class AuthenticationController extends AbstractController
 
             $manager->persist($user);
             $manager->flush();
-            $this->addFlash('success', 'L\'utilisateur ' . $user->getFirstname() . ' ' . $user->getLastname() . ' a bien été créé.');
+            $this->addFlash('success', 'Votre compte a bien été créé. Vérifiez vos mails pour l\'activer');
 
             return $this->redirectToRoute('homepage');
         }
@@ -73,6 +73,7 @@ class AuthenticationController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      * @throws \Exception
+     * @throws TransportExceptionInterface
      */
     public function accountVerification($token,UserRepository $userRepository, EntityManagerInterface $manager): Response
     {
@@ -101,6 +102,7 @@ class AuthenticationController extends AbstractController
             $manager->flush();
 
             $this->addFlash('success', 'Votre compte a été activé. Vous pouvez maintenant vous connecter');
+            $this->sendAccountCreationConfirmationEmail($user);
             return $this->redirectToRoute('login');
         }
 
@@ -142,5 +144,19 @@ class AuthenticationController extends AbstractController
         ];
 
         $this->emailController->sendNoReplyEmail($user->getEmail(), new EmailType(EmailType::REGISTER), $twigContext);
+    }
+
+    /**
+     * @param User $user
+     * @throws TransportExceptionInterface
+     */
+    private function sendAccountCreationConfirmationEmail(User $user)
+    {
+        $twigContext = [
+            'firstName' => $user->getFirstName(),
+            'lastName' => $user->getLastName(),
+        ];
+
+        $this->emailController->sendNoReplyEmail($user->getEmail(), new EmailType(EmailType::ACCOUNT_CONFIRMATION), $twigContext);
     }
 }

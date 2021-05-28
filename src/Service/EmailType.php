@@ -8,6 +8,7 @@ class EmailType
 
     public const PASSWORD_CHANGED = ['twigFile' => 'passwordChanged', 'subject' => 'Villette - Mot de passe changé !'];
     public const REGISTER = ['twigFile' => 'register', 'subject' => 'Villette - Bienvenue au CTT La villette-Charleroi !'];
+    public const ACCOUNT_CONFIRMATION = ['twigFile' => 'confirmation', 'subject' => 'Villette - Votre compte a été activé !'];
 
     /**
      * EmailType constructor.
