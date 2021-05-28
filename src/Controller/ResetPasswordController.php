@@ -74,6 +74,8 @@ class ResetPasswordController extends AbstractController
 
     /**
      * @Route("/reset/{token}", name="app_reset_password")
+     * @throws \Exception
+     * @throws TransportExceptionInterface
      */
     public function reset(Request $request, UserPasswordEncoderInterface $passwordEncoder, string $token = null): Response
     {
@@ -114,13 +116,17 @@ class ResetPasswordController extends AbstractController
                 $user,
                 $form->get('plainPassword')->getData()
             );
+            $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
 
-            $user->setPassword($encodedPassword);
+            $user->setPassword($encodedPassword)
+                ->setUpdatedAt($now);
             $this->getDoctrine()->getManager()->flush();
 
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
+            $this->addFlash('succes', 'Mot de passe modifié');
+            $this->sendPasswordChangedEmail($user);
             return $this->redirectToRoute('login');
         }
 
@@ -171,5 +177,19 @@ class ResetPasswordController extends AbstractController
         $this->setTokenObjectInSession($resetToken);
 
         return $this->redirectToRoute('app_check_email');
+    }
+
+    /**
+     * @param User $user
+     * @throws TransportExceptionInterface
+     */
+    private function sendPasswordChangedEmail(User $user)
+    {
+        $twigContext = [
+            'firstName' => $user->getFirstName(),
+            'lastName' => $user->getLastName(),
+        ];
+
+        $this->emailController->sendNoReplyEmail($user->getEmail(), new EmailType(EmailType::PASSWORD_CHANGED), $twigContext);
     }
 }
