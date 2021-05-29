@@ -1,3 +1,5 @@
+{% include "@CHCookieConsent/cookie_consent_styling.html.twig" %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,9 +110,10 @@
 {% endblock %}
 
 {% block body %}{% endblock %}
-{% block javascripts %}
-    {# {{ encore_entry_script_tags('app') }} #}
-{% endblock %}
+
+{{ render_esi(path('ch_cookie_consent.show', { 'locale' : 'fr' })) }}
+{#{{ render_esi(path('ch_cookie_consent.show_if_cookie_consent_not_set', { 'locale' : app.request.locale })) }}#}
+
 <!--Footer-->
 <footer>
     <span class="footer-text">Royal Charleroi Villette</span>
@@ -121,6 +124,10 @@
         </span>
 </footer>
 <!--End Footer-->
+
+{% block javascripts %}
+    {# {{ encore_entry_script_tags('app') }} #}
+{% endblock %}
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
 </html>

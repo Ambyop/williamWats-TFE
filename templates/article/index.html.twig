@@ -26,9 +26,13 @@
                             <a class="align-content-center" data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">Voir en grand</a>
                         </div>
                     {% else %}
-                        <!-- Article {{ article.id }} Facebook integration -->
-                        <div class="fb-post" data-href="{{ article.content }}" data-width="750" data-show-text="true">
-                        </div>
+                        {% if chcookieconsent_isCategoryAllowedByUser('analytics') == true %}
+                            <!-- Article {{ article.id }} Facebook integration -->
+                            <div class="fb-post" data-href="{{ article.content }}" data-width="750" data-show-text="true">
+                            </div>
+                        {% else %}
+                            <p class="no-cookie">Cet élément requiert l'autorisation des cookies pour être affiché</p>
+                        {% endif %}
                     {% endif %}
                 </div>
             {% endfor %}
@@ -38,29 +42,29 @@
     <!-- Modal -->
     {% for article in articles %}
         {% if not article.isIntegration %}
-        <!-- article {{ article.id }} Modal -->
-        <div class="modal fade" id="articleModal-{{ article.id }}" tabindex="-1" aria-labelledby="articleModal-{{ article.id }}Label"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl modal-fullscreen-lg-down">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="articleModal-{{ article.id }}Label">{{ article.title }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        {% if article.image %}
-                            <img src="{{ asset('img/articles/') ~  article.image }}" alt="">
-                        {% else %}
-                            <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
-                        {% endif %}
-                        {{ article.content }}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>
+            <!-- article {{ article.id }} Modal -->
+            <div class="modal fade" id="articleModal-{{ article.id }}" tabindex="-1" aria-labelledby="articleModal-{{ article.id }}Label"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl modal-fullscreen-lg-down">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="articleModal-{{ article.id }}Label">{{ article.title }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {% if article.image %}
+                                <img src="{{ asset('img/articles/') ~  article.image }}" alt="">
+                            {% else %}
+                                <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
+                            {% endif %}
+                            {{ article.content }}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         {% endif %}
     {% endfor %}
 {% endblock %}

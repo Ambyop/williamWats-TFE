@@ -5,7 +5,8 @@
 {% block body %}
     <div class="container-fluid my-4">
         <h2 class="d-inline">Gestion des Articles</h2>
-        <a href="{{ path('admin_articles_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un article</a>
+        <a href="{{ path('admin_article_integration_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un poste facebook</a>
+        <a href="{{ path('admin_article_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un article</a>
     </div>
     <table class="table table-striped" id="AdminTable">
         <thead>
@@ -42,14 +43,14 @@
                             <i class="icofont-toggle-on"></i>
                         </a>
                     {% else %}
-                        <a href="{{ path('admin_article_activation',{'id': article.id}) }}" class="btn btn-danger" title="Modifier">
+                        <a href="{{ path('admin_article_activation',{'id': article.id}) }}" class="btn btn-warning" title="Modifier">
                             <i class="icofont-toggle-off"></i>
                         </a>
                     {% endif %}
                     <a href="{{ path('admin_article_edit', {'id': article.id}) }}" class="btn btn-secondary" title="Modifier">
                         <i class="icofont-pencil-alt-5"></i>
                     </a>
-                    <a href="{{ path('admin_article_remove', {'id': article.id}) }}" class="btn btn-warning" title="Supprimer">
+                    <a href="{{ path('admin_article_remove', {'id': article.id}) }}" class="btn btn-danger" title="Supprimer">
                         <i class="icofont-bin"></i>
                     </a>
                 </td>

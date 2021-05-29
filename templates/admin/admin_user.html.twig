@@ -113,14 +113,14 @@
                             <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-success"
                                title="Activé"><i class="icofont-user-alt-2"></i></a>
                         {% else %}
-                            <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-danger"
+                            <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-warning"
                                title="Désactivé"><i class="icofont-user-alt-2"></i></a>
                         {% endif %}
-                        <a href="{{ path('admin_user_remove', {"id" : user.id}) }}" class="btn btn-warning"
+                        <a href="{{ path('admin_user_remove', {"id" : user.id}) }}" class="btn btn-danger"
                            title="Supprimer"><i class="icofont-bin"></i></a>
                     {% else %}
                         <a class="btn btn-success disabled" title="Vous ne pouvez pas changer votre propre status"><i class="icofont-user-alt-2"></i></a>
-                        <a class="btn btn-warning disabled" title="Vous ne pouvez pas supprimer votre propre compte"><i class="icofont-bin"></i></a>
+                        <a class="btn btn-danger disabled" title="Vous ne pouvez pas supprimer votre propre compte"><i class="icofont-bin"></i></a>
                     {% endif %}
                 </td>
             </tr>
