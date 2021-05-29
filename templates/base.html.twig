@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="icon" href="{{ asset('img/favicon.png') }}">
+    <link rel="icon" href="{{ asset('img/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/icofont.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -19,7 +19,9 @@
 <header>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="{{ path('homepage') }}">
+                <img class="img-navbar" src="{{ asset('img/logo/laViletteTransparent.png') }}" alt="Logo Club">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,13 +32,13 @@
                         <a class="nav-link active" aria-current="page" href="{{ path('homepage') }}">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Stages</a>
+                        <a class="nav-link" href="">Stages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Club</a>
+                        <a class="nav-link" href="{{ path('about') }}">Club</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Interclubs</a>
+                        <a class="nav-link" href="{{ path('interclubs') }}">Interclubs</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('articles') }}">Presse et Médias</a>

@@ -19,6 +19,10 @@ header nav .avatar-navbar {
   width: 40px;
   max-height: 90%;
 }
+header nav .img-navbar {
+  width: 60px;
+  max-height: 100%;
+}
 
 .alert-z-index {
   z-index: 98;

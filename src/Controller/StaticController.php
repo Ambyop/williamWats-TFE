@@ -13,7 +13,7 @@ class StaticController extends AbstractController
      */
     public function home(): Response
     {
-        return $this->render('homepage.html.twig', [
+        return $this->render('static/homepage.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
@@ -23,7 +23,7 @@ class StaticController extends AbstractController
      */
     public function interclubs(): Response
     {
-        return $this->render('homepage.html.twig', [
+        return $this->render('static/homepage.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
@@ -33,7 +33,7 @@ class StaticController extends AbstractController
      */
     public function about(): Response
     {
-        return $this->render('homepage.html.twig', [
+        return $this->render('static/homepage.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
