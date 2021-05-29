@@ -21,14 +21,14 @@
                             <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
                         {% endif %}
                         <h3>{{ article.title }}</h3>
-                        <p>{{ article.content }}</p>
+                        <p>{{ article.content|raw }}</p>
                         <div class="article-more">
                             <a class="align-content-center" data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">Voir en grand</a>
                         </div>
                     {% else %}
                         {% if chcookieconsent_isCategoryAllowedByUser('social_media') == true %}
                             <!-- Article {{ article.id }} Facebook integration -->
-                            <div class="fb-post" data-href="{{ article.content }}" data-width="750" data-show-text="true">
+                            <div class="fb-post" data-href="{{ article.content|raw }}" data-width="750" data-show-text="true">
                             </div>
                         {% else %}
                             <p class="no-cookie">Cet élément requiert l'autorisation des cookies pour être affiché</p>

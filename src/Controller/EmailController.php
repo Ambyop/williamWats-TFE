@@ -18,7 +18,6 @@ class EmailController extends AbstractController
     private array $senderEmails = [];
 
     /**
-     * EmailController constructor.
      * @param ParameterBagInterface $params
      * @param MailerInterface $mailer
      */

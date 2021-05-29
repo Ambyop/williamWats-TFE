@@ -1,0 +1,11 @@
+{% extends 'email/baseEmail.html.twig' %}
+{% block body %}
+    <p>
+        {{ contact.message|raw }}
+    </p>
+    <p>
+        <b>
+            De: {{ contact.firstname }} {{ contact.lastname }} ({{ contact.email }})
+        </b>
+    </p>
+{% endblock %}

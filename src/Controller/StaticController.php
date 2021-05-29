@@ -19,9 +19,19 @@ class StaticController extends AbstractController
     }
 
     /**
-     * @Route("/", name="homepadge")
+     * @Route("/interclubs", name="interclubs")
      */
-    public function d(): Response
+    public function interclubs(): Response
+    {
+        return $this->render('homepage.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+
+    /**
+     * @Route("/about", name="about")
+     */
+    public function about(): Response
     {
         return $this->render('homepage.html.twig', [
             'controller_name' => 'HomeController',
