@@ -19,8 +19,8 @@ class UserEditType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $now = ( new \DateTime('now', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
-        $minimumDate = ( new \DateTime('-70 years', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
+        $now = (new \DateTime('now', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
+        $minimumDate = (new \DateTime('-70 years', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
 
         $builder
             ->add('email', EmailType::class, [
@@ -47,12 +47,12 @@ class UserEditType extends AbstractType
                     'min' => $minimumDate,
                 )
             ])
-            ->add('imageFile',VichImageType::class, [
+            ->add('imageFile', VichImageType::class, [
                 'label' => 'Image du cours',
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => false,
-                'image_uri'=> false
+                'image_uri' => false
             ]);
     }
 

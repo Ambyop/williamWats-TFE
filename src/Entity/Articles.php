@@ -39,7 +39,7 @@ class Articles
 
     /**
      * @ORM\Column(type="text")
-     *  @Assert\NotBlank(
+     * @Assert\NotBlank(
      *     message= "L'article ne peut pas être vide"
      * )
      */

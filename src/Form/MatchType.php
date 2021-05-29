@@ -20,8 +20,8 @@ class MatchType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $now = ( new \DateTime('+1 days', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
-        $maximumDate = ( new \DateTime('+2 years', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
+        $now = (new \DateTime('+1 days', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
+        $maximumDate = (new \DateTime('+2 years', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
 
         $builder
             ->add('date', DateTimeType::class, [
@@ -34,7 +34,7 @@ class MatchType extends AbstractType
                     'min' => $now,
                 )
             ])
-            ->add('location',TextType::class, [
+            ->add('location', TextType::class, [
                 'label' => 'Lieu du match'
             ])
             ->add('type', ChoiceType::class, [
@@ -50,13 +50,8 @@ class MatchType extends AbstractType
             ])
             ->add('team', EntityType::class, [
                 'class' => Teams::class,
-                'choice_label'=>'name'
-            ])
-//            ->add('user', EntityType::class, [
-//                'class' => User::class,
-//                'choice_label'=>'User'
-//            ])
-        ;
+                'choice_label' => 'name'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

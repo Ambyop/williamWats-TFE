@@ -80,7 +80,7 @@ class AuthenticationController extends AbstractController
      * @throws \Exception
      * @throws TransportExceptionInterface
      */
-    public function accountVerification($token,UserRepository $userRepository, EntityManagerInterface $manager): Response
+    public function accountVerification($token, UserRepository $userRepository, EntityManagerInterface $manager): Response
     {
         if ($this->getUser()) {
             return $this->redirectToRoute('homepage');
@@ -95,13 +95,12 @@ class AuthenticationController extends AbstractController
             return $this->redirectToRoute('homepage');
         }
 
-        $now = date_format(new \DateTime('now', new \DateTimeZone('Europe/Brussels')),"Y/m/d H:i:s");
-        $expireToken = date_format($user->getTokenValidity(),"Y/m/d H:i:s");
-        if ( $now > $expireToken ){
+        $now = date_format(new \DateTime('now', new \DateTimeZone('Europe/Brussels')), "Y/m/d H:i:s");
+        $expireToken = date_format($user->getTokenValidity(), "Y/m/d H:i:s");
+        if ($now > $expireToken) {
             $this->addFlash('warning', 'Ce lien est invalide');
             return $this->redirectToRoute('homepage');
-        }
-        else {
+        } else {
             $user->setIsDisabled(false)
                 ->setVerifiedAt(new \DateTime('now', new \DateTimeZone('Europe/Brussels')))
                 ->setToken(null)

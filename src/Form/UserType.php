@@ -60,7 +60,7 @@ class UserType extends AbstractType
                 ],
                 'required' => true
             ])
-            ->add('Ranking')//            ->add('team')
+            ->add('Ranking',)
         ;
     }
 

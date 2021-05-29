@@ -36,7 +36,7 @@ class UserController extends AbstractController
         $user = $userRepository->find($tokenStorage->getToken()->getUser());
 
         // generate Edit Profile Form
-        $formProfile = $this->createForm(UserEditType::class,$user);
+        $formProfile = $this->createForm(UserEditType::class, $user);
         $formProfile->handleRequest($request);
         if ($formProfile->isSubmitted() && $formProfile->isValid()) {
             $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
@@ -77,9 +77,9 @@ class UserController extends AbstractController
                 $user->setUpdatedAt($now);
                 $manager->persist($user);
                 $manager->flush();
-                $this->addFlash('succes','Mot de passe modifié.');
+                $this->addFlash('succes', 'Mot de passe modifié.');
             } else {
-                $this->addFlash('warning','Mot de passe incorrect.');
+                $this->addFlash('warning', 'Mot de passe incorrect.');
                 $formPassword->get('oldPassword')->addError(new FormError("Mot de passe incorrect."));
             }
         }
@@ -101,7 +101,7 @@ class UserController extends AbstractController
      * @return Response
      * @throws \Exception
      */
-    public function user(User $user,UserRepository $userRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
+    public function user(User $user, UserRepository $userRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
     {
         // load user Data
         $user = $userRepository->find($user);

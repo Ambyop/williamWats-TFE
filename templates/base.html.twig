@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/icofont.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+
     {% block stylesheets %}
         {# {{ encore_entry_link_tags('app') }} #}
     {% endblock %}
@@ -84,7 +85,6 @@
                             </ul>
                         </li>
                     {% endif %}
-                    </li>
                 </ul>
                 {# <form class="d-flex"> #}
                 {# <input class="form-control me-2" type="search" placeholder="Search" aria-label="Rechercher..."> #}
@@ -94,13 +94,14 @@
         </div>
     </nav>
 </header>
+
 <!-- View flash messages -->
 {% block flash %}
     {% for label, messages in app.flashes %}
         {% for message in messages %}
             <div class="alert alert-{{ label }} alert-dismissible fade show alert-z-index" role="alert">
                 {% if label == "success" %} <i class="icofont-check-circled"></i>
-                    {% elseif label == "warning" or label == "danger" %} <i class="icofont-warning-alt"></i>
+                {% elseif label == "warning" or label == "danger" %} <i class="icofont-warning-alt"></i>
 
                 {% endif %}{{ message }}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -111,7 +112,7 @@
 
 {% block body %}{% endblock %}
 
-{#{{ render_esi(path('ch_cookie_consent.show', { 'locale' : 'fr' })) }}#}
+{# {{ render_esi(path('ch_cookie_consent.show', { 'locale' : 'fr' })) }} #}
 {{ render_esi(path('ch_cookie_consent.show_if_cookie_consent_not_set', { 'locale' : app.request.locale })) }}
 
 <!--Footer-->
