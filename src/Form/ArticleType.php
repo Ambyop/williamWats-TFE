@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Articles;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,7 +19,7 @@ class ArticleType extends AbstractType
                 'label' => 'Nom de l\'annonce',
                 'required' => true
             ])
-            ->add('content', TextType::class, [
+            ->add('content', CKEditorType::class, [
                 'label' => 'Contenu de l\'article'
             ])
             ->add('imageFile', VichImageType::class, [
