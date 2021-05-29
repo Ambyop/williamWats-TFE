@@ -2,18 +2,28 @@
 
 namespace App\Controller\Admin;
 
+use App\Controller\EmailController;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Service\EmailType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminUserController extends AbstractController
 {
+    private EmailController $emailController;
+
+    public function __construct(EmailController $emailController)
+    {
+        $this->emailController = $emailController;
+    }
+
     /**
      * @Route("/admin/user", name="admin_user")
      * @param UserRepository $userRepository
@@ -53,6 +63,7 @@ class AdminUserController extends AbstractController
      * @param UserPasswordEncoderInterface $encoder
      * @return Response
      * @throws \Exception
+     * @throws TransportExceptionInterface
      */
     public function createUser(EntityManagerInterface $manager, Request $request, UserPasswordEncoderInterface $encoder): Response
     {
@@ -69,8 +80,9 @@ class AdminUserController extends AbstractController
 
             $manager->persist($user);
             $manager->flush();
-            $this->addFlash('success', 'L\'utilisateur ' . $user->getEmail() . ' a bien été créé.');
 
+            $this->addFlash('success', 'L\'utilisateur ' . $user->getEmail() . ' a bien été créé.');
+            $this->sendAccountCreationConfirmationEmail($user);
             return $this->redirectToRoute('admin_user');
         }
 
@@ -122,5 +134,19 @@ class AdminUserController extends AbstractController
         $manager->flush();
 
         return $this->redirectToRoute('admin_user');
+    }
+
+    /**
+     * @param User $user
+     * @throws TransportExceptionInterface
+     */
+    private function sendAccountCreationConfirmationEmail(User $user)
+    {
+        $twigContext = [
+            'firstName' => $user->getFirstName(),
+            'lastName' => $user->getLastName(),
+        ];
+
+        $this->emailController->sendNoReplyEmail($user->getEmail(), new EmailType(EmailType::ACCOUNT_CONFIRMATION), $twigContext);
     }
 }

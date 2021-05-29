@@ -166,18 +166,4 @@ class AuthenticationController extends AbstractController
 
         $this->emailController->sendNoReplyEmail($user->getEmail(), new EmailType(EmailType::ACCOUNT_CONFIRMATION), $twigContext);
     }
-
-    /**
-     * @param User $user
-     * @throws TransportExceptionInterface
-     */
-    private function sendPasswordChangedEmail(User $user)
-    {
-        $twigContext = [
-            'firstName' => $user->getFirstName(),
-            'lastName' => $user->getLastName(),
-        ];
-
-        $this->emailController->sendNoReplyEmail($user->getEmail(), new EmailType(EmailType::PASSWORD_CHANGED), $twigContext);
-    }
 }
