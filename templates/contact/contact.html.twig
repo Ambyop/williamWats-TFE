@@ -5,12 +5,12 @@
 {% block body %}
     <main class="container">
         <section class=row">
-            <div class="col-md-8 offset-2">
+            <div class="col-md-8 offset-md-1">
                 <h2 class="my-3">Remplissez le formulaire</h2>
                 {{ form_start(form) }}
 
                 {{ form_widget(form) }}
-                <button type="submit" class="btn btn-outline-secondary">Envoyer le mail</button>
+                <button type="submit" class="my-2 btn btn-outline-secondary">Envoyer le mail</button>
 
                 {{ form_end(form) }}
             </div>
