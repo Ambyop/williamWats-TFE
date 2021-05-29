@@ -1,0 +1,12 @@
+ch_cookie_consent:
+    title: 'Nous utilisons des Cookies. 🍪'
+    intro: 'Ce site utilise des cookies. Certains sont nécessaires pour le bon fonctionnement du site, d''autres sont utilisés pour la personnalisation et à
+               des fins statistiques.'
+    read_more: ''
+    social_media:
+        title: 'Acceptez-vous les cookies des réseaux sociaux?'
+        description: 'Nous utilisons ceux-ci afin de pouvoir intégrer sur le site les différents postes fait sur nos réseaux-sociaux'
+    no: 'Non'
+    yes: 'Oui'
+    save: 'Sauvegarder'
+

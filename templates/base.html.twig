@@ -111,8 +111,8 @@
 
 {% block body %}{% endblock %}
 
-{{ render_esi(path('ch_cookie_consent.show', { 'locale' : 'fr' })) }}
-{#{{ render_esi(path('ch_cookie_consent.show_if_cookie_consent_not_set', { 'locale' : app.request.locale })) }}#}
+{#{{ render_esi(path('ch_cookie_consent.show', { 'locale' : 'fr' })) }}#}
+{{ render_esi(path('ch_cookie_consent.show_if_cookie_consent_not_set', { 'locale' : app.request.locale })) }}
 
 <!--Footer-->
 <footer>

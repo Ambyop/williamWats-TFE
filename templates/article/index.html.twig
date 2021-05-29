@@ -26,7 +26,7 @@
                             <a class="align-content-center" data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">Voir en grand</a>
                         </div>
                     {% else %}
-                        {% if chcookieconsent_isCategoryAllowedByUser('analytics') == true %}
+                        {% if chcookieconsent_isCategoryAllowedByUser('social_media') == true %}
                             <!-- Article {{ article.id }} Facebook integration -->
                             <div class="fb-post" data-href="{{ article.content }}" data-width="750" data-show-text="true">
                             </div>
