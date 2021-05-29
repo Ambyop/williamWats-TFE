@@ -39,9 +39,6 @@
                         <a class="nav-link" href="#">Interclubs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">SuperDivision</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ path('articles') }}">Presse et Médias</a>
                     </li>
                     <li class="nav-item">
@@ -49,7 +46,7 @@
                     </li>
                 </ul>
                 {# Account #}
-                <ul class="navbar-nav mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     {% if not app.user %}
                         <li class="nav-item">
                             <a href="{{ path('register') }}" class="btn btn-secondary">Inscription</a>
