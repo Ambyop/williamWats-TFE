@@ -90,11 +90,11 @@
 {#{{ render_esi(path('ch_cookie_consent.show', { 'locale' : 'fr' })) }}#}
 {{ render_esi(path('ch_cookie_consent.show_if_cookie_consent_not_set', { 'locale' : app.request.locale })) }}
 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.24/b-1.7.0/r-2.2.7/datatables.min.js"></script>
 {% block javascripts %}
 
 {% endblock %}
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.24/b-1.7.0/r-2.2.7/datatables.min.js"></script>
 </body>
 </html>
 

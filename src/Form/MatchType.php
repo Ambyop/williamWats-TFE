@@ -20,7 +20,7 @@ class MatchType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $now = (new \DateTime('+1 days', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
+        $minimumDate = (new \DateTime('+1 days', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
         $maximumDate = (new \DateTime('+2 years', new \DateTimeZone('Europe/Brussels')))->format('Y-m-d');
 
         $builder
@@ -30,8 +30,8 @@ class MatchType extends AbstractType
                 'widget' => 'single_text',
                 'required' => true,
                 'attr' => array(
+                    'min' => $minimumDate,
                     'max' => $maximumDate,
-                    'min' => $now,
                 )
             ])
             ->add('location', TextType::class, [

@@ -25,13 +25,21 @@
                 <td class="align-middle">{{ match.date|date("d/m/Y à H:i") }}</td>
                 <td class="align-middle">{{ match.location }}</td>
                 <td class="align-middle">{{ match.team.name }}</td>
-                <td class="align-middle">{{ match.user.count }}</td>
+                {% set players = 'Joueurs inscrits :\n' %}
+                {% if match.user.count == 0 %}
+                {% set players = 'Aucun joueurs inscrit' %}
+                {% endif %}
+                {% for player in match.user %}
+                    {% set players = players ~ player.firstname ~ ' ' ~ player.lastname ~ '\n' %}
+                {% endfor %}
+                <td class="align-middle" title="{{ players }}">{{ match.user.count }}</td>
                 <td class="align-middle">{{ match.updatedAt|date("d/m/Y H:i") }}</td>
                 <td class="align-middle">
                     <a href="{{ path('admin_match_edit', { 'id': match.id}) }}" class="btn btn-secondary" title="Modifier"><i
                                 class="icofont-pencil-alt-5"></i></a>
-                    <a href="{{ path('admin_match_remove', { 'id': match.id}) }}" class="btn btn-danger" title="Supprimer"><i
-                                class="icofont-bin"></i></a>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ match.id }}" title="Supprimer">
+                        <i class="icofont-bin"></i>
+                    </button>
                 </td>
             </tr>
         {% endfor %}
@@ -40,8 +48,26 @@
 
     <!-- Modal -->
     {% for match in matchs %}
-        <!-- match {{ match.id }} Modal -->
-
+        <!-- match {{ match.id }} Delete Confirmation modal -->
+        <div class="modal fade" id="deleteModal-{{ match.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Suppression d'un match</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Êtes-vous sur de vouloir supprimer le match du <strong>{{ match.date|date("d/m/Y") }}  à {{ match.location }}</strong>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <a href="{{ path('admin_match_remove', {'id': match.id}) }}" class="btn btn-outline-danger">
+                            Supprimer
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endfor %}
 {% endblock %}
 

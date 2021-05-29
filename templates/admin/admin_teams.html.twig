@@ -47,15 +47,18 @@
                 <td class="align-middle">
                     <a href="{{ path('admin_team_edit', { 'id': team.id}) }}" class="btn btn-secondary" title="Modifier"><i
                                 class="icofont-pencil-alt-5"></i></a>
-                    <a href="{{ path('admin_team_delete', { 'id': team.id}) }}" class="btn btn-danger" title="Supprimer"><i
-                                class="icofont-bin"></i></a>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ team.id }}" title="Supprimer">
+                        <i class="icofont-bin"></i>
+                    </button>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <!-- Add User to team Modal -->
+
+    <!-- Modal -->
     {% for team in teams %}
+        <!-- Add User to team {{ team.id }} Modal -->
         <div class="modal fade" id="addUserTeam-{{ team.id }}-Modal" tabindex="-1" aria-labelledby="addUserTeam-{{ team.id }}-ModalLabel"
              aria-hidden="true">
             <div class="modal-dialog">
@@ -80,6 +83,27 @@
                                 <li class="list-group-item">Aucun joueur n'est disponible</li>
                             {% endif %}
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- match {{ team.id }} Delete Confirmation modal -->
+        <div class="modal fade" id="deleteModal-{{ team.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Suppression d'une équipe</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Êtes-vous sur de vouloir supprimer l'équipe <strong>{{ team.name }}</strong>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <a href="{{ path('admin_team_delete', {'id': team.id}) }}" class="btn btn-outline-danger">
+                            Supprimer
+                        </a>
                     </div>
                 </div>
             </div>
