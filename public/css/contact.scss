@@ -70,6 +70,11 @@ main {
           font-size: 18px;
           line-height: 27px;
           color: rgba(238, 238, 238, 0.81);
+
+          a:first-child{
+            text-decoration: underline dotted;
+            color: inherit;
+          }
         }
       }
     }
@@ -86,7 +91,7 @@ main {
 
       .contact-box{
         width: 50%;
-        margin: 1% 25%;
+        margin: 1.30% 25%;
         padding: 1% 0;
 
         h2 {
