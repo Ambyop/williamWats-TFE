@@ -2,8 +2,15 @@
 
 namespace App\Entity;
 
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
+
 class Contact
 {
+    /**
+     * @Recaptcha\IsTrue
+     */
+    public $recaptcha;
+
     private $name;
     private $email;
     private $subject;

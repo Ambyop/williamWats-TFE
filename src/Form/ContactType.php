@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Contact;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -40,6 +41,10 @@ class ContactType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Votre message...'
                 ]
+            ])
+            ->add('recaptcha', EWZRecaptchaType::class, [
+                'label' => ' ',
+                'language' => 'fr'
             ]);
     }
 

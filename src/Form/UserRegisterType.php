@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -41,6 +42,10 @@ class UserRegisterType extends AbstractType
                 'second_options' => [
                     'label' => 'Confirmation du mot de passe'
                 ],
+            ])
+            ->add('recaptcha', EWZRecaptchaType::class, [
+                'label' => ' ',
+                'language' => 'fr'
             ]);
     }
 
