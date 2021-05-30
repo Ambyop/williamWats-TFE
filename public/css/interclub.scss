@@ -87,7 +87,6 @@
     font-size: 18px;
     line-height: 27px;
     color: #EEEEEE;
-    padding: 1px;
 
     a{
       color: inherit;
@@ -99,23 +98,23 @@
 @media screen and (min-width: 768px) {
   .interclubs-box, .teams-box, .schedule-box {
     h2 {
-      width: 33%;
-      margin: 0 33% 0 33%;
+      width: 40%;
+      margin: 0 30% 0 30%;
       font-size: 45px;
       line-height: 57px;
     }
 
     p {
       padding: 1% 0 0 0;
-      width: 33%;
-      margin: 0 33% 0 33%;
+      width: 40%;
+      margin: 0 30% 0 30%;
       font-size: 25px;
       line-height: 40px;
     }
 
     ul {
-      width: 33%;
-      margin: 0 33% 0 33%;
+      width: 40%;
+      margin: 0 30% 0 30%;
 
       li {
         padding: 16px;

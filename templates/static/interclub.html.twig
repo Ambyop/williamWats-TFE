@@ -30,9 +30,13 @@
                 Pour la saison 2021-22, Le CTT la villette a 4 équipes inscrites:
             </p>
             <ul>
+                {% if teams|length > 0 %}
                 {% for team in teams %}
-                    <li>{{ team.name }}: {{ team.division }}</li>
+                    <li>{{ team.name }} : {{ team.division }}</li>
                 {% endfor %}
+                {% else %}
+                <li>Aucune équipe n'est enregistrée pour le moment</li>
+                {% endif %}
             </ul>
             <p class="team-title">
                 Si vous êtes intéressés par les interclubs, N’hésiter pas à nous contacter

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Interclubs{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+{% endblock %}
+
+{% block body %}
+    <main>
+        <!--Header-->
+        <div class="header-image">
+            <img src="{{ asset('img/cttSalle.jpg') }}" alt="">
+        </div>
+        <!--End Header-->
+        <!--About-->
+        <div class="about-box">
+            <h2 class="py-1">A propos du Ctt</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum dictum pellentesque turpis at pretium, eget purus sagittis. Sem
+                risus gravida ultrices porta. Condimentum urna quis duis dis varius. Sem vitae, turpis mi phasellus massa nullam sapien nibh. Nam nisi
+                turpis morbi magna congue duis donec a. A nunc in purus nec sit et sem. Sed nibh amet magna senectus id nibh nulla vitae. Pharetra
+                donec at mattis euismod nunc aliquam sodales lobortis tortor. Feugiat vulputate sed orci nisl ante sit nec. Praesent bibendum vitae
+                varius platea erat non amet in. Nec dolor fames fringilla eu.
+            </p>
+        </div>
+        <!--End About-->
+        <!--Midlle-->
+        <div class="middle-image">
+            <img src="{{ asset('img/about-middle_auto_x2.jpg') }}" alt="">
+        </div>
+        <!--End Midelle-->
+        <!--localization-->
+        <div class="localisation-box">
+            <h2 class="py-1">Où sommes-nous situés?</h2>
+            <p>Nos locaux se trouvent au Centre de Loisirs de Lodelinsart</p>
+            <p>
+                Adresse: <a href="https://goo.gl/maps/wUphc3YBB4SCARW98">Rue du Chemin Vert 125B, 6042 Charleroi</a>
+            </p>
+            <p>Les entrainements ont lieu dans la grande salle du lundi au jeudi de 17h à 22h</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2541.699748788627!2d4.443589515895482!3d50.42806554685839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c22601cff4dafb%3A0xe5e1d77774a28878!2sRue%20du%20Chemin%20Vert%20125B%2C%206042%20Charleroi!5e0!3m2!1sfr!2sbe!4v1622383718825!5m2!1sfr!2sbe" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <!--End Teams-->
+    </main>
+{% endblock %}

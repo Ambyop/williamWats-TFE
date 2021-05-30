@@ -81,7 +81,6 @@
   font-size: 18px;
   line-height: 27px;
   color: #EEEEEE;
-  padding: 1px;
 }
 .schedule-box p a {
   color: inherit;
@@ -90,21 +89,21 @@
 
 @media screen and (min-width: 768px) {
   .interclubs-box h2, .teams-box h2, .schedule-box h2 {
-    width: 33%;
-    margin: 0 33% 0 33%;
+    width: 40%;
+    margin: 0 30% 0 30%;
     font-size: 45px;
     line-height: 57px;
   }
   .interclubs-box p, .teams-box p, .schedule-box p {
     padding: 1% 0 0 0;
-    width: 33%;
-    margin: 0 33% 0 33%;
+    width: 40%;
+    margin: 0 30% 0 30%;
     font-size: 25px;
     line-height: 40px;
   }
   .interclubs-box ul, .teams-box ul, .schedule-box ul {
-    width: 33%;
-    margin: 0 33% 0 33%;
+    width: 40%;
+    margin: 0 30% 0 30%;
   }
   .interclubs-box ul li, .teams-box ul li, .schedule-box ul li {
     padding: 16px;

@@ -35,7 +35,7 @@ class StaticController extends AbstractController
      */
     public function about(): Response
     {
-        return $this->render('static/homepage.html.twig', [
+        return $this->render('static/about.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
