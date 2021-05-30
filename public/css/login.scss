@@ -1,10 +1,9 @@
 main {
-  .contact {
+  .login {
     background: linear-gradient(0deg, rgba(49, 49, 49, 0.41), rgba(49, 49, 49, 0.41)), url(../img/contact.jpg);
     padding: 5% 5%;
-    min-height: 85.7%;
-
-    .contact-box {
+    min-height: 85.9%;
+    .login-box {
       margin: 2.5%;
       padding: 2% 1%;
       width: 95%;
@@ -22,32 +21,24 @@ main {
       }
 
       form {
+        margin-top: 1.5rem!important;
         div {
           .form-group {
             padding: 0 2.5%;
             width: 95%;
 
-            input, textarea {
+            label {
+              padding: 1% 1%;
+              font-size: 18px;
+              color: rgba(238, 238, 238, 0.81);
+            }
+
+            input {
               margin: 3% 0;
               background: rgba(234, 234, 234, 0.81);
               border-radius: 10px;
             }
-
-            ::placeholder {
-              font-style: normal;
-              font-weight: 600;
-              font-size: 17px;
-              line-height: 99.9%;
-              display: flex;
-              align-items: center;
-              color: #222222;
-            }
-
-            textarea {
-              height: 100px;
-            }
           }
-
         }
 
         button {
@@ -56,25 +47,10 @@ main {
         }
       }
 
-      ul {
-        padding: 0.5rem 0 0.5rem 0;
-        list-style: inside;
-
-        li {
-          padding: 0 0 0 5%;
-          //height: 27px;
-          margin: 0 0;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 18px;
-          line-height: 27px;
-          color: rgba(238, 238, 238, 0.81);
-
-          a:first-child{
-            text-decoration: underline dotted;
-            color: inherit;
-          }
-        }
+      a {
+        text-decoration: none;
+        color: #DDDDDD;
+        padding: 1% 5%;
       }
     }
   }
@@ -84,11 +60,11 @@ main {
 @media screen and (min-width: 768px) {
   main{
 
-    .contact{
+    .login{
       background: linear-gradient(0deg, rgba(49, 49, 49, 0.41), rgba(49, 49, 49, 0.41)), url(../img/contact_auto_x2.jpg);
       padding: 0.5% 2%;
 
-      .contact-box{
+      .login-box {
         width: 50%;
         margin: 1.30% 25%;
         padding: 1% 0;

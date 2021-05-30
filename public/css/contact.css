@@ -1,6 +1,7 @@
 main .contact {
   background: linear-gradient(0deg, rgba(49, 49, 49, 0.41), rgba(49, 49, 49, 0.41)), url(../img/contact.jpg);
   padding: 5% 5%;
+  min-height: 85.7%;
 }
 main .contact .contact-box {
   margin: 2.5%;

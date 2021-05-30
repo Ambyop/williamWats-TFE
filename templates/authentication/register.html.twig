@@ -2,28 +2,31 @@
 
 {% block title %}S'enregistrer!{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+{% endblock %}
+
 {% block body %}
-    <form method="post" class="my-4">
-        <main class="container">
-            <section class="row">
-                <div class="col-md-6 offset-3">
-                    {% if app.user %}
-                        <div class="alert alert-warning">
-                            Vous êtes déjà connecté en tant que {{ app.user.username }}, <a
-                                    href="{{ path('app_logout') }}">Se
-                                déconnecter</a>
-                        </div>
-                    {% else %}
-                        {{ form_start(form) }}
-                        {{ form_widget(form) }}
-                        <br>
-                        <button class="btn btn-primary" type="submit">
-                            S'inscrire
-                        </button>
-                        {{ form_end(form) }}
-                    {% endif %}
-                </div>
-            </section>
-        </main>
-    </form>
+    <main>
+        <div class="register">
+            <div class="register-box">
+                <h2 class="h3 mb-3 font-weight-normal">S'inscrire</h2>
+                {% if app.user %}
+                    <div class="alert alert-warning">
+                        Vous êtes déjà connecté en tant que {{ app.user.username }}, <a
+                                href="{{ path('logout') }}">Se
+                            déconnecter</a>
+                    </div>
+                {% else %}
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <br>
+                    <button class="btn btn-primary" type="submit">
+                        S'inscrire
+                    </button>
+                    {{ form_end(form) }}
+                {% endif %}
+            </div>
+        </div>
+    </main>
 {% endblock %}
