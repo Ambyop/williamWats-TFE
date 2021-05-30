@@ -47,8 +47,6 @@ main .localisation {
 main .about {
   padding: 5% 5%;
   width: 100%;
-  left: 0;
-  top: 379px;
   background: linear-gradient(90deg, rgba(50, 50, 50, 0.42), rgba(50, 50, 50, 0.42)), url(../img/mise_en_couleur_salle_auto_x2CUT.jpg);
 }
 main .about .about-box {
@@ -97,76 +95,73 @@ main .about .about-box .about-more a {
 @media screen and (min-width: 768px) {
   main .about {
     width: 50%;
-    height: 500px;
-    top: 407px;
+    padding: 2% 3%;
   }
   main .about .about-box {
     width: 90%;
-    height: 95%;
-    left: 37px;
+    padding: 0 0 1% 0;
   }
   main .about .about-box h2 {
+    padding: 0 0 0 57px;
+    font-weight: bold;
     height: 54px;
-    left: 23px;
-    top: 20px;
     font-size: 38px;
     line-height: 57px;
   }
   main .about .about-box p {
     width: 92%;
-    height: 339px;
     left: 27px;
     top: 100px;
     font-size: 22px;
     line-height: 33px;
   }
   main .about .about-box .about-more {
-    width: 300px;
+    margin: 3% 32% 3% 32%;
+    width: 35%;
     height: 70px;
     left: 35%;
     top: 74%;
   }
   main .about .about-box .about-more a {
-    width: 300px;
-    left: 15%;
-    top: 15px;
-    font-size: 28px;
-    line-height: 45px;
-    display: flex;
-    align-items: center;
-    text-align: center;
+    padding: 20px 10%;
+    font-size: 25px;
   }
   main .login {
     display: none;
   }
   main .localisation {
-    position: absolute;
+    padding: 2% 3%;
+    display: initial;
+    float: right;
     width: 50%;
-    height: 500px;
-    left: 50%;
-    top: 407px;
+    height: 574px;
     background: linear-gradient(0deg, rgba(50, 50, 50, 0.42), rgba(50, 50, 50, 0.42)), url(../img/doubleRaquette-960x640.jpg);
   }
   main .localisation .localisation-box {
-    position: absolute;
-    width: 90%;
-    height: 95%;
-    left: 37px;
-    top: 3%;
     background: rgba(34, 34, 34, 0.52);
     border-radius: 30px;
+    width: 90%;
+    padding: 0 0 1% 0;
   }
   main .localisation .localisation-box h2 {
-    position: absolute;
-    height: 54px;
-    left: 23px;
-    top: 20px;
     font-style: normal;
-    font-weight: 500;
+    color: #DDDDDD;
+    padding: 0 0 0 57px;
+    font-weight: bold;
+    height: 54px;
     font-size: 38px;
     line-height: 57px;
-    text-transform: capitalize;
-    color: #DDDDDD;
+  }
+  main .localisation .localisation-box p {
+    padding: 1% 0 1% 8%;
+    font-style: normal;
+    font-weight: 500;
+    color: #CCCCCC;
+    width: 92%;
+    left: 27px;
+    top: 100px;
+    font-size: 22px;
+    line-height: 33px;
   }
 }
 
