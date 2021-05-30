@@ -17,9 +17,13 @@
         <div class="login">
             <div class="login-box">
                 <h1 class="login-title my-3">Espace Membre:</h1>
-                <a class="login-button my-2 mx-auto align-content-center">
-                    Se connecter
-                </a>
+                <div class="login-button">
+                    {% if not app.user %}
+                    <a href="{{ path('login') }}" class="login-link">Se connecter</a>
+                    {% else %}
+                    <a href="{{ path('logout') }}" class="logout-link">Se déconnecter</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
         <!--End Login-->
@@ -33,13 +37,13 @@
         <!--About-->
         <div class="about">
             <div class="about-box">
-                <h2>A propos du ctt</h2>
+                <h2>A propos du CTT:</h2>
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dignissim tempus id iaculis ullamcorper dictum. Diam proin ipsum feugiat
                     placerat enim ipsum morbi. Id convallis tempus suscipit viverra dictumst suscipit pellentesque sem. Lacus turpis lectus parturient
                     egestas id eu accumsan. A augue senectus duis nec sed dictum neque. Leo vitae laoreet dictum vitae dictumst mi semper
                     pellentesque. Sagittis lectus augue augue quis felis ut enim et. Massa erat eleifend amet ut.</p>
                 <div class="about-more">
-                    <a>En savoir plus...</a>
+                    <a href="{{ path('about') }}">En savoir plus...</a>
                 </div>
             </div>
         </div>

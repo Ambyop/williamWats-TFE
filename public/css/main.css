@@ -45,12 +45,20 @@ footer {
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
-  line-height: 27px;
   color: rgba(221, 221, 221, 0.95);
 }
+footer .footer-text {
+  float: left;
+  padding: 8px 2%;
+}
 footer .footer-icon {
+  float: right;
+  padding: 3px 2%;
   font-size: 22px;
+}
+footer .footer-icon a {
   text-decoration: none;
+  color: rgba(221, 221, 221, 0.95);
 }
 
 /* Desktop */
