@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Interclubs{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/interclub.css') }}">
+{% endblock %}
+
+{% block body %}
+    <main>
+        <!--Header-->
+        <div class="header-image">
+            <img src="{{ asset('img/interclubs-header.jpg') }}" alt="">
+        </div>
+        <!--End Header-->
+        <!--Interclubs-->
+        <div class="interclubs-box">
+            <h2 class="py-1">Interclubs</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ultricies volutpat ultrices placerat sit. Vitae placerat ac mauris quisque
+                diam. Diam tempor tellus dui viverra eu aliquam non tincidunt ante. Lacinia odio neque nulla tortor felis, ornare tristique. Risus
+                eget amet eros semper.
+            </p>
+        </div>
+        <!--End Interclubs-->
+        <!--Teams-->
+        <div class="teams-box">
+            <h2 class="py-1">équipes</h2>
+            <p class="team-subtitle">
+                Pour la saison 2021-22, Le CTT la villette a 4 équipes inscrites:
+            </p>
+            <ul>
+                {% for team in teams %}
+                    <li>{{ team.name }}: {{ team.division }}</li>
+                {% endfor %}
+            </ul>
+            <p class="team-title">
+                Si vous êtes intéressés par les interclubs, N’hésiter pas à nous contacter
+            </p>
+        </div>
+        <!--End Teams-->
+        <!--schedule-->
+        <div class="schedule-box">
+            <h2 class="py-1">horaires</h2>
+            <p>Les rencontres d’interclubs se déroulent le samedi a 20H00.</p>
+            <p>
+                A domicile les matchs se déroulent à <a href="https://goo.gl/maps/wUphc3YBB4SCARW98">Rue du Chemin Vert 125, 6042 Charleroi</a>
+            </p>
+            <p>Certains matchs en extérieur se déroulent le vendredi.</p>
+        </div>
+        <!--End Teams-->
+    </main>
+{% endblock %}

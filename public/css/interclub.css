@@ -1,0 +1,89 @@
+.interclubs-box {
+  background: rgba(38, 38, 38, 0.83);
+  padding: 2% 8% 2% 8%;
+}
+.interclubs-box h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 57px;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  color: #EEEEEE;
+  width: 85%;
+}
+.interclubs-box p {
+  padding: 2.5% 0 0 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: rgba(238, 238, 238, 0.81);
+  width: 84%;
+}
+
+.teams-box {
+  background: #292929;
+  padding: 2% 8% 2% 8%;
+}
+.teams-box h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 57px;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  color: #EEEEEE;
+}
+.teams-box p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: #EEEEEE;
+}
+.teams-box ul {
+  padding: 0.5rem 0 0.5rem 0;
+  list-style: inside;
+}
+.teams-box ul li {
+  padding: 0 0 0 5%;
+  height: 27px;
+  margin: 0 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: rgba(238, 238, 238, 0.81);
+}
+
+.schedule-box {
+  background: rgba(38, 38, 38, 0.83);
+  padding: 2% 8% 2% 8%;
+}
+.schedule-box h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 57px;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  color: #EEEEEE;
+}
+.schedule-box p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: #EEEEEE;
+  padding: 1px;
+}
+.schedule-box p a {
+  color: inherit;
+  text-decoration: underline dotted;
+}
+
+/*# sourceMappingURL=interclub.css.map */

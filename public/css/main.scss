@@ -45,11 +45,11 @@ main {
 }
 
 footer {
-  position: absolute;
+  //position: absolute;
   width: 100%;
   height: 46px;
-  left: 0;
-  top: 850px;
+  //left: 0;
+  //top: 850px;
   background: rgba(31, 31, 31, 0.92);
   font-style: normal;
   font-weight: 500;
@@ -58,18 +58,18 @@ footer {
   color: rgba(221, 221, 221, 0.95);
 
    .footer-text {
-     position: absolute;
-     left: 3.14%;
-     top: 19.57%;
-     bottom: 23.91%;
+     //position: absolute;
+     //left: 3.14%;
+     //top: 19.57%;
+     //bottom: 23.91%;
    }
 
   .footer-icon {
     font-size: 22px;
-    position: absolute;
-    left: 75%;
-    top: 19.57%;
-    bottom: 23.91%;
+    //position: absolute;
+    //left: 75%;
+    //top: 19.57%;
+    //bottom: 23.91%;
     text-decoration: none;
   }
 }
@@ -81,10 +81,7 @@ footer {
   }
   main {
     .header-image {
-      position: absolute;
       height: 338px;
-      left: 0;
-      top: 69px;
       overflow: hidden;
       img {
         position: relative;

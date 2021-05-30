@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\TeamsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,10 +22,11 @@ class StaticController extends AbstractController
     /**
      * @Route("/interclubs", name="interclubs")
      */
-    public function interclubs(): Response
+    public function interclubs(TeamsRepository $teamsRepository): Response
     {
-        return $this->render('static/homepage.html.twig', [
-            'controller_name' => 'HomeController',
+        $teams = $teamsRepository->findAll();
+        return $this->render('static/interclub.html.twig', [
+            'teams' => $teams,
         ]);
     }
 

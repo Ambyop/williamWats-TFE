@@ -18,7 +18,7 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
-        <div class="container-fluid">
+        <div class="container-fluid bg-primary">
             <a class="navbar-brand" href="{{ path('homepage') }}">
                 <img class="img-navbar" src="{{ asset('img/logo/laViletteTransparent.png') }}" alt="Logo Club">
             </a>
@@ -27,7 +27,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class=" navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ path('homepage') }}">Accueil</a>
                     </li>
@@ -69,7 +69,7 @@
                                 <li><a class="dropdown-item" href="{{ path('user_private_profile') }}">Mon profil</a></li>
                                 <li><a class="dropdown-item" href="#">Mon équipe</a></li>
                                 <li><a class="dropdown-item" href="#">Mes Matchs</a></li>
-                                <li><a class="dropdown-item" href="#">Mes Entrainements</a></li>
+{#                                <li><a class="dropdown-item" href="#">Mes Entrainements</a></li>#}
 
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <li>
