@@ -11,6 +11,7 @@ main .register .register-box {
   border-radius: 30px;
 }
 main .register .register-box h2 {
+  padding-left: 2%;
   width: 95%;
   font-style: normal;
   font-weight: 500;
