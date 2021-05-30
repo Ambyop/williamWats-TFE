@@ -77,7 +77,7 @@ class UserController extends AbstractController
                 $user->setUpdatedAt($now);
                 $manager->persist($user);
                 $manager->flush();
-                $this->addFlash('succes', 'Mot de passe modifié.');
+                $this->addFlash('success', 'Mot de passe modifié.');
             } else {
                 $this->addFlash('warning', 'Mot de passe incorrect.');
                 $formPassword->get('oldPassword')->addError(new FormError("Mot de passe incorrect."));
