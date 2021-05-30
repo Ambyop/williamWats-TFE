@@ -24,8 +24,8 @@ class ContactController extends AbstractController
         $form = $this->createForm(ContactType::class,$contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            //Gestion du mail avec la classe Service\contact
             $contactService->sendMail($contact);
+            $this->addFlash('success', 'Votre message a bien été envoyé !');
             return $this->redirectToRoute('homepage');
         }
         return $this->render('contact/contact.html.twig', [

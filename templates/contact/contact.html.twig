@@ -2,18 +2,30 @@
 
 {% block title %}{{ parent() }}Contact{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+{% endblock %}
+
 {% block body %}
-    <main class="container">
-        <section class=row">
-            <div class="col-md-8 offset-md-1">
-                <h2 class="my-3">Remplissez le formulaire</h2>
+    <main>
+        <div class="contact">
+            <div class="contact-box">
+                <h2 class="my-2">Nous contacter</h2>
                 {{ form_start(form) }}
 
                 {{ form_widget(form) }}
-                <button type="submit" class="my-2 btn btn-outline-secondary">Envoyer le mail</button>
-
+                <button type="submit" class="my-2 btn btn-outline-secondary">Envoyer le message</button>
                 {{ form_end(form) }}
+
+                <h2 class="my-2">Coordonnées</h2>
+                <ul>
+                    <li>Numéro d’affiliation du club: H001</li>
+                    <li>Secrétaire: John Doe</li>
+                    <li>Email: villette-charleroi@outlook.com</li>
+                    <li>Téléphone: 071/19.00.72</li>
+                    <li>Adresse des locaux: Rue du Chemin Vert, 125B 6042 Lodelinsart</li>
+                </ul>
             </div>
-        </section>
+        </div>
     </main>
 {% endblock %}

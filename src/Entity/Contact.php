@@ -4,8 +4,7 @@ namespace App\Entity;
 
 class Contact
 {
-    private $firstname;
-    private $lastname;
+    private $name;
     private $email;
     private $subject;
     private $message;
@@ -13,36 +12,18 @@ class Contact
     /**
      * @return mixed
      */
-    public function getFirstname()
+    public function getname()
     {
-        return $this->firstname;
+        return $this->name;
     }
 
     /**
-     * @param mixed $firstname
+     * @param mixed $name
      * @return Contact
      */
-    public function setFirstname($firstname)
+    public function setname($name)
     {
-        $this->firstname = $firstname;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * @param mixed $lastname
-     * @return Contact
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
+        $this->name = $name;
         return $this;
     }
 
@@ -99,6 +80,5 @@ class Contact
         $this->message = $message;
         return $this;
     }
-
 
 }

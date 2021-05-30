@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Contact;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -16,24 +15,32 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email',EmailType::class, [
-                'label' => 'Votre Email',
-                'required' => true
+            ->add('email', EmailType::class, [
+                'label' => ' ',
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'Votre Email'
+                ]
             ])
-            ->add('firstname', TextType::class, [
-                'label' => 'Votre prénom'
-            ])
-            ->add('lastname', TextType::class, [
-                'label' => 'Votre nom'
+            ->add('name', TextType::class, [
+                'label' => ' ',
+                'attr' => [
+                    'placeholder' => 'Vos nom et prénom'
+                ]
             ])
             ->add('subject', TextType::class, [
-                'label' => 'Sujet'
+                'label' => ' ',
+                'attr' => [
+                    'placeholder' => 'Sujet du message'
+                ]
             ])
-            ->add('message', CKEditorType::class, [
-                'label' => 'Votre message',
-                'required' => true
-            ])
-        ;
+            ->add('message', TextareaType::class, [
+                'label' => ' ',
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'Votre message...'
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -31,11 +31,11 @@
             </p>
             <ul>
                 {% if teams|length > 0 %}
-                {% for team in teams %}
-                    <li>{{ team.name }} : {{ team.division }}</li>
-                {% endfor %}
+                    {% for team in teams %}
+                        <li>{{ team.name }} : {{ team.division }}</li>
+                    {% endfor %}
                 {% else %}
-                <li>Aucune équipe n'est enregistrée pour le moment</li>
+                    <li style="width: auto">Aucune équipe n'est enregistrée pour le moment</li>
                 {% endif %}
             </ul>
             <p class="team-title">

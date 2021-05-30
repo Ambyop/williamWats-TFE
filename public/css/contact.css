@@ -1,0 +1,92 @@
+main .contact {
+  background: linear-gradient(0deg, rgba(49, 49, 49, 0.41), rgba(49, 49, 49, 0.41)), url(../img/contact.jpg);
+  padding: 5% 5%;
+}
+main .contact .contact-box {
+  margin: 2.5%;
+  padding: 2% 1%;
+  width: 95%;
+  background: rgba(34, 34, 34, 0.62);
+  border-radius: 30px;
+}
+main .contact .contact-box h2 {
+  width: 95%;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 57px;
+  text-transform: capitalize;
+  color: #DDDDDD;
+}
+main .contact .contact-box form div .form-group {
+  padding: 0 2.5%;
+  width: 95%;
+}
+main .contact .contact-box form div .form-group input, main .contact .contact-box form div .form-group textarea {
+  margin: 3% 0;
+  background: rgba(234, 234, 234, 0.81);
+  border-radius: 10px;
+}
+main .contact .contact-box form div .form-group ::placeholder {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 99.9%;
+  display: flex;
+  align-items: center;
+  color: #222222;
+}
+main .contact .contact-box form div .form-group textarea {
+  height: 100px;
+}
+main .contact .contact-box form button {
+  margin: 0 3%;
+  background: rgba(130, 130, 130, 0.76);
+}
+main .contact .contact-box ul {
+  padding: 0.5rem 0 0.5rem 0;
+  list-style: inside;
+}
+main .contact .contact-box ul li {
+  padding: 0 0 0 5%;
+  margin: 0 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: rgba(238, 238, 238, 0.81);
+}
+
+/* Desktop */
+@media screen and (min-width: 768px) {
+  main .contact {
+    background: linear-gradient(0deg, rgba(49, 49, 49, 0.41), rgba(49, 49, 49, 0.41)), url(../img/contact_auto_x2.jpg);
+    padding: 0.5% 2%;
+  }
+  main .contact .contact-box {
+    width: 50%;
+    margin: 1% 25%;
+    padding: 1% 0;
+  }
+  main .contact .contact-box h2 {
+    padding: 0 4%;
+    font-size: 45px;
+    line-height: 57px;
+  }
+  main .contact .contact-box form div .form-group {
+    padding: 0 4%;
+    width: 95%;
+  }
+  main .contact .contact-box form div .form-group input, main .contact .contact-box form div .form-group textarea {
+    margin: 1%;
+  }
+  main .contact .contact-box form div .form-group textarea {
+    height: 150px;
+  }
+  main .contact .contact-box form button {
+    margin: 0 5%;
+    font-size: 20px;
+  }
+}
+
+/*# sourceMappingURL=contact.css.map */
