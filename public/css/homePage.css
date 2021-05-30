@@ -153,7 +153,7 @@ main .about .about-box .about-more a {
     line-height: 57px;
   }
   main .localisation .localisation-box p {
-    padding: 1% 0 1% 8%;
+    padding: 1% 0 0 8%;
     font-style: normal;
     font-weight: 500;
     color: #CCCCCC;
@@ -162,6 +162,9 @@ main .about .about-box .about-more a {
     top: 100px;
     font-size: 22px;
     line-height: 33px;
+  }
+  main .localisation .localisation-box iframe {
+    padding: 0 0 2% 16%;
   }
 }
 
