@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminUserController extends AbstractController
@@ -42,12 +43,18 @@ class AdminUserController extends AbstractController
      * @Route("/admin/promote/{id}/{role}",name="admin_user_role")
      * @param User $user
      * @param EntityManagerInterface $manager
+     * @param TokenStorageInterface $tokenStorage
      * @param $role
      * @return Response
      * @throws \Exception
      */
-    public function promoteUser(User $user, EntityManagerInterface $manager, $role): Response
+    public function promoteUser(User $user, EntityManagerInterface $manager,TokenStorageInterface $tokenStorage, $role): Response
     {
+        $requesterRole = $tokenStorage->getToken()->getUser()->getRoles();
+        if ( end($requesterRole) == 'ROLE_ADMIN' && $role == 'ROLE_SUPER_ADMIN') {
+            $this->addFlash('warning', 'Vous ne pouvez pas faire ça!');
+            return $this->redirectToRoute('admin_user');
+        }
         $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
         $user->setRoles([$role]);
         $user->setUpdatedAt($now);
