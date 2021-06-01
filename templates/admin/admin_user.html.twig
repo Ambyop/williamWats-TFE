@@ -67,29 +67,42 @@
                 <td class="align-middle">{{ user.updatedAt|date("d/m/Y H:i:s") }}</td>
                 {% if app.user != user %}
                     <td class="align-middle">
-                        <select class="form-select" aria-label="Default select example" onchange="document.location.href=this.value" {% if user.roles[user.roles|length-1] == "ROLE_SUPER_ADMIN" %} disabled {% endif %}>
+                        <select class="form-select" aria-label="Default select example"
+                                onchange="document.location.href=this.value" {% if user.roles[user.roles|length-1] == "ROLE_SUPER_ADMIN" %} disabled {% endif %}>
                             {% for index,role in user.roles %}
-                                {% if index == user.roles|length-1  %}
+                                {% if index == user.roles|length-1 %}
                                     {% if role == 'ROLE_USER' %}
                                         <option selected>Utilisateur</option>
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_PLAYER"}) }}">Joueur</option>
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_COACH"}) }}">Entraineur</option>
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_ADMIN"}) }}">Membre du comité</option>
+                                        {% if app.user.roles[app.user.roles|length-1] == 'ROLE_SUPER_ADMIN' %}
+                                            <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_SUPER_ADMIN"}) }}">Administrateur</option>
+                                        {% endif %}
                                     {% elseif role == 'ROLE_PLAYER' %}
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_USER"}) }}">Utilisateur</option>
                                         <option selected>Joueur</option>
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_COACH"}) }}">Entraineur</option>
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_ADMIN"}) }}">Membre du comité</option>
+                                        {% if app.user.roles[app.user.roles|length-1] == 'ROLE_SUPER_ADMIN' %}
+                                            <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_SUPER_ADMIN"}) }}">Administrateur</option>
+                                        {% endif %}
                                     {% elseif role == 'ROLE_COACH' %}
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_USER"}) }}">Utilisateur</option>
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_PLAYER"}) }}">Joueur</option>
                                         <option selected>Entraineur</option>
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_ADMIN"}) }}">Membre du comité</option>
+                                        {% if app.user.roles[app.user.roles|length-1] == 'ROLE_SUPER_ADMIN' %}
+                                            <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_SUPER_ADMIN"}) }}">Administrateur</option>
+                                        {% endif %}
                                     {% elseif role == 'ROLE_ADMIN' %}
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_USER"}) }}">Utilisateur</option>
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_PLAYER"}) }}">Joueur</option>
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_COACH"}) }}">Entraineur</option>
                                         <option selected>Membre du comité</option>
+                                        {% if app.user.roles[app.user.roles|length-1] == 'ROLE_SUPER_ADMIN' %}
+                                            <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_SUPER_ADMIN"}) }}">Administrateur</option>
+                                        {% endif %}
                                     {% elseif role == 'ROLE_SUPER_ADMIN' %}
                                         <option selected disabled>Administrateur</option>
                                     {% endif %}
@@ -120,7 +133,8 @@
                             <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-warning"
                                title="Désactivé"><i class="icofont-user-alt-2"></i></a>
                         {% endif %}
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ user.id }}" title="Supprimer">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ user.id }}"
+                                title="Supprimer">
                             <i class="icofont-bin"></i>
                         </button>
                     {% else %}
