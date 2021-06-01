@@ -67,9 +67,9 @@
                 <td class="align-middle">{{ user.updatedAt|date("d/m/Y H:i:s") }}</td>
                 {% if app.user != user %}
                     <td class="align-middle">
-                        <select class="form-select" aria-label="Default select example" onchange="document.location.href=this.value">
+                        <select class="form-select" aria-label="Default select example" onchange="document.location.href=this.value" {% if user.roles[user.roles|length-1] == "ROLE_SUPER_ADMIN" %} disabled {% endif %}>
                             {% for index,role in user.roles %}
-                                {% if index == user.roles|length-1 %}
+                                {% if index == user.roles|length-1  %}
                                     {% if role == 'ROLE_USER' %}
                                         <option selected>Utilisateur</option>
                                         <option value="{{ path('admin_user_role', {"id":user.id, "role":"ROLE_PLAYER"}) }}">Joueur</option>

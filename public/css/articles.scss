@@ -17,10 +17,11 @@ main {
   }
 
   section {
+    padding-bottom: 5%;
     .article-box {
       width: 85%;
       margin: 35px 0 3% 7.5%;
-      padding: 5% 0 5% 0;
+      padding: 5% 0 8% 0;
       background: rgba(34, 34, 34, 0.52);
       border-radius: 30px;
 
@@ -34,7 +35,7 @@ main {
       h3 {
         text-align: center;
         width: 95%;
-        padding: 15px 2.5% 10px 2.5%;
+        padding: 15px 2.5% 6% 2.5%;
         font-style: normal;
         font-weight: 500;
         font-size: 28px;
@@ -42,27 +43,48 @@ main {
         color: #D0D0D0;
       }
 
+      p {
+        text-align: center;
+        width: 95%;
+        padding: 0 2.5% 6% 2.5%;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 25px;
+        line-height: 33px;
+        color: rgba(238, 238, 238, 0.81);
+      }
+
       .read-article {
-        margin: 0 29% 0 29%;
-        width: 42%;
-        height: 50px;
+        margin: 2% 24%;
+        padding: 3% 5%;
         background: rgba(130, 130, 130, 0.9);
+        text-decoration: none;
+        overflow: hidden;
+        color: #DDDDDD;
+        font-style: normal;
+        font-size: 22px;
+        font-variant: all-small-caps;
+        text-align: center;
+        align-content: center;
+        vertical-align: center;
+      }
 
-        a {
-          text-decoration: none;
-          width: 10px;
-          height: 20px;
-          overflow: hidden;
-          color: #DDDDDD;
-          font-style: normal;
-          font-size: 22px;
-          font-variant: all-small-caps;
-          text-align: center;
-        }
+      .go-facebook {
+        margin: 2% 9%;
+        padding: 3% 5%;
+        background: rgba(130, 130, 130, 0.9);
+        text-decoration: none;
+        overflow: hidden;
+        color: #DDDDDD;
+        font-style: normal;
+        font-size: 22px;
+        font-variant: all-small-caps;
+        text-align: center;
+        vertical-align: center;
+      }
 
-        a:hover {
-          color: #DDDDDD;
-        }
+      a:hover {
+        color: #DDDDDD;
       }
 
       .fb-widget {
@@ -82,14 +104,14 @@ main {
 
       h1 {
         font-size: 45px;
-        padding-left: 17%;
+        padding-left: 21%;
       }
     }
 
     section {
       .article-box {
-        width: 60%;
-        margin: 2.5% 20%;
+        width: 50%;
+        margin: 2.5% 25%;
         padding: 3% 0;
 
         img {
@@ -101,14 +123,30 @@ main {
           font-weight: 500;
           font-size: 50px;
           margin: 3% 0;
+          padding-bottom: 3%;
         }
 
         .read-article {
+          margin: 2% 38%;
+          padding: 0.6% 2%;
           height: 75px;
-          a {
-            font-size: 35px;
-            text-align: center;
-          }
+          font-size: 35px;
+        }
+
+        .go-facebook {
+          margin: 2% 28%;
+          padding: 0.6% 2%;
+          height: 75px;
+          font-size: 35px;
+        }
+
+        .fb-post-mobile {
+          display: none;
+        }
+
+        .fb-widget {
+          display: initial;
+          margin-left: 238px;
         }
       }
 
@@ -117,5 +155,47 @@ main {
       }
     }
 
+  }
+}
+
+.modal-content {
+  background: rgba(38, 38, 38, 0.90);
+  color: rgba(238, 238, 238, 0.81);;
+
+  .modal-title {
+    font-size: 30px;
+  }
+
+  .modal-body {
+      width: 100%;
+      img {
+        width: 100%;
+        border-radius: 5%;
+      }
+
+    p{
+      margin: 5%;
+      line-height: 30px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .modal-title {
+      font-size: 38px;
+    }
+
+    .modal-body {
+      width: 100%;
+
+      img {
+        margin: 1% 5%;
+        width: 90%;
+        border-radius: 5%;
+      }
+
+      p {
+        line-height: 30px;
+      }
+    }
   }
 }

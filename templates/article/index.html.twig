@@ -21,32 +21,37 @@
                             <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
                         {% endif %}
                         <h3>{{ article.title }}</h3>
-                        <div class="read-article">
-                            <a data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">
-                                lire l'article
-                            </a>
-                        </div>
+                        <a class="read-article" data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">
+                            lire l'article
+                        </a>
                     {% else %}
                         {% if chcookieconsent_isCategoryAllowedByUser('social_media') == true %}
                             <!-- Article {{ article.id }} Facebook integration -->
                             <div class="fb-post-mobile">
                                 <h3>{{ article.title }}</h3>
-                                <p> Cet article est un poste facebook</p>
-                                <div class="read-article">
-                                    <a data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">
-                                        Aller sur Facebook
-                                    </a>
-                                </div>
+                                <p> Cet article est une publication facebook</p>
+                                <a class="go-facebook" href="{{ article.content|raw }}">
+                                    Voir l'article sur facebook
+                                </a>
                             </div>
                             <div class="fb-widget">
                                 <div class="fb-post " data-href="{{ article.content|raw }}" data-width="750" data-show-text="true">
-                            </div>
+                                </div>
                             </div>
                         {% else %}
-                            <p class="no-cookie fb-widget">Cet élément requiert l'autorisation des cookies pour être affiché</p>
                             <div class="fb-post-mobile">
                                 <h3>{{ article.title }}</h3>
-                                <p> Cet article est un poste facebook</p>
+                                <p>Cet élément requiert l'autorisation des cookies pour être affiché</p>
+                                <a class="go-facebook" href="{{ article.content|raw }}">
+                                    Voir l'article sur facebook
+                                </a>
+                            </div>
+                            <div class="fb-widget">
+                                <h3>{{ article.title }}</h3>
+                                <p>Cet élément requiert l'autorisation des cookies pour être affiché</p>
+                                <a class="go-facebook" href="{{ article.content|raw }}">
+                                    Voir l'article sur facebook
+                                </a>
                             </div>
                         {% endif %}
                     {% endif %}
@@ -61,22 +66,22 @@
             <!-- article {{ article.id }} Modal -->
             <div class="modal fade" id="articleModal-{{ article.id }}" tabindex="-1" aria-labelledby="articleModal-{{ article.id }}Label"
                  aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl modal-fullscreen-lg-down">
+                <div class="modal-dialog modal-dialog-centered  modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="articleModal-{{ article.id }}Label">{{ article.title }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            {% if article.image %}
-                                <img src="{{ asset('img/articles/') ~  article.image }}" alt="">
-                            {% else %}
-                                <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
-                            {% endif %}
-                            {{ article.content|raw }}
+                                {% if article.image %}
+                                    <img src="{{ asset('img/articles/') ~  article.image }}" alt="">
+                                {% else %}
+                                    <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
+                                {% endif %}
+                                {{ article.content|raw }}
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                         </div>
                     </div>
                 </div>
