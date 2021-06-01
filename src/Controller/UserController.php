@@ -90,24 +90,25 @@ class UserController extends AbstractController
             'editPasswordForm' => $formPassword->createView(),
         ]);
     }
-
-    /**
-     * @Route("/user/{id}", name="user_public_profile")
-     * @param User $user
-     * @param UserRepository $userRepository
-     * @param TokenStorageInterface $tokenStorage
-     * @param Request $request
-     * @param EntityManagerInterface $manager
-     * @return Response
-     * @throws \Exception
-     */
-    public function user(User $user, UserRepository $userRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
-    {
-        // load user Data
-        $user = $userRepository->find($user);
-
-        return $this->render('user/public_profile.html.twig', [
-            'user' => $user,
-        ]);
-    }
+//
+//    /**
+//     * @Route("/user/{id}", name="user_public_profile")
+//     * @param User $user
+//     * @param UserRepository $userRepository
+//     * @param TokenStorageInterface $tokenStorage
+//     * @param Request $request
+//     * @param EntityManagerInterface $manager
+//     * @return Response
+//     * @throws \Exception
+//     */
+//    public function user(User $user, UserRepository $userRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
+//    {
+//        // load user Data
+//        $user = $userRepository->find($user);
+//
+//        return $this->render('user/public_profile.html.twig', [
+//            'user' => $user,
+//        ]);
+//    }
+//    
 }

@@ -1,3 +1,133 @@
-
+main {
+  background-color: #292929;
+  padding: 5% 5%;
+  color: rgba(226, 226, 226, 0.81);
+  /* Desktop */
+}
+main .nav-tabs {
+  border: 0;
+  font-size: 22px;
+}
+main .nav-tabs .nav-link {
+  border: 1px solid #ccc;
+  padding: 0.5rem 0.79rem;
+}
+main .nav-tabs .nav-link.active {
+  background-color: #959494;
+  color: #eee;
+}
+main .nav-tabs .nav-link.active:hover {
+  color: #eee;
+}
+main .tab-content {
+  border: 1px solid #ccc;
+  border-radius: 0 0 7px 7px;
+}
+main .tab-content h4, main .tab-content h5 {
+  color: #EEEEEE;
+}
+main .tab-content h4 {
+  padding: 3%;
+  font-size: 30px;
+}
+main .tab-content h5 {
+  padding: 2% 2% 1% 2%;
+  font-size: 20px;
+}
+main .tab-content h5:first-child {
+  padding-top: 6%;
+}
+main .tab-content p {
+  padding: 0 2%;
+}
+main .tab-content .role {
+  color: #DDD;
+  font-size: 1.3em;
+}
+main .tab-content img {
+  width: 80%;
+  border-radius: 50%;
+  background-color: #656565;
+}
+main .tab-content form {
+  width: 90%;
+  padding: 5%;
+}
+main .tab-content form label, main .tab-content form legend {
+  color: #EEEEEE;
+  font-size: 20px;
+}
+main .tab-content form input {
+  margin: 2% 0 3% 0;
+  background: rgba(234, 234, 234, 0.81);
+  border-radius: 10px;
+  max-width: 100%;
+}
+main .tab-content form input[type=file] {
+  color: transparent;
+  background: transparent;
+  overflow: hidden;
+}
+main .tab-content form button {
+  margin: 5% 0;
+  background: rgba(130, 130, 130, 0.76);
+}
+@media screen and (min-width: 768px) {
+  main {
+    padding: 2% 2%;
+  }
+  main .nav-tabs {
+    font-size: 28px;
+  }
+  main .nav-tabs .nav-link {
+    border: 1px solid #ccc;
+    padding: 1rem 15.042rem;
+  }
+  main .tab-content h4 {
+    padding: 3%;
+    font-size: 38px;
+  }
+  main .tab-content h5 {
+    font-size: 30px;
+  }
+  main .tab-content p {
+    font-size: 20px;
+  }
+  main .tab-content .role {
+    font-size: 1.5em;
+  }
+  main .tab-content img {
+    width: 90%;
+  }
+  main .tab-content form {
+    width: 60%;
+    padding: 2% 0 2% 10%;
+  }
+  main .tab-content form label, main .tab-content form legend {
+    color: #EEEEEE;
+    font-size: 20px;
+  }
+  main .tab-content form input[type=file] {
+    color: initial;
+    background: rgba(234, 234, 234, 0.81);
+    overflow: initial;
+  }
+  main .tab-content form button {
+    margin: 2% 0;
+    font-size: 20px;
+  }
+  main .tab-content .editProfile {
+    grid-area: editProfile;
+    width: 100%;
+  }
+  main .tab-content .editPassword {
+    grid-area: editPassword;
+    width: 100%;
+  }
+  main .tab-content .formGrid {
+    display: grid;
+    grid-template-areas: "editProfile editPassword";
+  }
+}
 
 /*# sourceMappingURL=profile.css.map */

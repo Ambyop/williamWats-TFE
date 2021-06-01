@@ -1,0 +1,165 @@
+main {
+  background-color: #292929;
+  padding: 5% 5%;
+  color: rgba(226, 226, 226, 0.81);
+
+  .nav-tabs {
+    border: 0;
+    font-size: 22px;
+
+    .nav-link {
+      border: 1px solid #ccc;
+      padding: .5rem 0.79rem;
+    }
+
+    .nav-link.active {
+      background-color: rgb(149, 148, 148);
+      color: #eee;
+    }
+
+    .nav-link.active:hover {
+      color: #eee;
+    }
+  }
+
+  .tab-content {
+    border: 1px solid #ccc;
+    border-radius: 0 0 7px 7px;
+
+    h4, h5 {
+      color: #EEEEEE;
+    }
+
+    h4 {
+      padding: 3%;
+      font-size: 30px;
+    }
+
+    h5 {
+      padding: 2% 2% 1% 2%;
+      font-size: 20px;
+    }
+
+    h5:first-child {
+      padding-top: 6%;
+    }
+
+    p {
+      padding: 0 2%;
+    }
+
+    .role {
+      color: #DDD;
+      font-size: 1.3em;
+    }
+
+    img {
+      width: 80%;
+      border-radius: 50%;
+      background-color: rgb(101, 101, 101);;
+    }
+
+    form {
+      width: 90%;
+      padding: 5%;
+
+      label, legend {
+        color: #EEEEEE;
+        font-size: 20px;
+      }
+
+      input {
+        margin: 2% 0 3% 0;
+        background: rgba(234, 234, 234, 0.81);
+        border-radius: 10px;
+        max-width: 100%;
+      }
+
+      input[type=file] {
+        color: transparent;
+        background: transparent;
+        overflow: hidden;
+      }
+
+      button {
+        margin: 5% 0;
+        background: rgba(130, 130, 130, 0.76);
+      }
+    }
+  }
+
+  /* Desktop */
+  @media screen and (min-width: 768px) {
+    padding: 2% 2%;
+
+    .nav-tabs {
+      font-size: 28px;
+
+      .nav-link {
+        border: 1px solid #ccc;
+        padding: 1rem 15.042rem;
+      }
+    }
+
+    .tab-content {
+      h4 {
+        padding: 3%;
+        font-size: 38px;
+      }
+
+      h5 {
+        font-size: 30px;
+      }
+
+      p {
+        font-size: 20px;
+      }
+
+      .role {
+        font-size: 1.5em;
+      }
+
+      img {
+        width: 90%;
+      }
+
+      form {
+        width: 60%;
+        padding: 2% 0 2% 10%;
+
+        label, legend {
+          color: #EEEEEE;
+          font-size: 20px;
+        }
+
+        input[type=file] {
+          color: initial;
+          background: rgba(234, 234, 234, 0.81);
+          overflow: initial;
+        }
+
+        button {
+          margin: 2% 0;
+          font-size: 20px;
+        }
+      }
+
+      .editProfile {
+        grid-area: editProfile;
+        width: 100%;
+        //border-right: #ccc 1px solid;
+      }
+
+      .editPassword {
+        grid-area: editPassword;
+        width: 100%;
+      }
+
+      .formGrid {
+        display: grid;
+        grid-template-areas: 'editProfile editPassword';
+      }
+    }
+  }
+
+}

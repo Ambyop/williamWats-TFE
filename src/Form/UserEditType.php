@@ -48,7 +48,7 @@ class UserEditType extends AbstractType
                 )
             ])
             ->add('imageFile', VichImageType::class, [
-                'label' => 'Image du cours',
+                'label' => 'Image de profil',
                 'required' => false,
                 'allow_delete' => true,
                 'download_uri' => false,
