@@ -21,17 +21,28 @@
                             <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
                         {% endif %}
                         <h3>{{ article.title }}</h3>
-                        <p>{{ article.content|raw }}</p>
-                        <div class="article-more">
-                            <a class="align-content-center" data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">Voir en grand</a>
+                        <div class="read-article">
+                            <a data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">
+                                lire l'article
+                            </a>
                         </div>
                     {% else %}
                         {% if chcookieconsent_isCategoryAllowedByUser('social_media') == true %}
-{#                            <!-- Article {{ article.id }} Facebook integration -->#}
-{#                            <div class="fb-post" data-href="{{ article.content|raw }}" data-width="750" data-show-text="true">#}
-{#                            </div>#}
+                            <!-- Article {{ article.id }} Facebook integration -->
+                            <div class="fb-post-mobile">
+                                <h3>{{ article.title }}</h3>
+                                <p> Cet article est un poste facebook</p>
+                            </div>
+                            <div class="fb-widget">
+                                <div class="fb-post " data-href="{{ article.content|raw }}" data-width="750" data-show-text="true">
+                            </div>
+                            </div>
                         {% else %}
-                            <p class="no-cookie">Cet élément requiert l'autorisation des cookies pour être affiché</p>
+                            <p class="no-cookie fb-widget">Cet élément requiert l'autorisation des cookies pour être affiché</p>
+                            <div class="fb-post-mobile">
+                                <h3>{{ article.title }}</h3>
+                                <p> Cet article est un poste facebook</p>
+                            </div>
                         {% endif %}
                     {% endif %}
                 </div>
@@ -57,7 +68,7 @@
                             {% else %}
                                 <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
                             {% endif %}
-                            {{ article.content }}
+                            {{ article.content|raw }}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>
