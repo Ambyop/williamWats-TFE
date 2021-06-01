@@ -44,7 +44,7 @@ class MatchType extends AbstractType
                 'choices' => [
                     "Interclub" => "INTERCLUB",
                     "Division" => "DIVISION",
-                    "AMICAL" => "AMICAL",
+                    "Amical" => "AMICAL",
                 ],
                 'required' => true
             ])

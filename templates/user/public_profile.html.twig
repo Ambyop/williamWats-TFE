@@ -20,15 +20,27 @@
                             </p>
                             <h5>Date d'anniversaire</h5>
                             <p>
-                                {{ user.birthday|format_datetime(locale='fr',pattern="dd MMMM YYYY") }}
+                                {% if not user.birthday %}
+                                    Aucune date définie
+                                {% else %}
+                                    {{ user.birthday|format_datetime(locale='fr',pattern="dd MMMM YYYY") }}
+                                {% endif %}
                             </p>
                             <h5>Numéro de téléphone</h5>
                             <p>
-                                {{ user.phoneNumber }}
+                                {% if not user.phoneNumber %}
+                                    Aucune numéro de téléphone défini
+                                {% else %}
+                                    {{ user.phoneNumber }}
+                                {% endif %}
                             </p>
                             <h5>Classement:</h5>
                             <p>
-                                {{ user.ranking }}
+                                {% if not user.ranking %}
+                                    Aucun classement
+                                {% else %}
+                                    {{ user.ranking }}
+                                {% endif %}
                             </p>
                             <h5>Rôle:</h5>
                             <button type="button" class="btn btn-outline-primary disabled" data-toggle="tooltip"

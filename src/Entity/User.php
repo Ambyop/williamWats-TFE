@@ -158,9 +158,15 @@ class User implements UserInterface
      */
     private $matchLists;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Stage::class, mappedBy="User")
+     */
+    private $stages;
+
     public function __construct()
     {
         $this->matchLists = new ArrayCollection();
+        $this->stages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -486,6 +492,33 @@ class User implements UserInterface
     {
         if ($this->matchLists->removeElement($matchList)) {
             $matchList->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Stage[]
+     */
+    public function getStages(): Collection
+    {
+        return $this->stages;
+    }
+
+    public function addStage(Stage $stage): self
+    {
+        if (!$this->stages->contains($stage)) {
+            $this->stages[] = $stage;
+            $stage->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStage(Stage $stage): self
+    {
+        if ($this->stages->removeElement($stage)) {
+            $stage->removeUser($this);
         }
 
         return $this;

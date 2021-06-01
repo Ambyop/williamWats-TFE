@@ -27,7 +27,7 @@
                 <td class="align-middle">{{ match.team.name }}</td>
                 {% set players = 'Joueurs inscrits :\n' %}
                 {% if match.user.count == 0 %}
-                {% set players = 'Aucun joueurs inscrit' %}
+                {% set players = 'Aucun joueur inscrit' %}
                 {% endif %}
                 {% for player in match.user %}
                     {% set players = players ~ player.firstname ~ ' ' ~ player.lastname ~ '\n' %}

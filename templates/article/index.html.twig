@@ -27,9 +27,9 @@
                         </div>
                     {% else %}
                         {% if chcookieconsent_isCategoryAllowedByUser('social_media') == true %}
-                            <!-- Article {{ article.id }} Facebook integration -->
-                            <div class="fb-post" data-href="{{ article.content|raw }}" data-width="750" data-show-text="true">
-                            </div>
+{#                            <!-- Article {{ article.id }} Facebook integration -->#}
+{#                            <div class="fb-post" data-href="{{ article.content|raw }}" data-width="750" data-show-text="true">#}
+{#                            </div>#}
                         {% else %}
                             <p class="no-cookie">Cet élément requiert l'autorisation des cookies pour être affiché</p>
                         {% endif %}

@@ -27,7 +27,7 @@
         <div class="teams-box">
             <h2 class="py-1">équipes</h2>
             <p class="team-subtitle">
-                Pour la saison 2021-22, Le CTT la villette a 4 équipes inscrites:
+                Pour la saison 2021-22, Le CTT la villette a {{ teams|length }} équipe{% if teams|length >1%}s{% endif%} inscrites:
             </p>
             <ul>
                 {% if teams|length > 0 %}
@@ -35,7 +35,7 @@
                         <li>{{ team.name }} : {{ team.division }}</li>
                     {% endfor %}
                 {% else %}
-                    <li style="width: auto">Aucune équipe n'est enregistrée pour le moment</li>
+                    <li>Aucune équipe n'est inscrite pour le moment</li>
                 {% endif %}
             </ul>
             <p class="team-title">

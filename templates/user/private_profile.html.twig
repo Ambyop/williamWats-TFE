@@ -13,11 +13,11 @@
                                     aria-controls="home" aria-selected="true">Profil
                             </button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pouet-tab" data-bs-toggle="tab" data-bs-target="#pouet" type="button" role="tab"
-                                    aria-controls="pouet" aria-selected="false">Pouet
-                            </button>
-                        </li>
+{#                        <li class="nav-item" role="presentation">#}
+{#                            <button class="nav-link" id="pouet-tab" data-bs-toggle="tab" data-bs-target="#pouet" type="button" role="tab"#}
+{#                                    aria-controls="pouet" aria-selected="false">Pouet#}
+{#                            </button>#}
+{#                        </li>#}
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="editProfile-tab" data-bs-toggle="tab" data-bs-target="#editProfile" type="button" role="tab"
                                     aria-controls="contact" aria-selected="false">Modifier mon profil
@@ -39,15 +39,27 @@
                                     </p>
                                     <h5>Date d'anniversaire</h5>
                                     <p>
-                                        {{ user.birthday|format_datetime(locale='fr',pattern="dd MMMM YYYY") }}
+                                        {% if not app.user.birthday %}
+                                        Aucune date définie
+                                        {% else %}
+                                        {{ app.user.birthday|format_datetime(locale='fr',pattern="dd MMMM YYYY") }}
+                                        {% endif %}
                                     </p>
                                     <h5>Numéro de téléphone</h5>
                                     <p>
-                                        {{ app.user.phoneNumber }}
+                                        {% if not app.user.phoneNumber %}
+                                            Aucune numéro de téléphone défini
+                                        {% else %}
+                                            {{ app.user.phoneNumber }}
+                                        {% endif %}
                                     </p>
                                     <h5>Classement:</h5>
                                     <p>
+                                        {% if not app.user.ranking %}
+                                        Aucun classement
+                                        {% else %}
                                         {{ app.user.ranking }}
+                                        {% endif %}
                                     </p>
                                     <h5>Rôle:</h5>
                                     <button type="button" class="btn btn-outline-primary disabled" data-toggle="tooltip"
@@ -62,11 +74,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade my-2" id="pouet" role="tabpanel" aria-labelledby="pouet-tab">
-                            <div class="alert alert-warning">
-                                Vous n'avez aucun commentaire
-                            </div>
-                        </div>
+{#                        <div class="tab-pane fade my-2" id="pouet" role="tabpanel" aria-labelledby="pouet-tab">#}
+{#                            <div class="alert alert-warning">#}
+{#                                Vous n'avez aucun commentaire#}
+{#                            </div>#}
+{#                        </div>#}
                         <div class="tab-pane fade" id="editProfile" role="tabpanel" aria-labelledby="editProfile-tab">
                             <div class="mb-2 my-2">
                                 <h4>Modifier mes informations</h4>
