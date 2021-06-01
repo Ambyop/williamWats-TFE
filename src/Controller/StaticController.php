@@ -31,7 +31,7 @@ class StaticController extends AbstractController
     }
 
     /**
-     * @Route("/about", name="about")
+     * @Route("/club", name="about")
      */
     public function about(): Response
     {

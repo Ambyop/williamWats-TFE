@@ -38,7 +38,7 @@ function addListenerForWishList() {
 function updateRanking(userId, newRanking) {
     const xhr = new XMLHttpRequest();
     return new Promise((() => {
-        xhr.open('GET', `/admin/ranking/${userId}/${newRanking}`)
+        xhr.open('GET', `/admin/classement/${userId}/${newRanking}`)
         xhr.send();
     }))
 }

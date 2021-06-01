@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/profile", name="user_private_profile")
+     * @Route("/profil", name="user_private_profile")
      * @param UserRepository $userRepository
      * @param TokenStorageInterface $tokenStorage
      * @param Request $request
@@ -110,5 +110,44 @@ class UserController extends AbstractController
 //            'user' => $user,
 //        ]);
 //    }
-//    
+//
+    /**
+     * @Route("/profile/equipe", name="user_team")
+     * @param User $user
+     * @param UserRepository $userRepository
+     * @param TokenStorageInterface $tokenStorage
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     * @throws \Exception
+     */
+    public function team(User $user, UserRepository $userRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
+    {
+        // load user Data
+        $user = $userRepository->find($user);
+
+        return $this->render('user/public_profile.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/profil/matchs", name="user_match")
+     * @param User $user
+     * @param UserRepository $userRepository
+     * @param TokenStorageInterface $tokenStorage
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     * @throws \Exception
+     */
+    public function matchs(User $user, UserRepository $userRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
+    {
+        // load user Data
+        $user = $userRepository->find($user);
+
+        return $this->render('user/public_profile.html.twig', [
+            'user' => $user,
+        ]);
+    }
 }

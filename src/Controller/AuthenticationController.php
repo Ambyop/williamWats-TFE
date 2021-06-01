@@ -27,7 +27,7 @@ class AuthenticationController extends AbstractController
     }
 
     /**
-     * @Route("/register", name="register")
+     * @Route("/inscription", name="register")
      * @param EntityManagerInterface $manager
      * @param Request $request
      * @param UserPasswordEncoderInterface $encoder
@@ -72,7 +72,7 @@ class AuthenticationController extends AbstractController
     }
 
     /**
-     * @Route("/verif-account/{token}", name="verif_account")
+     * @Route("/verification/{token}", name="verif_account")
      * @param $token
      * @param UserRepository $userRepository
      * @param EntityManagerInterface $manager
@@ -116,7 +116,7 @@ class AuthenticationController extends AbstractController
     }
 
     /**
-     * @Route("/login", name="login")
+     * @Route("/connexion", name="login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -131,7 +131,7 @@ class AuthenticationController extends AbstractController
     }
 
     /**
-     * @Route("/logout", name="logout")
+     * @Route("/deconnexion", name="logout")
      */
     public function logout()
     {

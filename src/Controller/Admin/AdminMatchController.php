@@ -25,7 +25,7 @@ class AdminMatchController extends AbstractController
     }
 
     /**
-     * @Route("/admin/match/create", name="admin_match_add")
+     * @Route("/admin/match/creation", name="admin_match_add")
      * @param EntityManagerInterface $manager
      * @param Request $request
      * @return Response
@@ -51,7 +51,7 @@ class AdminMatchController extends AbstractController
     }
 
     /**
-     * @Route("/admin/match/edit/{id}", name="admin_match_edit")
+     * @Route("/admin/match/modification/{id}", name="admin_match_edit")
      * @param MatchList $match
      * @param EntityManagerInterface $manager
      * @param Request $request
@@ -77,7 +77,7 @@ class AdminMatchController extends AbstractController
         ]);
     }
 
-    /** @Route("/admin/match/remove/{id}", name="admin_match_remove")
+    /** @Route("/admin/match/supression/{id}", name="admin_match_remove")
      * @param MatchList $match
      * @param EntityManagerInterface $manager
      * @return Response

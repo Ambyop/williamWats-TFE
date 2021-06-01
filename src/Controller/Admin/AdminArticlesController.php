@@ -28,7 +28,7 @@ class AdminArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/admin/articles/create", name="admin_article_add")
+     * @Route("/admin/articles/nouveau", name="admin_article_add")
      * @param EntityManagerInterface $manager
      * @param Request $request
      * @return Response
@@ -57,7 +57,7 @@ class AdminArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/admin/article_integration/create", name="admin_article_integration_add")
+     * @Route("/admin/article-integration/nouveau", name="admin_article_integration_add")
      * @param EntityManagerInterface $manager
      * @param Request $request
      * @return Response
@@ -86,7 +86,7 @@ class AdminArticlesController extends AbstractController
     }
 
     /**
-     * @Route("/admin/articles/edit/{id}", name="admin_article_edit")
+     * @Route("/admin/articles/modification/{id}", name="admin_article_edit")
      * @param Articles $article
      * @param EntityManagerInterface $manager
      * @param Request $request
@@ -127,7 +127,7 @@ class AdminArticlesController extends AbstractController
         return $this->redirectToRoute('admin_articles');
     }
 
-    /** @Route("/admin/articles/remove/{id}", name="admin_article_remove")
+    /** @Route("/admin/articles/suppression/{id}", name="admin_article_remove")
      * @param Articles $article
      * @param EntityManagerInterface $manager
      * @return Response

@@ -26,7 +26,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user", name="admin_user")
+     * @Route("/admin/utilisateur", name="admin_user")
      * @param UserRepository $userRepository
      * @return Response
      */
@@ -40,7 +40,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/promote/{id}/{role}",name="admin_user_role")
+     * @Route("/admin/promotion/{id}/{role}",name="admin_user_role")
      * @param User $user
      * @param EntityManagerInterface $manager
      * @param TokenStorageInterface $tokenStorage
@@ -64,7 +64,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/create", name="admin_user_add")
+     * @Route("/admin/user/creation", name="admin_user_add")
      * @param EntityManagerInterface $manager
      * @param Request $request
      * @param UserPasswordEncoderInterface $encoder
@@ -112,7 +112,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/remove/{id}", name="admin_user_remove")
+     * @Route("/admin/user/supression/{id}", name="admin_user_remove")
      * @param User $user ;
      * @param EntityManagerInterface $manager
      * @return Response
@@ -126,7 +126,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/ranking/{id}/{ranking}",name="admin_user_ranking")
+     * @Route("/admin/classement/{id}/{ranking}",name="admin_user_ranking")
      * @param User $user
      * @param EntityManagerInterface $manager
      * @param $ranking

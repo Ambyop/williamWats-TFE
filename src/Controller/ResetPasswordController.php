@@ -21,7 +21,7 @@ use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
 /**
- * @Route("/reset-password")
+ * @Route("/recuperation-compte")
  */
 class ResetPasswordController extends AbstractController
 {
@@ -57,7 +57,7 @@ class ResetPasswordController extends AbstractController
     }
 
     /**
-     * @Route("/check-email", name="app_check_email")
+     * @Route("/verif-email", name="app_check_email")
      */
     public function checkEmail(): Response
     {
@@ -73,7 +73,7 @@ class ResetPasswordController extends AbstractController
     }
 
     /**
-     * @Route("/reset/{token}", name="app_reset_password")
+     * @Route("/reinisialisation/{token}", name="app_reset_password")
      * @throws \Exception
      * @throws TransportExceptionInterface
      */

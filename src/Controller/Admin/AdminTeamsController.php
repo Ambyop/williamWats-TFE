@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminTeamsController extends AbstractController
 {
     /**
-     * @Route("/admin/teams", name="admin_teams")
+     * @Route("/admin/equipes", name="admin_teams")
      * @param TeamsRepository $teamsRepository
      * @param UserRepository $userRepository
      * @return Response
@@ -32,7 +32,7 @@ class AdminTeamsController extends AbstractController
     }
 
     /**
-     * @Route("/admin/teams/create", name="admin_teams_add")
+     * @Route("/admin/equipes/creation", name="admin_teams_add")
      * @param EntityManagerInterface $manager
      * @param Request $request
      * @return Response
@@ -59,7 +59,7 @@ class AdminTeamsController extends AbstractController
     }
 
     /**
-     * @Route("/admin/teams/edit/{id}", name="admin_team_edit")
+     * @Route("/admin/equipes/modification/{id}", name="admin_team_edit")
      * @param Teams $team
      * @param EntityManagerInterface $manager
      * @param Request $request
@@ -86,7 +86,7 @@ class AdminTeamsController extends AbstractController
     }
 
     /**
-     * @Route("/admin/team/delete/{id}", name="admin_team_delete")
+     * @Route("/admin/equipe/supression/{id}", name="admin_team_delete")
      * @param Teams $team
      * @param EntityManagerInterface $manager
      * @param UserRepository $userRepository
@@ -107,7 +107,7 @@ class AdminTeamsController extends AbstractController
     }
 
     /**
-     * @Route("/admin/team/{team}/remove/user/{user}", name="admin_team_remove_user")
+     * @Route("/admin/equipe/{team}/retirer/joueur/{user}", name="admin_team_remove_user")
      * @param Teams $team
      * @param User $user
      * @param EntityManagerInterface $manager
@@ -125,7 +125,7 @@ class AdminTeamsController extends AbstractController
     }
 
     /**
-     * @Route("/admin/team/{team}/add/user/{user}", name="admin_team_add_user")
+     * @Route("/admin/equipe/{team}/ajouter/joueur/{user}", name="admin_team_add_user")
      * @param Teams $team
      * @param User $user
      * @param EntityManagerInterface $manager
