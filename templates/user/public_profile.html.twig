@@ -45,8 +45,8 @@
                             <h5>Rôle:</h5>
                             <button type="button" class="btn btn-outline-primary disabled" data-toggle="tooltip"
                                     data-placement="bottom" title="{{ user.roles|json_encode }}">
-                                {% if user.roles|json_encode == '["ROLE_ADMIN"]' %} Administrateur
-                                {% elseif user.roles|json_encode == '["ROLE_SUPER_ADMIN"]' %} Super-Administrateur
+                                {% if user.roles|json_encode == '["ROLE_ADMIN"]' %} Membre du comité
+                                {% elseif user.roles|json_encode == '["ROLE_SUPER_ADMIN"]' %} Administrateur
                                 {% elseif user.roles|json_encode == '["ROLE_PLAYER"]' %} Joueur
                                 {% elseif user.roles|json_encode == '["ROLE_COACH"]' %} Entraîneur
                                 {% else %} Utilisateur

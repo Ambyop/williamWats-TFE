@@ -56,7 +56,7 @@ class UserType extends AbstractType
                     "Utilisateur" => "ROLE_USER",
                     "Joueur" => "ROLE_PLAYER",
                     "Entraîneur" => "ROLE_COACH",
-                    "Administrateur" => "ROLE_ADMIN"
+                    "Membre du comité" => "ROLE_ADMIN"
                 ],
                 'required' => true
             ])

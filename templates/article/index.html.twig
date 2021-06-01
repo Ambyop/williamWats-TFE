@@ -32,6 +32,11 @@
                             <div class="fb-post-mobile">
                                 <h3>{{ article.title }}</h3>
                                 <p> Cet article est un poste facebook</p>
+                                <div class="read-article">
+                                    <a data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">
+                                        Aller sur Facebook
+                                    </a>
+                                </div>
                             </div>
                             <div class="fb-widget">
                                 <div class="fb-post " data-href="{{ article.content|raw }}" data-width="750" data-show-text="true">
