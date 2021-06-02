@@ -2,112 +2,120 @@
 
 {% block title %}{{ parent() }}Presse et médias{% endblock %}
 
-{% block body %}
-    <div class="container-fluid my-4">
-        <h2 class="d-inline">Gestion des Articles</h2>
-        <a href="{{ path('admin_article_integration_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un poste facebook</a>
-        <a href="{{ path('admin_article_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un article</a>
-    </div>
-    <table class="table table-striped" id="AdminTable">
-        <thead>
-        <tr>
-            <th>Titre</th>
-            <th>Type</th>
-            <th>Aperçu</th>
-            <th>Date de création</th>
-            <th>Dernière modification</th>
-            <th>Paramètres</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            {% set index = 4 %}
-            <tr>
-                <td class="align-middle">{{ article.title }}</td>
-                {% if article.isIntegration %}
-                    <td class="align-middle">Intégration Facebook</td>
-                    <td class="align-middle">
-                        <a href="{{ article.content }}" class="btn btn-outline-info" target="_blank">Poste Facebook</a>
-                    </td>
-                {% else %}
-                    <td class="align-middle">Article</td>
-                    <td class="align-middle">
-                        <a class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">Aperçu de l'article</a>
-                    </td>
-                {% endif %}
-                <td>{{ article.createdAt|date("d/m/Y H:i") }}</td>
-                <td>{{ article.updatedAt|date("d/m/Y H:i") }}</td>
-                <td>
-                    {% if article.isEnabled %}
-                        <a href="{{ path('admin_article_activation',{'id': article.id}) }}" class="btn btn-success" title="Modifier">
-                            <i class="icofont-toggle-on"></i>
-                        </a>
-                    {% else %}
-                        <a href="{{ path('admin_article_activation',{'id': article.id}) }}" class="btn btn-warning" title="Modifier">
-                            <i class="icofont-toggle-off"></i>
-                        </a>
-                    {% endif %}
-                    <a href="{{ path('admin_article_edit', {'id': article.id}) }}" class="btn btn-secondary" title="Modifier">
-                        <i class="icofont-pencil-alt-5"></i>
-                    </a>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ article.id }}" title="Supprimer">
-                        <i class="icofont-bin"></i>
-                    </button>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock %}
 
-    <!-- Modal -->
-    {% for article in articles %}
-        {% if not article.isIntegration %}
-            <!-- article {{ article.id }} Modal -->
-            <div class="modal fade" id="articleModal-{{ article.id }}" tabindex="-1" aria-labelledby="articleModal-{{ article.id }}Label"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl modal-fullscreen-lg-down">
+{% block body %}
+    <main>
+        <div class="container-fluid my-4">
+            <h2 class="d-inline">Gestion des Articles</h2>
+            <a href="{{ path('admin_article_integration_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un poste facebook</a>
+            <a href="{{ path('admin_article_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un article</a>
+        </div>
+        <table class="table table-striped" id="AdminTable">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Type</th>
+                <th>Aperçu</th>
+                <th>Date de création</th>
+                <th>Dernière modification</th>
+                <th>Paramètres</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                {% set index = 4 %}
+                <tr>
+                    <td class="align-middle">{{ article.title }}</td>
+                    {% if article.isIntegration %}
+                        <td class="align-middle">Intégration Facebook</td>
+                        <td class="align-middle">
+                            <a href="{{ article.content }}" class="btn btn-outline-info" target="_blank">Poste Facebook</a>
+                        </td>
+                    {% else %}
+                        <td class="align-middle">Article</td>
+                        <td class="align-middle">
+                            <a class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#articleModal-{{ article.id }}">Aperçu de
+                                l'article</a>
+                        </td>
+                    {% endif %}
+                    <td>{{ article.createdAt|date("d/m/Y H:i") }}</td>
+                    <td>{{ article.updatedAt|date("d/m/Y H:i") }}</td>
+                    <td>
+                        {% if article.isEnabled %}
+                            <a href="{{ path('admin_article_activation',{'id': article.id}) }}" class="btn btn-success" title="Modifier">
+                                <i class="icofont-toggle-on"></i>
+                            </a>
+                        {% else %}
+                            <a href="{{ path('admin_article_activation',{'id': article.id}) }}" class="btn btn-warning" title="Modifier">
+                                <i class="icofont-toggle-off"></i>
+                            </a>
+                        {% endif %}
+                        <a href="{{ path('admin_article_edit', {'id': article.id}) }}" class="btn btn-secondary" title="Modifier">
+                            <i class="icofont-pencil-alt-5"></i>
+                        </a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ article.id }}"
+                                title="Supprimer">
+                            <i class="icofont-bin"></i>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Modal -->
+        {% for article in articles %}
+            {% if not article.isIntegration %}
+                <!-- article {{ article.id }} Modal -->
+                <div class="modal fade" id="articleModal-{{ article.id }}" tabindex="-1" aria-labelledby="articleModal-{{ article.id }}Label"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl modal-fullscreen-lg-down">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="articleModal-{{ article.id }}Label">{{ article.title }}</h5>
+                                <h6 class="pl-3">Sub Title</h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                {% if article.image %}
+                                    <img src="{{ asset('img/articles/') ~  article.image }}" alt="">
+                                {% else %}
+                                    <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
+                                {% endif %}
+                                {{ article.content }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <!-- article {{ article.id }} Delete Confirmation modal -->
+            <div class="modal fade" id="deleteModal-{{ article.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="articleModal-{{ article.id }}Label">{{ article.title }}</h5>
-                            <h6 class="pl-3">Sub Title</h6>
+                            <h5 class="modal-title" id="exampleModalLabel">Suppression d'article</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            {% if article.image %}
-                                <img src="{{ asset('img/articles/') ~  article.image }}" alt="">
-                            {% else %}
-                                <img src="{{ asset('img/articles/') ~  'default.png' }}" alt="">
-                            {% endif %}
-                            {{ article.content }}
+                            Êtes-vous sur de vouloir supprimer L'article <strong>{{ article.title }}</strong>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <a href="{{ path('admin_article_remove', {'id': article.id}) }}" class="btn btn-outline-danger">
+                                Supprimer
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        {% endif %}
-        <!-- article {{ article.id }} Delete Confirmation modal -->
-        <div class="modal fade" id="deleteModal-{{ article.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Suppression d'article</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Êtes-vous sur de vouloir supprimer L'article <strong>{{ article.title }}</strong>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                        <a href="{{ path('admin_article_remove', {'id': article.id}) }}" class="btn btn-outline-danger">
-                            Supprimer
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </main>
 {% endblock %}
 
 {% block javascripts %}
