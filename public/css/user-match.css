@@ -1,0 +1,34 @@
+main {
+  display: grid;
+  background-color: #292929;
+  grid-template-areas: "scribedMatchs unScribedMatchs";
+  color: rgba(226, 226, 226, 0.81);
+  min-height: 85.96%;
+}
+main .subscribed-matchs {
+  grid-area: scribedMatchs;
+}
+main .unsubscribed-matchs {
+  grid-area: unScribedMatchs;
+}
+main h2 {
+  margin-top: 3%;
+  text-align: center;
+  color: #eee;
+}
+main .card {
+  background-color: #726e6e;
+  margin: 4% 25%;
+}
+main .card-title {
+  color: #eaeaea;
+}
+main .card-subtitle {
+  color: #d9d8d8;
+}
+main a {
+  color: inherit;
+  float: right;
+}
+
+/*# sourceMappingURL=user-match.css.map */

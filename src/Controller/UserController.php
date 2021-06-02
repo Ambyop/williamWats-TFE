@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\MatchList;
 use App\Entity\User;
 use App\Form\UserEditType;
+use App\Repository\MatchListRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\Object_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -112,7 +115,7 @@ class UserController extends AbstractController
 //    }
 //
     /**
-     * @Route("/profile/equipe", name="user_team")
+     * @Route("/profil/equipe", name="user_team")
      * @param UserRepository $userRepository
      * @param TokenStorageInterface $tokenStorage
      * @param Request $request
@@ -138,19 +141,86 @@ class UserController extends AbstractController
     /**
      * @Route("/profil/matchs", name="user_match")
      * @param UserRepository $userRepository
+     * @param MatchListRepository $matchListRepository
      * @param TokenStorageInterface $tokenStorage
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @return Response
-     * @throws \Exception
      */
-    public function matchs(UserRepository $userRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
+    public function matchs(UserRepository $userRepository, MatchListRepository $matchListRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
     {
         // load user Data
         $user = $userRepository->find($tokenStorage->getToken()->getUser());
-
-        return $this->render('user/public_profile.html.twig', [
-            'user' => $user,
+        $subcribedMatchs = $user->getMatchLists();
+        $unScribedMatchs = $matchListRepository->findBy([
+            'team' =>$user->getTeam()
         ]);
+        foreach ($unScribedMatchs as $key => $match) {
+            foreach ($subcribedMatchs as $subcribedMatch) {
+                if ($match->getId() == $subcribedMatch->getId()) {
+                    unset($unScribedMatchs[$key]);
+                }
+            }
+        }
+        dump($subcribedMatchs->toArray());
+        dump($unScribedMatchs);
+
+        return $this->render('user/user_matchs.html.twig', [
+            'user' => $user,
+            'subscribedMatchs' => $subcribedMatchs,
+            'unSubscribedMatchs' => $unScribedMatchs,
+        ]);
+    }
+
+    /**
+     * @Route("/profil/matchs/inscription/{match}", name="subscribe_match")
+     * @param MatchList $match
+     * @param UserRepository $userRepository
+     * @param TokenStorageInterface $tokenStorage
+     * @param EntityManagerInterface $manager
+     * @return Response
+     * @throws \Exception
+     */
+    public function subscribeMatch(MatchList $match, UserRepository $userRepository, TokenStorageInterface $tokenStorage, EntityManagerInterface $manager): Response
+    {
+        // load user Data
+        $user = $userRepository->find($tokenStorage->getToken()->getUser());
+        if ($user->getTeam() === $match->getTeam()) {
+            $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+            $match->addUser($user);
+            $match->setUpdatedAt($now);
+            $user->setUpdatedAt($now);
+            $manager->flush();
+            $this->addFlash('success', 'Vous vous êtes inscrit au match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation() . '.');
+        } else {
+            $this->addFlash('danger', 'Vous ne pouvez pas vous inscrire au match d\'une autre équipe.');
+        }
+        return $this->redirectToRoute('user_match');
+    }
+
+    /**
+     * @Route("/profil/matchs/desinscription/{match}", name="unsubscribe_match")
+     * @param MatchList $match
+     * @param UserRepository $userRepository
+     * @param TokenStorageInterface $tokenStorage
+     * @param EntityManagerInterface $manager
+     * @return Response
+     * @throws \Exception
+     */
+    public function unSubscribeMatch(MatchList $match, UserRepository $userRepository, TokenStorageInterface $tokenStorage, EntityManagerInterface $manager): Response
+    {
+        // load user Data
+        $user = $userRepository->find($tokenStorage->getToken()->getUser());
+        if ($user->getTeam() === $match->getTeam()) {
+            $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+            $match->removeUser($user);
+            $match->setUpdatedAt($now);
+            $user->setUpdatedAt($now);
+            $manager->flush();
+            $this->addFlash('warning', 'Vous n\'êtes plus inscrit au match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation() . '.');
+        } else {
+            $this->addFlash('danger', 'Vous ne pouvez pas faire ça au match d\'une autre équipe.');
+        }
+        return $this->redirectToRoute('user_match');
     }
 }

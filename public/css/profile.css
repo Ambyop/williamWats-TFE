@@ -90,6 +90,9 @@ main .tab-content form button {
   main .tab-content h5 {
     font-size: 30px;
   }
+  main .tab-content h5:first-child {
+    padding-top: 2%;
+  }
   main .tab-content p {
     font-size: 20px;
   }
