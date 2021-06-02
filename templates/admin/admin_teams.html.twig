@@ -23,7 +23,7 @@
         </thead>
         <tbody>
         {% for team in teams %}
-            {% set index = 4 %}
+            {% set index = 4 - team.users.count %}
             <tr>
                 <td class="align-middle">{{ team.name }}</td>
                 <td class="align-middle">{{ team.division }}</td>
@@ -31,17 +31,16 @@
                     <td class="align-middle">{{ user.firstname }}  {{ user.lastname }} <a
                                 href="{{ path('admin_team_remove_user', { 'team': team.id, 'user': user.id}) }}" class="btn btn-danger btn-sm"
                                 title="Retirer le joueur"><i class="icofont-delete"></i></a></td>
-                    {% set index = index-1 %}
                 {% endfor %}
-                {% for key in 1..index %}
-                    <td class="align-middle">Aucun joueur
-                        {% if key == 1 %}
+                {% if index > 0 %}
+                    {% for key in 1..index %}
+                        <td class="align-middle">Aucun joueur
                             <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#addUserTeam-{{ team.id }}-Modal" title="Ajouter un joueur"><i class="icofont-people"></i>
                             </button>
-                        {% endif %}
-                    </td>
-                {% endfor %}
+                        </td>
+                    {% endfor %}
+                {% endif %}
                 <td class="align-middle">{{ team.createdAt|date("d/m/Y H:i:s") }}</td>
                 <td class="align-middle">{{ team.updatedAt|date("d/m/Y H:i:s") }}</td>
                 <td class="align-middle">

@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}Profil{% endblock %}
+
+{% block stylesheets %}
+     <link rel="stylesheet" href="{{ asset('css/user-teams.css') }}">
+{% endblock %}
+
+{% block body %}
+    <main>
+        <h2 class="my-4">{{ team.name }}</h2>
+        <div class="container">
+            <div class="row my-3">
+                <div class="col-lg-12">
+                    <ul class="nav nav-tabs" id="profileTab" role="tablist">
+                        {% set index = 1 %}
+                        {% for partner in partners %}
+                            {% if partner.id != app.user.id %}
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link
+                                    {% if index %}
+                                    active
+                                    {% set index = 0 %}
+                                    {% endif %}" id="user-{{ partner.id }}-tab" data-bs-toggle="tab"
+                                            data-bs-target="#user-{{ partner.id }}" type="button"
+                                            role="tab"
+                                            aria-controls="partner" aria-selected="true">{{ partner.firstname }} {{ partner.lastname }}
+                                    </button>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="user-tab" data-bs-toggle="tab" data-bs-target="#user" type="button" role="tab"
+                                    aria-controls="user" aria-selected="false">Moi
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="profileTabContent">
+                        {% set index = 1 %}
+                        {% for partner in partners %}
+                            {% if partner.id != app.user.id %}
+                                <div class="tab-pane fade show
+                            {% if index %}
+                                    active
+                                    {% set index = 0 %}
+                                    {% endif %}
+                             my-2" id="user-{{ partner.id }}" role="tabpanel"
+                                     aria-labelledby="user-{{ partner.id }}-tab">
+                                    <div class="row">
+                                        <div class="col-lg-5 order-lg-1 text-center">
+                                            {% if partner.image %}
+                                                <img src="{{ asset('img/users/') ~ partner.image }}" class="mx-auto img-fluid img-circle d-block"
+                                                     alt="Image de profil">
+                                            {% else %}
+                                                <img src="{{ asset('img/users/') ~ 'default.png' }}" class="mx-auto img-fluid img-circle d-block"
+                                                     alt="Image de profil">
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <h4>{{ partner.firstname }} {{ partner.lastname|upper }}</h4>
+                                            <h5>Email:</h5>
+                                            <p>
+                                                <a href="mailto:{{ partner.email }}">{{ partner.email }}</a>
+                                            </p>
+                                            <h5>Numéro de téléphone:</h5>
+                                            <p>
+                                                {% if not partner.phoneNumber %}
+                                                    Aucune numéro de téléphone défini
+                                                {% else %}
+                                                    <a href="tel:{{ partner.phoneNumber }}">{{ partner.phoneNumber }}</a>
+                                                {% endif %}
+                                            </p>
+                                            <h5>Classement:</h5>
+                                            <p>
+                                                {% if not partner.ranking %}
+                                                    Aucun classement
+                                                {% else %}
+                                                    {{ partner.ranking }}
+                                                {% endif %}
+                                            </p>
+                                            <h5>Statut:</h5>
+                                            <p class="role">
+                                                {% if partner.roles|json_encode == '["ROLE_ADMIN"]' %} Membre du comité
+                                                {% elseif partner.roles|json_encode == '["ROLE_SUPER_ADMIN"]' %} Administrateur
+                                                {% elseif partner.roles|json_encode == '["ROLE_PLAYER"]' %} Joueur
+                                                {% elseif partner.roles|json_encode == '["ROLE_COACH"]' %} Entraîneur
+                                                {% else %} Utilisateur
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {# App.user #}
+                        <div class="tab-pane fade show my-2" id="user" role="tabpanel"
+                             aria-labelledby="user-tab">
+                            <div class="row">
+                                <div class="col-lg-5 order-lg-1 text-center">
+                                    {% if app.user.image %}
+                                        <img src="{{ asset('img/users/') ~ app.user.image }}" class="mx-auto img-fluid img-circle d-block"
+                                             alt="Image de profil">
+                                    {% else %}
+                                        <img src="{{ asset('img/users/') ~ 'default.png' }}" class="mx-auto img-fluid img-circle d-block"
+                                             alt="Image de profil">
+                                    {% endif %}
+                                </div>
+                                <div class="col-lg-6">
+                                    <h4>{{ app.user.firstname }} {{ app.user.lastname|upper }}</h4>
+                                    <h5>Email:</h5>
+                                    <p>
+                                        {{ app.user.email }}
+                                    </p>
+                                    <h5>Numéro de téléphone:</h5>
+                                    <p>
+                                        {% if not app.user.phoneNumber %}
+                                            Aucune numéro de téléphone défini
+                                        {% else %}
+                                            {{ app.user.phoneNumber }}
+                                        {% endif %}
+                                    </p>
+                                    <h5>Classement:</h5>
+                                    <p>
+                                        {% if not app.user.ranking %}
+                                            Aucun classement
+                                        {% else %}
+                                            {{ app.user.ranking }}
+                                        {% endif %}
+                                    </p>
+                                    <h5>Statut:</h5>
+                                    <p class="role">
+                                        {% if app.user.roles|json_encode == '["ROLE_ADMIN"]' %} Membre du comité
+                                        {% elseif app.user.roles|json_encode == '["ROLE_SUPER_ADMIN"]' %} Administrateur
+                                        {% elseif app.user.roles|json_encode == '["ROLE_PLAYER"]' %} Joueur
+                                        {% elseif app.user.roles|json_encode == '["ROLE_COACH"]' %} Entraîneur
+                                        {% else %} Utilisateur
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

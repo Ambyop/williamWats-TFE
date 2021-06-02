@@ -113,27 +113,30 @@ class UserController extends AbstractController
 //
     /**
      * @Route("/profile/equipe", name="user_team")
-     * @param User $user
      * @param UserRepository $userRepository
      * @param TokenStorageInterface $tokenStorage
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @return Response
-     * @throws \Exception
      */
-    public function team(User $user, UserRepository $userRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
+    public function team(UserRepository $userRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
     {
         // load user Data
-        $user = $userRepository->find($user);
+        $user = $userRepository->find($tokenStorage->getToken()->getUser());
+        $team = $user->getTeam();
+        $partners = $userRepository->findBy([
+            'team' => $team->getId()
+        ]);
 
-        return $this->render('user/public_profile.html.twig', [
+        return $this->render('user/user_teams.html.twig', [
             'user' => $user,
+            'team' => $team,
+            'partners' => $partners,
         ]);
     }
 
     /**
      * @Route("/profil/matchs", name="user_match")
-     * @param User $user
      * @param UserRepository $userRepository
      * @param TokenStorageInterface $tokenStorage
      * @param Request $request
@@ -141,10 +144,10 @@ class UserController extends AbstractController
      * @return Response
      * @throws \Exception
      */
-    public function matchs(User $user, UserRepository $userRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
+    public function matchs(UserRepository $userRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
     {
         // load user Data
-        $user = $userRepository->find($user);
+        $user = $userRepository->find($tokenStorage->getToken()->getUser());
 
         return $this->render('user/public_profile.html.twig', [
             'user' => $user,

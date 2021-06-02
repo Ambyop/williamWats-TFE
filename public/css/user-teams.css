@@ -1,0 +1,95 @@
+main {
+  background-color: #292929;
+  padding: 5% 5%;
+  color: rgba(226, 226, 226, 0.81);
+  /* Desktop */
+}
+main h2 {
+  color: #eee;
+  font-size: 35px;
+  padding: 0 12px;
+  text-align: center;
+}
+main a {
+  color: rgba(226, 226, 226, 0.81);
+  text-decoration: underline dotted;
+}
+main .nav {
+  display: initial;
+}
+main .nav-tabs {
+  border: 0;
+  font-size: 22px;
+}
+main .nav-tabs .nav-link {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  width: 100%;
+}
+main .nav-tabs .nav-link.active {
+  background-color: #959494;
+  color: #eee;
+}
+main .nav-tabs .nav-link.active:hover {
+  color: #eee;
+}
+main .tab-content {
+  border: 1px solid #ccc;
+  border-radius: 0 0 7px 7px;
+}
+main .tab-content h4, main .tab-content h5 {
+  color: #EEEEEE;
+}
+main .tab-content h4 {
+  padding: 3%;
+  font-size: 30px;
+}
+main .tab-content h5 {
+  padding: 2% 2% 1% 2%;
+  font-size: 20px;
+}
+main .tab-content h5:first-child {
+  padding-top: 6%;
+}
+main .tab-content p {
+  padding: 0 2%;
+}
+main .tab-content img {
+  width: 50%;
+  border-radius: 50%;
+  background-color: #656565;
+}
+@media screen and (min-width: 768px) {
+  main {
+    padding: 2% 2%;
+  }
+  main h2 {
+    color: #eee;
+    font-size: 35px;
+    padding: 0 0 3% 0;
+    text-align: center;
+  }
+  main .nav-tabs {
+    font-size: 28px;
+  }
+  main .nav-tabs .nav-link {
+    border: 1px solid #ccc;
+    padding: 1rem 15.042rem;
+  }
+  main .tab-content h4 {
+    padding: 3%;
+    font-size: 38px;
+  }
+  main .tab-content h5 {
+    font-size: 30px;
+  }
+  main .tab-content p {
+    font-size: 20px;
+  }
+  main .tab-content img {
+    margin: 10%;
+    width: 70%;
+  }
+}
+
+/*# sourceMappingURL=user-teams.css.map */
