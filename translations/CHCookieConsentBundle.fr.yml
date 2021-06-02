@@ -4,8 +4,8 @@ ch_cookie_consent:
                des fins statistiques.'
     read_more: ''
     social_media:
-        title: 'Acceptez-vous les cookies des réseaux sociaux?'
-        description: 'Nous utilisons ceux-ci afin de pouvoir intégrer sur le site les différents postes fait sur nos réseaux-sociaux'
+        title: "Acceptez-vous l'utilisation de cookies ?"
+        description: 'Nous utilisons ceux-ci afin de pouvoir afficher les différentes intégrations disponibles sur le site '
     no: 'Non'
     yes: 'Oui'
     save: 'Sauvegarder'

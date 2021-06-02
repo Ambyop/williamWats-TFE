@@ -8,6 +8,9 @@
 
 {% block body %}
     <main>
+        {% if subscribedMatchs|length ==0 and  unSubscribedMatchs|length ==0  %}
+        <h2>Aucun matchs n'est disponibles</h2>
+        {% else %}
         <div class="subscribed-matchs">
             <h2>Mes matchs</h2>
             {% for match in subscribedMatchs %}
@@ -35,4 +38,5 @@
             {% endfor %}
         </div>
     </main>
+    {% endif %}
 {% endblock %}

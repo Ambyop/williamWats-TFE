@@ -30,7 +30,7 @@ class Articles
      *     maxMessage= "Le nom ne peut contenir plus de {{ limit }} caractères"
      * )
      * @Assert\Regex(
-     *     pattern="/^[a-zA-Z0-9À-ÿ\-',?!œ\s]+$/",
+     *     pattern="/^[a-zA-ZÀ-ÿœ' ]+$/",
      *     match=true,
      *     message="Uniquement des lettres et des chiffres"
      * )

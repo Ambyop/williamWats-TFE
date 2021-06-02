@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -114,6 +115,10 @@ class UserType extends AbstractType
                     'A1' => 'A1',
                 ],
                 'required' => true
+            ])
+            ->add('recaptcha', EWZRecaptchaType::class, [
+                'label' => ' ',
+                'language' => 'fr'
             ]);
     }
 

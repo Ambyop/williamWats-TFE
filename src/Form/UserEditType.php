@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -53,6 +54,10 @@ class UserEditType extends AbstractType
                 'allow_delete' => true,
                 'download_uri' => false,
                 'image_uri' => false
+            ])
+            ->add('recaptcha', EWZRecaptchaType::class, [
+                'label' => ' ',
+                'language' => 'fr'
             ]);
     }
 

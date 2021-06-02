@@ -8,6 +8,7 @@ use App\Form\UserEditType;
 use App\Repository\MatchListRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 use phpDocumentor\Reflection\Types\Object_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -69,6 +70,10 @@ class UserController extends AbstractController
                 'second_options' => [
                     'label' => 'Confirmation du nouveau mot de passe'
                 ],
+            ])
+            ->add('recaptcha', EWZRecaptchaType::class, [
+                'label' => ' ',
+                'language' => 'fr'
             ])
             ->getForm();
         $formPassword->handleRequest($request);
