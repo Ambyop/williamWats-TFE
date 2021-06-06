@@ -25,7 +25,7 @@ class MatchType extends AbstractType
 
         $builder
             ->add('date', DateTimeType::class, [
-                'label' => 'Quand êtes-vous né?',
+                'label' => 'Date et Heure du match',
                 'input_format' => 'Y-m-d H:i:s',
                 'widget' => 'single_text',
                 'required' => true,
