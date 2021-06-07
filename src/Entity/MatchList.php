@@ -50,9 +50,15 @@ class MatchList
      */
     private $type;
 
+    /**
+     * @ORM\OneToMany(targetEntity=MatchCancellation::class, mappedBy="Matchs")
+     */
+    private $matchCancellations;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
+        $this->matchCancellations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -140,6 +146,36 @@ class MatchList
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MatchCancellation[]
+     */
+    public function getMatchCancellations(): Collection
+    {
+        return $this->matchCancellations;
+    }
+
+    public function addMatchCancellation(MatchCancellation $matchCancellation): self
+    {
+        if (!$this->matchCancellations->contains($matchCancellation)) {
+            $this->matchCancellations[] = $matchCancellation;
+            $matchCancellation->setMatchs($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatchCancellation(MatchCancellation $matchCancellation): self
+    {
+        if ($this->matchCancellations->removeElement($matchCancellation)) {
+            // set the owning side to null (unless already changed)
+            if ($matchCancellation->getMatchs() === $this) {
+                $matchCancellation->setMatchs(null);
+            }
+        }
 
         return $this;
     }

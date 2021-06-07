@@ -163,10 +163,16 @@ class User implements UserInterface
      */
     private $stages;
 
+    /**
+     * @ORM\OneToMany(targetEntity=MatchCancellation::class, mappedBy="user")
+     */
+    private $matchCancellations;
+
     public function __construct()
     {
         $this->matchLists = new ArrayCollection();
         $this->stages = new ArrayCollection();
+        $this->matchCancellations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -519,6 +525,36 @@ class User implements UserInterface
     {
         if ($this->stages->removeElement($stage)) {
             $stage->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MatchCancellation[]
+     */
+    public function getMatchCancellations(): Collection
+    {
+        return $this->matchCancellations;
+    }
+
+    public function addMatchCancellation(MatchCancellation $matchCancellation): self
+    {
+        if (!$this->matchCancellations->contains($matchCancellation)) {
+            $this->matchCancellations[] = $matchCancellation;
+            $matchCancellation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatchCancellation(MatchCancellation $matchCancellation): self
+    {
+        if ($this->matchCancellations->removeElement($matchCancellation)) {
+            // set the owning side to null (unless already changed)
+            if ($matchCancellation->getUser() === $this) {
+                $matchCancellation->setUser(null);
+            }
         }
 
         return $this;
