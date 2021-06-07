@@ -1,7 +1,7 @@
 main {
+  background: linear-gradient(0deg, rgba(55, 55, 55, 0.55), rgba(55, 55, 55, 0.55)), url(../img/cttSalle_auto_x2.jpg);
   width: 100%;
   min-height: 85.7%;
-  background: linear-gradient(0deg, rgba(55, 55, 55, 0.45), rgba(55, 55, 55, 0.45)), url(../img/cttSalle_auto_x2.jpg);
   /* Desktop */
 }
 main .title-box {

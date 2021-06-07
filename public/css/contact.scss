@@ -1,8 +1,21 @@
 main {
   .contact {
-    background: linear-gradient(0deg, rgba(49, 49, 49, 0.41), rgba(49, 49, 49, 0.41)), url(../img/contact.jpg);
+    background: linear-gradient(0deg, rgba(49, 49, 49, 0.55), rgba(49, 49, 49, 0.55)), url(../img/contact.jpg);
     padding: 5% 5%;
     min-height: 85.7%;
+
+    //::before {
+    //  content: "";
+    //  position: fixed;
+    //  min-height: 100%;
+    //  width: 102%;
+    //  background-size: cover;
+    //  z-index: -1;
+    //  background: linear-gradient(0deg, rgba(55, 55, 55, 0.50), rgba(55, 55, 55, 0.50)), url(../img/cttSalle_auto_x2.jpg);
+    //  filter: blur(9px);
+    //  left: -20px;
+    //  top: -10px
+    //}
 
     .contact-box {
       margin: 2.5%;
@@ -85,7 +98,7 @@ main {
   main{
 
     .contact{
-      background: linear-gradient(0deg, rgba(49, 49, 49, 0.41), rgba(49, 49, 49, 0.41)), url(../img/contact_auto_x2.jpg);
+      background: linear-gradient(0deg, rgba(49, 49, 49, 0.55), rgba(49, 49, 49, 0.55)), url(../img/contact_auto_x2.jpg);
       padding: 0.5% 2%;
 
       .contact-box{

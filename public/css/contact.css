@@ -1,5 +1,5 @@
 main .contact {
-  background: linear-gradient(0deg, rgba(49, 49, 49, 0.41), rgba(49, 49, 49, 0.41)), url(../img/contact.jpg);
+  background: linear-gradient(0deg, rgba(49, 49, 49, 0.55), rgba(49, 49, 49, 0.55)), url(../img/contact.jpg);
   padding: 5% 5%;
   min-height: 85.7%;
 }
@@ -65,7 +65,7 @@ main .contact .contact-box ul li a:first-child {
 /* Desktop */
 @media screen and (min-width: 768px) {
   main .contact {
-    background: linear-gradient(0deg, rgba(49, 49, 49, 0.41), rgba(49, 49, 49, 0.41)), url(../img/contact_auto_x2.jpg);
+    background: linear-gradient(0deg, rgba(49, 49, 49, 0.55), rgba(49, 49, 49, 0.55)), url(../img/contact_auto_x2.jpg);
     padding: 0.5% 2%;
   }
   main .contact .contact-box {

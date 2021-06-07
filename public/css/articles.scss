@@ -1,7 +1,21 @@
 main {
+  background: linear-gradient(0deg, rgba(55, 55, 55, 0.55), rgba(55, 55, 55, 0.55)), url(../img/cttSalle_auto_x2.jpg);
   width: 100%;
   min-height: 85.7%;
-  background: linear-gradient(0deg, rgba(55, 55, 55, 0.45), rgba(55, 55, 55, 0.45)), url(../img/cttSalle_auto_x2.jpg);
+
+
+  //::before {
+  //  content: "";
+  //  position: fixed;
+  //  min-height: 100%;
+  //  width: 102%;
+  //  background-size: cover;
+  //  z-index: -1;
+  //  background: linear-gradient(0deg, rgba(55, 55, 55, 0.50), rgba(55, 55, 55, 0.50)), url(../img/cttSalle_auto_x2.jpg);
+  //  filter: blur(9px);
+  //  left: -20px;
+  //  top: -10px
+  //}
 
   .title-box {
     width: 100%;
