@@ -3,7 +3,7 @@
 {% block title %}{{ parent() }}Equipe - {{ team.name }}{% endblock %}
 
 {% block stylesheets %}
-     <link rel="stylesheet" href="{{ asset('css/user-teams.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/user-teams.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -13,42 +13,43 @@
             <div class="row my-3">
                 <div class="col-lg-12">
                     <ul class="nav nav-tabs" id="profileTab" role="tablist">
-                        {% set index = 1 %}
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="user-tab" data-bs-toggle="tab" data-bs-target="#user" type="button" role="tab"
+                                    aria-controls="user" aria-selected="false">Moi
+                            </button>
+                        </li>
                         {% for partner in partners %}
                             {% if partner.id != app.user.id %}
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link
-                                    {% if index %}
-                                    active
-                                    {% set index = 0 %}
-                                    {% endif %}" id="user-{{ partner.id }}-tab" data-bs-toggle="tab"
+                                    <button class="nav-link" id="user-{{ partner.id }}-tab" data-bs-toggle="tab"
                                             data-bs-target="#user-{{ partner.id }}" type="button"
                                             role="tab"
-                                            aria-controls="partner" aria-selected="true">{{ partner.firstname }} {{ partner.lastname }}
+                                            aria-controls="partner" aria-selected="true">
+                                        {% if partner.isDisabled %}
+                                            <i class="icofont-warning-alt text-warning"></i>
+                                        {% endif %}
+                                        {{ partner.firstname }} {{ partner.lastname }}
                                     </button>
                                 </li>
                             {% endif %}
                         {% endfor %}
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="user-tab" data-bs-toggle="tab" data-bs-target="#user" type="button" role="tab"
-                                    aria-controls="user" aria-selected="false">Moi
-                            </button>
-                        </li>
                     </ul>
                     <div class="tab-content" id="profileTabContent">
                         {% set index = 1 %}
                         {% for partner in partners %}
                             {% if partner.id != app.user.id %}
-                                <div class="tab-pane fade show
-                            {% if index %}
-                                    active
-                                    {% set index = 0 %}
-                                    {% endif %}
-                             my-2" id="user-{{ partner.id }}" role="tabpanel"
+                                <div class="tab-pane fade show my-2" id="user-{{ partner.id }}" role="tabpanel"
                                      aria-labelledby="user-{{ partner.id }}-tab">
+                                    {% if partner.isDisabled %}
+                                        <div class="col-lg-10 offset-1 text-center">
+                                            <div class="alert alert-warning">
+                                                <i class="icofont-warning"></i> Ce joueur n'est plus actif au sein du club
+                                            </div>
+                                        </div>
+                                    {% endif %}
                                     <div class="row">
                                         <div class="col-lg-5 order-lg-1 text-center">
-                                            {% if partner.image %}
+                                            {% if partner.image and not partner.isDisabled %}
                                                 <img src="{{ asset('img/users/') ~ partner.image }}" class="mx-auto img-fluid img-circle d-block"
                                                      alt="Image de profil">
                                             {% else %}
@@ -60,31 +61,39 @@
                                             <h4>{{ partner.firstname }} {{ partner.lastname|upper }}</h4>
                                             <h5>Email:</h5>
                                             <p>
-                                                <a href="mailto:{{ partner.email }}">{{ partner.email }}</a>
+                                                {% if not partner.isDisabled %}
+                                                    <a href="mailto:{{ partner.email }}">{{ partner.email }}</a>
+                                                {% else %}
+                                                    Aucune adresse mail
+                                                {% endif %}
                                             </p>
                                             <h5>Numéro de téléphone:</h5>
                                             <p>
-                                                {% if not partner.phoneNumber %}
-                                                    Aucune numéro de téléphone défini
-                                                {% else %}
+                                                {% if partner.phoneNumber and not partner.isDisabled %}
                                                     <a href="tel:{{ partner.phoneNumber }}">{{ partner.phoneNumber }}</a>
+                                                {% else %}
+                                                    Aucune numéro de téléphone défini
                                                 {% endif %}
                                             </p>
                                             <h5>Classement:</h5>
                                             <p>
-                                                {% if not partner.ranking %}
-                                                    Aucun classement
-                                                {% else %}
+                                                {% if partner.ranking and not partner.isDisabled %}
                                                     {{ partner.ranking }}
+                                                {% else %}
+                                                    Aucun classement
                                                 {% endif %}
                                             </p>
                                             <h5>Statut:</h5>
                                             <p class="role">
-                                                {% if partner.roles|json_encode == '["ROLE_ADMIN"]' %} Membre du comité
-                                                {% elseif partner.roles|json_encode == '["ROLE_SUPER_ADMIN"]' %} Administrateur
-                                                {% elseif partner.roles|json_encode == '["ROLE_PLAYER"]' %} Joueur
-                                                {% elseif partner.roles|json_encode == '["ROLE_COACH"]' %} Entraîneur
-                                                {% else %} Utilisateur
+                                                {% if not partner.isDisabled %}
+                                                    {% if partner.roles|json_encode == '["ROLE_ADMIN"]' %} Membre du comité
+                                                    {% elseif partner.roles|json_encode == '["ROLE_SUPER_ADMIN"]' %} Administrateur
+                                                    {% elseif partner.roles|json_encode == '["ROLE_PLAYER"]' %} Joueur
+                                                    {% elseif partner.roles|json_encode == '["ROLE_COACH"]' %} Entraîneur
+                                                    {% else %} Utilisateur
+                                                    {% endif %}
+                                                {% else %}
+                                                    N'est pas actif au sein du club
                                                 {% endif %}
                                             </p>
                                         </div>
@@ -93,7 +102,7 @@
                             {% endif %}
                         {% endfor %}
                         {# App.user #}
-                        <div class="tab-pane fade show my-2" id="user" role="tabpanel"
+                        <div class="tab-pane fade show active my-2" id="user" role="tabpanel"
                              aria-labelledby="user-tab">
                             <div class="row">
                                 <div class="col-lg-5 order-lg-1 text-center">

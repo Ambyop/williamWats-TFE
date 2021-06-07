@@ -1,6 +1,6 @@
 const upgradeRankingButtons = document.querySelectorAll('#ranking-up');
 const downgradeRankingButtons = document.querySelectorAll('#ranking-down');
-const differentClassification = ['NC', 'E6', 'E5', 'E4', 'E3', 'E2', 'E1', 'E0', 'D6', 'D5', 'D4', 'D3', 'D2', 'D1', 'D0', 'C6', 'C5', 'C4', 'C3', 'C2', 'C1', 'C0', 'B6', 'B5', 'B4', 'B3', 'B2', 'B1', 'B0', 'A20', 'A19', 'A18', 'A17', 'A16', 'A15', 'A14', 'A13', 'A12', 'A11', 'A10', 'A9', 'A8', 'A7', 'A6', 'A5', 'A4', 'A3', 'A2', 'A1'];
+const differentClassification = ['NC', 'E6', 'E4', 'E2', 'E0', 'D6', 'D4', 'D2', 'D0', 'C6', 'C4', 'C2', 'C0', 'B6', 'B4', 'B2', 'B0', 'A20', 'A19', 'A18', 'A17', 'A16', 'A15', 'A14', 'A13', 'A12', 'A11', 'A10', 'A9', 'A8', 'A7', 'A6', 'A5', 'A4', 'A3', 'A2', 'A1'];
 
 function addListenerForWishList() {
     if (upgradeRankingButtons && downgradeRankingButtons) {

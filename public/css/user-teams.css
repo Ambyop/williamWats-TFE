@@ -2,6 +2,7 @@ main {
   background-color: #292929;
   padding: 5% 5%;
   color: rgba(226, 226, 226, 0.81);
+  min-height: 85.96%;
   /* Desktop */
 }
 main h2 {
