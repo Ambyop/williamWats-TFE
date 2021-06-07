@@ -9,10 +9,11 @@
 {% block body %}
     <main>
         {% if subscribedMatchs|length ==0 and  unSubscribedMatchs|length ==0  %}
-        <h2>Aucun matchs n'est disponibles</h2>
+        <h2>Vous n'avez aucun match disponible.</h2>
         {% else %}
         <div class="subscribed-matchs">
             <h2>Mes matchs</h2>
+            {% if subscribedMatchs|length != 0 %}
             {% for match in subscribedMatchs %}
                 <div class="card" style="width: 50%">
                     <div class="card-body">
@@ -23,9 +24,13 @@
                     </div>
                 </div>
             {% endfor %}
+            {% else %}
+            <h3>Vous n'êtes inscrit à aucun mach.</h3>
+            {% endif %}
         </div>
         <div class="unsubscribed-matchs">
             <h2>Matchs disponibles</h2>
+            {% if unSubscribedMatchs|length != 0 %}
             {% for match in unSubscribedMatchs %}
                 <div class="card" style="width: 50%">
                     <div class="card-body">
@@ -36,7 +41,11 @@
                     </div>
                 </div>
             {% endfor %}
+            {% else %}
+                <h3>Il n'y a pas de nouveaux match prévu</h3>
+            {% endif %}
         </div>
+        {% endif %}
     </main>
-    {% endif %}
+
 {% endblock %}
