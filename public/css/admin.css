@@ -1,5 +1,9 @@
 body main {
   padding: 1%;
 }
+body main .disabled-link {
+  color: gray;
+  text-decoration: none;
+}
 
 /*# sourceMappingURL=admin.css.map */

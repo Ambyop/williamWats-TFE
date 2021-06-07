@@ -15,64 +15,71 @@
         <table class="table table-striped" id="AdminTable">
             <thead>
             <tr>
-                <th>Image</th>
-                <th>Prénom</th>
                 <th>Nom</th>
-                <th>Classement</th>
-                <th>Equipe</th>
+                <th>Prénom</th>
                 <th>Email</th>
-                <th>Téléphone</th>
+                <th>GSM</th>
+                <th>Equipe</th>
+                <th>Classement</th>
                 <th>Création du compte</th>
-                <th>Dernière connexion</th>
                 <th>Dernière modification</th>
+                <th>Dernière connexion</th>
                 <th>Statut</th>
-                <th>Gestion</th>
+                <th>Modération</th>
             </tr>
             </thead>
             <tbody>
             {% for user in users %}
+                {% set disabled = '' %}
+                {% if user.isDisabled %}
+                {% set disabled = 'disabled' %}
+                {% endif %}
                 <tr>
-                    <td><a data-bs-toggle="modal" data-bs-target="#user-{{ user.id }}-profile">
-                            {% if user.image %}
-                                <img src="{{ asset('img/users/') ~  user.image }}" alt="{{ user.id }}" class="admin-user-avatar align-middle">
-                            {% else %}
-                                <img src="{{ asset('img/users/') ~  'default.png' }}" alt="{{ user.id }}" class="admin-user-avatar align-middle">
-                            {% endif %}
-                        </a></td>
-                    <td class="align-middle"><a data-bs-toggle="modal" data-bs-target="#user-{{ user.id }}-profile">
-                            {{ user.firstname }}
-                        </a></td>
-                    <td class="align-middle"><a data-bs-toggle="modal" data-bs-target="#user-{{ user.id }}-profile">
-                            {{ user.lastname }}
-                        </a></td>
+                    <td class="align-middle">
+                        <a data-bs-toggle="modal" data-bs-target="#user-{{ user.id }}-profile">{{ user.lastname|upper }}</a>
+                    </td>
+                    <td class="align-middle">
+                        <a data-bs-toggle="modal" data-bs-target="#user-{{ user.id }}-profile">{{ user.firstname }}</a></td>
+                    <td class="align-middle">{{ user.email }}</td>
+                    <td class="align-middle">
+                        {% if not user.phoneNumber %}
+                            -
+                        {% else %}
+                            {{ user.phoneNumber }}
+                        {% endif %}
+                    </td>
                     <td class="align-middle">
                         <div class="ranking-box">
+                            {% if not user.isDisabled %}
                             <a id="ranking-down" data-user-id="{{ user.id }}"><i class="icofont-arrow-down"></i></a>
+                            {% else %}
+                                <a class="disabled-link"><i class="icofont-arrow-down"></i></a>
+                            {% endif %}
                             {% if user.ranking %}
                                 <span id="ranking-show-{{ user.id }}" data-user-ranking="{{ user.ranking }}">{{ user.ranking }}</span>
                             {% else %}
                                 <span id="ranking-show-{{ user.id }}" data-user-ranking="NC">NC</span>
                             {% endif %}
+                            {% if not user.isDisabled %}
                             <a id="ranking-up" data-user-id="{{ user.id }}"><i class="icofont-arrow-up"></i></a>
+                            {% else %}
+                                <a class="disabled-link"><i class="icofont-arrow-up"></i></a>
+                            {% endif %}
                         </div>
                     </td>
-                    {% if user.team %}
-                        <td class="align-middle">{{ user.team.name }}</td>
-                    {% else %}
-                        <td class="align-middle">Aucune Equipe</td>
-                    {% endif %}
-                    <td class="align-middle">{{ user.email }}</td>
-                    {% if not user.phoneNumber %}
-                        <td class="align-middle">-</td>
-                    {% else %}
-                        <td class="align-middle">{{ user.phoneNumber }}</td>
-                    {% endif %}
-                    <td class="align-middle">{{ user.createdAt|date("d/m/Y H:i:s") }}</td>
-                    <td class="align-middle">{{ user.lastlogAt|date("d/m/Y H:i:s") }}</td>
-                    <td class="align-middle">{{ user.updatedAt|date("d/m/Y H:i:s") }}</td>
+                    <td class="align-middle">
+                        {% if user.team %}
+                            {{ user.team.name }}
+                        {% else %}
+                            Aucune Equipe
+                        {% endif %}
+                    </td>
+                    <td class="align-middle">{{ user.createdAt|date("d/m/Y H:i") }}</td>
+                    <td class="align-middle">{{ user.updatedAt|date("d/m/Y H:i") }}</td>
+                    <td class="align-middle">{{ user.lastlogAt|date("d/m/Y H:i") }}</td>
                     {% if app.user != user %}
                         <td class="align-middle">
-                            <select class="form-select" aria-label="Default select example"
+                            <select class="form-select" aria-label="Default select example" {{ disabled }}
                                     onchange="document.location.href=this.value" {% if user.roles[user.roles|length-1] == "ROLE_SUPER_ADMIN" %} disabled {% endif %}>
                                 {% for index,role in user.roles %}
                                     {% if index == user.roles|length-1 %}
@@ -141,23 +148,27 @@
                         </td>
                     {% endif %}
                     <td class="align-middle">
+                        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#cancellationListModal-{{ user.id }}"
+                                title="Liste des désistements">
+                            <i class="icofont-list"></i>
+                        </button>
                         {% if app.user != user %}
                             {% if not user.isdisabled %}
                                 <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-success"
-                                   title="Activé"><i class="icofont-user-alt-2"></i></a>
+                                   title="Activé"><i class="icofont-toggle-on"></i></a>
                             {% else %}
                                 <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-warning"
-                                   title="Désactivé"><i class="icofont-user-alt-2"></i></a>
+                                   title="Désactivé"><i class="icofont-toggle-off"></i></a>
                             {% endif %}
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ user.id }}"
-                                    title="Supprimer">
-                                <i class="icofont-bin"></i>
-                            </button>
+{#                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ user.id }}"#}
+{#                                    title="Supprimer">#}
+{#                                <i class="icofont-trash"></i>#}
+{#                            </button>#}
                         {% else %}
                             <a class="btn btn-success disabled" title="Vous ne pouvez pas changer votre propre status"><i
-                                        class="icofont-user-alt-2"></i></a>
-                            <a class="btn btn-danger disabled" title="Vous ne pouvez pas supprimer votre propre compte"><i
-                                        class="icofont-bin"></i></a>
+                                        class="icofont-toggle-on"></i></a>
+{#                            <a class="btn btn-danger disabled" title="Vous ne pouvez pas supprimer votre propre compte"><i#}
+{#                                        class="icofont-trash"></i></a>#}
                         {% endif %}
                     </td>
                 </tr>
@@ -177,6 +188,11 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                            {% if user.isDisabled %}
+                            <div class="alert alert-warning">
+                                Cet utilisateur n'est pas actif actuellement
+                            </div>
+                            {% endif %}
                             <div class="ratio ratio-16x9">
                                 <div class="row my-2">
                                     <div class="col-lg-8 order-lg-2">
@@ -190,7 +206,7 @@
                                                 <p>
                                                     {{ user.email }}
                                                 </p>
-                                                <h5>Numéro de téléphone</h5>
+                                                <h5>GSM</h5>
                                                 <p>
                                                     {{ user.phoneNumber }}
                                                 </p>
@@ -230,26 +246,46 @@
                 </div>
             </div>
 
-            <!-- user {{ user.id }} Delete Confirmation modal -->
-            <div class="modal fade" id="deleteModal-{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- user {{ user.id }} Cancellations modal -->
+            <div class="modal fade" id="cancellationListModal-{{ user.id }}" tabindex="-1" aria-labelledby="cancellationListModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Suppression d'un utilisateur</h5>
+                            <h5 class="modal-title" id="cancellationListModalLabel">Liste des désistements de {{ user.firstname }}  {{ user.lastname }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Êtes-vous sur de vouloir supprimer l'utilisateur <strong>{{ user.firstname }} {{ user.lastname }}</strong>
+                            example
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
-                            <a href="{{ path('admin_user_remove', {'id': user.id}) }}" class="btn btn-outline-danger">
-                                Supprimer
-                            </a>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+{#            <!-- user {{ user.id }} Delete Confirmation modal -->#}
+{#            <div class="modal fade" id="deleteModal-{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
+{#                <div class="modal-dialog">#}
+{#                    <div class="modal-content">#}
+{#                        <div class="modal-header">#}
+{#                            <h5 class="modal-title" id="exampleModalLabel">Supprimer un utilisateur</h5>#}
+{#                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
+{#                        </div>#}
+{#                        <div class="modal-body">#}
+{#                            Êtes-vous sur de vouloir supprimer l'utilisateur <strong>{{ user.firstname }} {{ user.lastname }}</strong>#}
+{#                            <br>#}
+{#                            Attention cette action est irréversible#}
+{#                        </div>#}
+{#                        <div class="modal-footer">#}
+{#                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>#}
+{#                            <a href="{{ path('admin_user_remove', {'id': user.id}) }}" class="btn btn-outline-danger">#}
+{#                                Supprimer#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
         {% endfor %}
     </main>
 {% endblock %}

@@ -46,7 +46,8 @@ class AdminTeamsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
             $team->setCreatedAt($now)
-                ->setUpdatedAt($now);
+                ->setUpdatedAt($now)
+                ->setIsEnabled(true);
             $manager->persist($team);
             $manager->flush();
             $this->addFlash('success', 'L\'Equipe ' . $team->getName() . ' a bien été créé.');

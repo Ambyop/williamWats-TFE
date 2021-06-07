@@ -82,7 +82,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=60, nullable=true)
      * @Assert\Regex(
      *     pattern="/^((\+|00)32\s?|0)4(60|[789]\d)(\s?\d{2}){3}$/",
-     *     message="Ce numéro de téléphone n'est pas correct"
+     *     message="Ce numéro de GSM est incorrect"
      * )
      */
     private $phoneNumber;

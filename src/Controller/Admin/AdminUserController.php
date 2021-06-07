@@ -111,19 +111,19 @@ class AdminUserController extends AbstractController
         return $this->redirectToRoute('admin_user');
     }
 
-    /**
-     * @Route("/admin/user/supression/{id}", name="admin_user_remove")
-     * @param User $user ;
-     * @param EntityManagerInterface $manager
-     * @return Response
-     */
-    public function removeUser(User $user, EntityManagerInterface $manager): Response
-    {
-        $manager->remove($user);
-        $manager->flush();
-        $this->addFlash('success', 'L\'utilisateur ' . $user->getEmail() . ' a été supprimé');
-        return $this->redirectToRoute('admin_user');
-    }
+//    /**
+//     * @Route("/admin/user/supression/{id}", name="admin_user_remove")
+//     * @param User $user ;
+//     * @param EntityManagerInterface $manager
+//     * @return Response
+//     */
+//    public function removeUser(User $user, EntityManagerInterface $manager): Response
+//    {
+//        $manager->remove($user);
+//        $manager->flush();
+//        $this->addFlash('success', 'L\'utilisateur ' . $user->getEmail() . ' a été supprimé');
+//        return $this->redirectToRoute('admin_user');
+//    }
 
     /**
      * @Route("/admin/classement/{id}/{ranking}",name="admin_user_ranking")

@@ -36,13 +36,13 @@ class UserEditType extends AbstractType
                 'label' => 'Nom de l\'utilisateur'
             ])
             ->add('phoneNumber', TelType::class, [
-                'label' => 'Numéro de téléphone',
+                'label' => 'Numéro de GSM',
                 'required' => false
             ])
             ->add('birthday', BirthdayType::class, [
                 'label' => 'Quand êtes-vous né?',
                 'widget' => 'single_text',
-                'required' => true,
+                'required' => false,
                 'attr' => array(
                     'max' => $now,
                     'min' => $minimumDate,

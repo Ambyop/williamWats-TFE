@@ -32,7 +32,7 @@ class UserType extends AbstractType
                 'required' => true
             ])
             ->add('phoneNumber', TelType::class, [
-                'label' => 'Numéro de téléphone',
+                'label' => 'Numéro de GSM',
                 'required' => false
             ])
             ->add('password', RepeatedType::class, [

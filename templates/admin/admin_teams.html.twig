@@ -15,7 +15,7 @@
         <table class="table table-striped" id="AdminTable">
             <thead>
             <tr>
-                <th>Equipe</th>
+                <th>Équipe</th>
                 <th>Division</th>
                 <th>Joueur 1</th>
                 <th>Joueur 2</th>
@@ -29,6 +29,10 @@
             <tbody>
             {% for team in teams %}
                 {% set index = 4 - team.users.count %}
+                {% set disabled = '' %}
+                {% if not team.isEnabled %}
+                {% set disabled = 'disabled' %}
+                {% endif %}
                 <tr>
                     <td class="align-middle">{{ team.name }}</td>
                     <td class="align-middle">{{ team.division }}</td>
@@ -41,7 +45,7 @@
                         {% for key in 1..index %}
                             <td class="align-middle">Aucun joueur
                                 <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#addUserTeam-{{ team.id }}-Modal" title="Ajouter un joueur"><i class="icofont-people"></i>
+                                        data-bs-target="#addUserTeam-{{ team.id }}-Modal" title="Ajouter un joueur" {{ disabled }}><i class="icofont-people"></i>
                                 </button>
                             </td>
                         {% endfor %}
@@ -49,11 +53,18 @@
                     <td class="align-middle">{{ team.createdAt|date("d/m/Y H:i:s") }}</td>
                     <td class="align-middle">{{ team.updatedAt|date("d/m/Y H:i:s") }}</td>
                     <td class="align-middle">
+                        {% if team.isEnabled %}
+                            <a href="" class="btn btn-success"
+                               title="Activée"><i class="icofont-toggle-on"></i></a>
+                        {% else %}
+                            <a href="" class="btn btn-warning"
+                               title="Désactivée"><i class="icofont-toggle-off"></i></a>
+                        {% endif %}
                         <a href="{{ path('admin_team_edit', { 'id': team.id}) }}" class="btn btn-secondary" title="Modifier"><i
                                     class="icofont-pencil-alt-5"></i></a>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ team.id }}"
                                 title="Supprimer">
-                            <i class="icofont-bin"></i>
+                            <i class="icofont-trash"></i>
                         </button>
                     </td>
                 </tr>

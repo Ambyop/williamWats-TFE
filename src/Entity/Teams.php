@@ -49,6 +49,11 @@ class Teams
      */
     private $team;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isEnabled;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -144,5 +149,17 @@ class Teams
     public function getTeam(): Collection
     {
         return $this->team;
+    }
+
+    public function getIsEnabled(): ?bool
+    {
+        return $this->isEnabled;
+    }
+
+    public function setIsEnabled(bool $isEnabled): self
+    {
+        $this->isEnabled = $isEnabled;
+
+        return $this;
     }
 }
