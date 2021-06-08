@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\MatchList;
+use App\Entity\User;
 use App\Form\MatchType;
 use App\Repository\MatchListRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -89,6 +90,19 @@ class AdminMatchController extends AbstractController
         $manager->remove($match);
         $manager->flush();
         $this->addFlash('success', 'Le match a bien été supprimé');
+        return $this->redirectToRoute('admin_match');
+    }
+
+    /**
+     * @Route("/admin/match/utilisateur/activation/{id}", name="admin_match_user_activation")
+     * @param User $user ;
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    public function viewUser(User $user, EntityManagerInterface $manager): Response
+    {
+        $user->setIsDisabled(!$user->getIsDisabled());
+        $manager->flush();
         return $this->redirectToRoute('admin_match');
     }
 }

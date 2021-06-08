@@ -42,7 +42,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/promotion/{id}/{role}",name="admin_user_role")
+     * @Route("/admin/utilisateur/promotion/{id}/{role}",name="admin_user_role")
      * @param User $user
      * @param EntityManagerInterface $manager
      * @param TokenStorageInterface $tokenStorage
@@ -66,7 +66,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/creation", name="admin_user_add")
+     * @Route("/admin/utilisateur/creation", name="admin_user_add")
      * @param EntityManagerInterface $manager
      * @param Request $request
      * @param UserPasswordEncoderInterface $encoder
@@ -101,7 +101,7 @@ class AdminUserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/activation/{id}", name="admin_user_activation")
+     * @Route("/admin/utilisateur/activation/{id}", name="admin_user_activation")
      * @param User $user ;
      * @param EntityManagerInterface $manager
      * @return Response
