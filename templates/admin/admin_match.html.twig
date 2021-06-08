@@ -30,14 +30,18 @@
                     <td class="align-middle">{{ match.date|date("d/m/Y à H:i") }}</td>
                     <td class="align-middle">{{ match.location }}</td>
                     <td class="align-middle">{{ match.team.name }}</td>
-                    {% set players = 'Joueurs inscrits :\n' %}
+{#                    {% set players = 'Joueurs inscrits :\n' %}#}
+                    {% set players = '' %}
                     {% if match.user.count == 0 %}
                         {% set players = 'Aucun joueur inscrit' %}
                     {% endif %}
                     {% for player in match.user %}
                         {% set players = players ~ player.firstname ~ ' ' ~ player.lastname ~ '\n' %}
                     {% endfor %}
-                    <td class="align-middle" title="{{ players }}">{{ match.user.count }}</td>
+{#                    <td class="align-middle" title="{{ players }}">{{ match.user.count }}</td>#}
+                    <td class="align-middle">
+                        <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-bs-placement="right" title="Joueurs inscrits" data-bs-content="{{ players }}">{{ match.user.count }}</a>
+                    </td>
                     <td class="align-middle">{{ match.updatedAt|date("d/m/Y H:i") }}</td>
                     <td class="align-middle">
                         <a href="{{ path('admin_match_edit', { 'id': match.id}) }}" class="btn btn-secondary" title="Modifier"><i
@@ -79,6 +83,7 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script>
         $(document).ready(function () {
             $('#AdminTable').DataTable({
@@ -95,5 +100,11 @@
                 ]
             });
         });
+
+        $(function () {
+            $('[data-toggle="popover"]').popover({
+                trigger: 'focus'
+            })
+        })
     </script>
 {% endblock %}
