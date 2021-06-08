@@ -110,18 +110,22 @@
                                         <td>{{ cancellation.user.firstname }}  {{ cancellation.user.lastname|upper }}</td>
                                         <td>{{ cancellation.content }}</td>
                                         <td>
-                                            {% if app.user != cancellation.user %}
+                                            {% if app.user != cancellation.user and cancellation.user.roles[app.user.roles|length-1] == 'ROLE_SUPER_ADMIN' %}
                                                 {% if not cancellation.user.isdisabled %}
                                                     <a href="{{ path('admin_user_activation', {"id" : cancellation.user.id}) }}"
                                                        class="btn btn-success"
                                                        title="Désactiver le compte de ce joueur"><i class="icofont-toggle-on"></i></a>
                                                 {% else %}
                                                     <a href="{{ path('admin_user_activation', {"id" : cancellation.user.id}) }}"
-                                                       class="btn btn-success"
+                                                       class="btn btn-warning"
                                                        title="Annuler la désactivation du compte joueur"><i class="icofont-toggle-off"></i></a>
                                                 {% endif %}
-                                            {% else %}<a class="btn btn-success disabled" title="Vous ne pouvez pas désactiver votre propre compte">
-                                                <i class="icofont-toggle-on"></i></a>
+                                            {% elseif app.user == cancellation.user %}
+                                                <a class="btn btn-success disabled" title="Vous ne pouvez pas désactiver votre propre compte">
+                                                    <i class="icofont-toggle-on"></i></a>
+                                            {% else %}
+                                                <a class="btn btn-success disabled" title="Vous ne pouvez pas désactiver un compte administrateur">
+                                                    <i class="icofont-toggle-on"></i></a>
                                             {% endif %}
                                         </td>
                                     </tr>
