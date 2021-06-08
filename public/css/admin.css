@@ -5,5 +5,8 @@ body main .disabled-link {
   color: gray;
   text-decoration: none;
 }
+body main .bg-me {
+  background-color: #CCC;
+}
 
 /*# sourceMappingURL=admin.css.map */
