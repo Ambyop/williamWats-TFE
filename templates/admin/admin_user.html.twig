@@ -32,7 +32,7 @@
             {% for user in users %}
                 {% set disabled = '' %}
                 {% if user.isDisabled %}
-                {% set disabled = 'disabled' %}
+                    {% set disabled = 'disabled' %}
                 {% endif %}
                 <tr>
                     <td class="align-middle">
@@ -51,7 +51,7 @@
                     <td class="align-middle">
                         <div class="ranking-box">
                             {% if not user.isDisabled %}
-                            <a id="ranking-down" data-user-id="{{ user.id }}"><i class="icofont-arrow-down"></i></a>
+                                <a id="ranking-down" data-user-id="{{ user.id }}"><i class="icofont-arrow-down"></i></a>
                             {% else %}
                                 <a class="disabled-link"><i class="icofont-arrow-down"></i></a>
                             {% endif %}
@@ -61,7 +61,7 @@
                                 <span id="ranking-show-{{ user.id }}" data-user-ranking="NC">NC</span>
                             {% endif %}
                             {% if not user.isDisabled %}
-                            <a id="ranking-up" data-user-id="{{ user.id }}"><i class="icofont-arrow-up"></i></a>
+                                <a id="ranking-up" data-user-id="{{ user.id }}"><i class="icofont-arrow-up"></i></a>
                             {% else %}
                                 <a class="disabled-link"><i class="icofont-arrow-up"></i></a>
                             {% endif %}
@@ -160,15 +160,15 @@
                                 <a href="{{ path('admin_user_activation', {"id" : user.id}) }}" class="btn btn-warning"
                                    title="Désactivé"><i class="icofont-toggle-off"></i></a>
                             {% endif %}
-{#                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ user.id }}"#}
-{#                                    title="Supprimer">#}
-{#                                <i class="icofont-trash"></i>#}
-{#                            </button>#}
+                            {# <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ user.id }}" #}
+                            {# title="Supprimer"> #}
+                            {# <i class="icofont-trash"></i> #}
+                            {# </button> #}
                         {% else %}
                             <a class="btn btn-success disabled" title="Vous ne pouvez pas changer votre propre status"><i
                                         class="icofont-toggle-on"></i></a>
-{#                            <a class="btn btn-danger disabled" title="Vous ne pouvez pas supprimer votre propre compte"><i#}
-{#                                        class="icofont-trash"></i></a>#}
+                            {# <a class="btn btn-danger disabled" title="Vous ne pouvez pas supprimer votre propre compte"><i #}
+                            {# class="icofont-trash"></i></a> #}
                         {% endif %}
                     </td>
                 </tr>
@@ -189,9 +189,9 @@
                         </div>
                         <div class="modal-body">
                             {% if user.isDisabled %}
-                            <div class="alert alert-warning">
-                                Cet utilisateur n'est pas actif actuellement
-                            </div>
+                                <div class="alert alert-warning">
+                                    Cet utilisateur n'est pas actif actuellement
+                                </div>
                             {% endif %}
                             <div class="ratio ratio-16x9">
                                 <div class="row my-2">
@@ -247,45 +247,64 @@
             </div>
 
             <!-- user {{ user.id }} Cancellations modal -->
-            <div class="modal fade" id="cancellationListModal-{{ user.id }}" tabindex="-1" aria-labelledby="cancellationListModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+            <div class="modal fade" id="cancellationListModal-{{ user.id }}" tabindex="-1" aria-labelledby="cancellationListModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="cancellationListModalLabel">Liste des désistements de {{ user.firstname }}  {{ user.lastname }}</h5>
+                            <h5 class="modal-title" id="cancellationListModalLabel">Liste des désistements
+                                de {{ user.firstname }}  {{ user.lastname }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            example
+                            <table class="table table-striped" id="AdminUserCancellationTable">
+                                <thead>
+                                <tr>
+                                    <th>Date du Match</th>
+                                    <th>Date du désistement</th>
+                                    <th>Raison</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for cancellation in user.matchCancellations %}
+                                    <tr>
+                                        <td>{{ cancellation.matchs.date|date("d/m/Y H:i") }}</td>
+                                        <td>{{ cancellation.createdAt|date("d/m/Y H:i") }}</td>
+                                        <td>{{ cancellation.content }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-{#            <!-- user {{ user.id }} Delete Confirmation modal -->#}
-{#            <div class="modal fade" id="deleteModal-{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
-{#                <div class="modal-dialog">#}
-{#                    <div class="modal-content">#}
-{#                        <div class="modal-header">#}
-{#                            <h5 class="modal-title" id="exampleModalLabel">Supprimer un utilisateur</h5>#}
-{#                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>#}
-{#                        </div>#}
-{#                        <div class="modal-body">#}
-{#                            Êtes-vous sur de vouloir supprimer l'utilisateur <strong>{{ user.firstname }} {{ user.lastname }}</strong>#}
-{#                            <br>#}
-{#                            Attention cette action est irréversible#}
-{#                        </div>#}
-{#                        <div class="modal-footer">#}
-{#                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>#}
-{#                            <a href="{{ path('admin_user_remove', {'id': user.id}) }}" class="btn btn-outline-danger">#}
-{#                                Supprimer#}
-{#                            </a>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
+            {# <!-- user {{ user.id }} Delete Confirmation modal --> #}
+            {# <div class="modal fade" id="deleteModal-{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> #}
+            {# <div class="modal-dialog"> #}
+            {# <div class="modal-content"> #}
+            {# <div class="modal-header"> #}
+            {# <h5 class="modal-title" id="exampleModalLabel">Supprimer un utilisateur</h5> #}
+            {# <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> #}
+            {# </div> #}
+            {# <div class="modal-body"> #}
+            {# Êtes-vous sur de vouloir supprimer l'utilisateur <strong>{{ user.firstname }} {{ user.lastname }}</strong> #}
+            {# <br> #}
+            {# Attention cette action est irréversible #}
+            {# </div> #}
+            {# <div class="modal-footer"> #}
+            {# <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button> #}
+            {# <a href="{{ path('admin_user_remove', {'id': user.id}) }}" class="btn btn-outline-danger"> #}
+            {# Supprimer #}
+            {# </a> #}
+            {# </div> #}
+            {# </div> #}
+            {# </div> #}
+            {# </div> #}
         {% endfor %}
     </main>
 {% endblock %}
@@ -293,6 +312,7 @@
 {% block javascripts %}
     <script src="{{ asset('js/adminUser.js') }}"></script>
     <script>
+        // original Table
         $(document).ready(function () {
             $('#AdminTable').DataTable({
                 "bStateSave": true,
@@ -304,7 +324,7 @@
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
                 },
                 "aoColumnDefs": [
-                    {"bSortable": false, "aTargets": [0, 11]},
+                    {"bSortable": false, "aTargets": [10]},
                 ]
             });
         });

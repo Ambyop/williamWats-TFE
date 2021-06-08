@@ -3,8 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Controller\EmailController;
+use App\Entity\MatchCancellation;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\MatchCancellationRepository;
 use App\Repository\UserRepository;
 use App\Service\EmailType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,9 +30,10 @@ class AdminUserController extends AbstractController
     /**
      * @Route("/admin/utilisateur", name="admin_user")
      * @param UserRepository $userRepository
+     * @param MatchCancellationRepository $matchCancellationRepository
      * @return Response
      */
-    public function users(UserRepository $userRepository): Response
+    public function users(UserRepository $userRepository, MatchCancellationRepository $matchCancellationRepository): Response
     {
         $users = $userRepository->findAll();
         return $this->render('admin/admin_user.html.twig',
