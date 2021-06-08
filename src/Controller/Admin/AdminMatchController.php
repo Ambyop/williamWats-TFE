@@ -15,6 +15,8 @@ class AdminMatchController extends AbstractController
 {
     /**
      * @Route("/admin/match", name="admin_match")
+     * @param MatchListRepository $matchListRepository
+     * @return Response
      */
     public function index(MatchListRepository $matchListRepository): Response
     {

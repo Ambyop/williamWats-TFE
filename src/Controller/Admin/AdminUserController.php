@@ -30,10 +30,9 @@ class AdminUserController extends AbstractController
     /**
      * @Route("/admin/utilisateur", name="admin_user")
      * @param UserRepository $userRepository
-     * @param MatchCancellationRepository $matchCancellationRepository
      * @return Response
      */
-    public function users(UserRepository $userRepository, MatchCancellationRepository $matchCancellationRepository): Response
+    public function users(UserRepository $userRepository): Response
     {
         $users = $userRepository->findAll();
         return $this->render('admin/admin_user.html.twig',

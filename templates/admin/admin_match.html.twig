@@ -18,7 +18,8 @@
                 <th>Date et heure</th>
                 <th>Lieu</th>
                 <th>Equipe</th>
-                <th>Joueurs Inscrits</th>
+                <th>Inscription</th>
+                <th>Désistement</th>
                 <th>Dernière modification</th>
                 <th>Paramètres</th>
             </tr>
@@ -34,16 +35,17 @@
                     {% set title = 'Joueur inscrit:' %}
                     {% if match.user.count == 0 %}
                         {% set players = 'Aucun joueur inscrit' %}
-                    {% else %}
+                    {% elseif match.user.count > 1 %}
                         {% set title = 'Joueurs inscrits:' %}
                     {% endif %}
                     {% for player in match.user %}
-                        {% set players = players ~ player.firstname ~ ' ' ~ player.lastname ~ '<br>' %}
+                        {% set players = players ~ player.firstname ~ ' ' ~ player.lastname|upper ~ '<br>' %}
                     {% endfor %}
                     <td class="align-middle">
                         <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-bs-html="true" data-bs-placement="right"
                            title="{{ title }}" data-bs-content="{{ players }}">{{ match.user.count }}</a>
                     </td>
+                    <td class="align-middle"><span class="badge rounded-pill bg-dark text-light">{{ match.matchCancellations.count }}</span></td>
                     <td class="align-middle">{{ match.updatedAt|date("d/m/Y H:i") }}</td>
                     <td class="align-middle">
                         <a href="{{ path('admin_match_edit', { 'id': match.id}) }}" class="btn btn-secondary" title="Modifier"><i
@@ -80,6 +82,10 @@
                     </div>
                 </div>
             </div>
+
+{#            {% for cancellation in matchs.cancellations %}#}
+
+{#            {% endfor %}#}
         {% endfor %}
     </main>
 {% endblock %}
@@ -98,7 +104,7 @@
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
                 },
                 "aoColumnDefs": [
-                    {"bSortable": false, "aTargets": [5]},
+                    {"bSortable": false, "aTargets": [6]},
                 ]
             });
         });

@@ -151,15 +151,15 @@ class UserController extends AbstractController
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @return Response
+     * @throws \Exception
      */
     public function matchs(UserRepository $userRepository, MatchListRepository $matchListRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
     {
         // load user Data
+        $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
         $user = $userRepository->find($tokenStorage->getToken()->getUser());
         $subcribedMatchs = $user->getMatchLists();
-        $unScribedMatchs = $matchListRepository->findBy([
-            'team' =>$user->getTeam()
-        ]);
+        $unScribedMatchs =$matchListRepository->findByTeamWithExpirationDate($user->getTeam(),$now);
         foreach ($unScribedMatchs as $key => $match) {
             foreach ($subcribedMatchs as $subcribedMatch) {
                 if ($match->getId() == $subcribedMatch->getId()) {

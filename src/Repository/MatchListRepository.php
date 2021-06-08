@@ -47,4 +47,16 @@ class MatchListRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByTeamWithExpirationDate($team, $date)
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.team = :team','m.date > :date')
+            ->setParameter('date', $date)
+            ->setParameter('team', $team)
+            ->orderBy('m.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
