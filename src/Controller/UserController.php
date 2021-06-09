@@ -158,7 +158,15 @@ class UserController extends AbstractController
         // load user Data
         $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
         $user = $userRepository->find($tokenStorage->getToken()->getUser());
-        $subscribedMatchs = $user->getMatchLists();
+        $allSubscribedMatchs = $user->getMatchLists()->toArray();
+        $subscribedMatchs = [];
+        foreach ( $allSubscribedMatchs as $match) {
+            if ( $match->getDate() > $now)
+            {
+                array_push($subscribedMatchs,$match);
+            }
+        }
+
         $unScribedMatchs =$matchListRepository->findByTeamWithExpirationDate($user->getTeam(),$now);
         foreach ($unScribedMatchs as $key => $match) {
             foreach ($subscribedMatchs as $subscribedMatch) {
@@ -167,8 +175,6 @@ class UserController extends AbstractController
                 }
             }
         }
-        dump($subscribedMatchs->toArray());
-        dump($unScribedMatchs);
 
         return $this->render('user/user_matchs.html.twig', [
             'user' => $user,
