@@ -59,11 +59,20 @@
             <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl modal-fullscreen-lg-down">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="matchCancellationModal-{{ match.id }}Label">Confirmation de désinscription au match du {{ match.date|format_datetime('short', 'short', locale='fr') }}</h5>
+                        <h3 class="modal-title" id="matchCancellationModal-{{ match.id }}Label">Confirmation de désinscription au match du {{ match.date|format_datetime('short', 'short', locale='fr') }}</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 offset-md-1">
+{#                                    {{ form_start(form) }}#}
+{#                                    {{ form_widget(form) }}#}
+                                    <button type="submit" class="my-2 btn btn-outline-primary">Programme le match</button>
+{#                                    {{ form_end(form) }}#}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>
