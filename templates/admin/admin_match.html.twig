@@ -70,7 +70,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Suppression d'un match</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             Êtes-vous sur de vouloir supprimer le match du <strong>{{ match.date|date("d/m/Y") }} à {{ match.location }}</strong>
@@ -133,9 +132,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>
-                        </div>
+{#                        <div class="modal-footer">#}
+{#                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>#}
+{#                        </div>#}
                     </div>
                 </div>
             </div>

@@ -8,44 +8,68 @@
 
 {% block body %}
     <main>
-        {% if subscribedMatchs|length ==0 and  unSubscribedMatchs|length ==0  %}
-        <h2>Vous n'avez aucun match disponible.</h2>
+        {% if subscribedMatchs|length ==0 and  unSubscribedMatchs|length ==0 %}
+            <h2>Vous n'avez aucun match disponible.</h2>
         {% else %}
-        <div class="subscribed-matchs">
-            <h2>Mes futurs matchs</h2>
-            {% if subscribedMatchs|length != 0 %}
-            {% for match in subscribedMatchs %}
-                <div class="card" style="width: 50%">
-                    <div class="card-body">
-                        <h5 class="card-title">Match du {{ match.date|format_datetime('full', 'short', locale='fr') }}</h5>
-                        <h6 class="card-subtitle mb-2">Type de tournoi: {{ match.type }}</h6>
-                        <p class="card-text">Adresse: {{ match.location }}</p>
-                        <a href="{{ path('unsubscribe_match', {'match': match.id}) }}" class="card-link">Annuler</a>
-                    </div>
-                </div>
-            {% endfor %}
-            {% else %}
-            <h3>Vous n'êtes inscrit à aucun mach.</h3>
-            {% endif %}
-        </div>
-        <div class="unsubscribed-matchs">
-            <h2>Matchs disponibles</h2>
-            {% if unSubscribedMatchs|length != 0 %}
-            {% for match in unSubscribedMatchs %}
-                <div class="card" style="width: 50%">
-                    <div class="card-body">
-                        <h5 class="card-title">Match du {{ match.date|format_datetime('full', 'short', locale='fr') }}</h5>
-                        <h6 class="card-subtitle mb-2">Type de tournoi: {{ match.type }}</h6>
-                        <p class="card-text">Adresse: {{ match.location }}</p>
-                        <a href="{{ path('subscribe_match', {'match': match.id}) }}" class="card-link">Confirmer sa présence</a>
-                    </div>
-                </div>
-            {% endfor %}
-            {% else %}
-                <h3>Il n'y a pas de nouveaux match prévu</h3>
-            {% endif %}
-        </div>
+            <div class="subscribed-matchs">
+                <h2>Mes futurs matchs</h2>
+                {% if subscribedMatchs|length != 0 %}
+                    {% for match in subscribedMatchs %}
+                        <div class="card" style="width: 50%">
+                            <div class="card-body">
+                                <h5 class="card-title">Match du {{ match.date|format_datetime('full', 'short', locale='fr') }}</h5>
+                                <h6 class="card-subtitle mb-2">Type de tournoi: {{ match.type }}</h6>
+                                <p class="card-text">Adresse: {{ match.location }}</p>
+{#                                <a href="{{ path('unsubscribe_match', {'match': match.id}) }}" class="card-link">Annuler</a>#}
+                                <a class="card-link" data-bs-toggle="modal" data-bs-target="#matchCancellationModal-{{ match.id }}">
+                                    Annuler
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h3>Vous n'êtes inscrit à aucun mach.</h3>
+                {% endif %}
+            </div>
+            <div class="unsubscribed-matchs">
+                <h2>Matchs disponibles</h2>
+                {% if unSubscribedMatchs|length != 0 %}
+                    {% for match in unSubscribedMatchs %}
+                        <div class="card" style="width: 50%">
+                            <div class="card-body">
+                                <h5 class="card-title">Match du {{ match.date|format_datetime('full', 'short', locale='fr') }}</h5>
+                                <h6 class="card-subtitle mb-2">Type de tournoi: {{ match.type }}</h6>
+                                <p class="card-text">Adresse: {{ match.location }}</p>
+                                <a href="{{ path('subscribe_match', {'match': match.id}) }}" class="card-link">Confirmer sa présence</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h3>Il n'y a pas de nouveaux match prévu</h3>
+                {% endif %}
+            </div>
         {% endif %}
     </main>
 
+    <!-- Modals -->
+    {% for match in subscribedMatchs %}
+        <!-- match {{ match.id }} cancellation form Modal -->
+        <div class="modal fade" id="matchCancellationModal-{{ match.id }}" tabindex="-1" aria-labelledby="matchCancellationModal-{{ match.id }}Label"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl modal-fullscreen-lg-down">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="matchCancellationModal-{{ match.id }}Label">Confirmation de désinscription au match du {{ match.date|format_datetime('short', 'short', locale='fr') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
