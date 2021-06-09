@@ -20,7 +20,7 @@
                                 <h5 class="card-title">Match du {{ match.date|format_datetime('full', 'short', locale='fr') }}</h5>
                                 <h6 class="card-subtitle mb-2">Type de tournoi: {{ match.type }}</h6>
                                 <p class="card-text">Adresse: {{ match.location }}</p>
-{#                                <a href="{{ path('unsubscribe_match', {'match': match.id}) }}" class="card-link">Annuler</a>#}
+                                {# <a href="{{ path('unsubscribe_match', {'match': match.id}) }}" class="card-link">Annuler</a> #}
                                 <a class="card-link" data-bs-toggle="modal" data-bs-target="#matchCancellationModal-{{ match.id }}">
                                     Annuler
                                 </a>
@@ -59,17 +59,19 @@
             <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl modal-fullscreen-lg-down">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h3 class="modal-title" id="matchCancellationModal-{{ match.id }}Label">Confirmation de désinscription au match du {{ match.date|format_datetime('short', 'short', locale='fr') }}</h3>
+                        <h3 class="modal-title" id="matchCancellationModal-{{ match.id }}Label">
+                            Confirmation de désinscription au match du {{ match.date|format_datetime('short', 'short', locale='fr') }}
+                        </h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-10 offset-md-1">
-{#                                    {{ form_start(form) }}#}
+                                    {{ form_start(form) }}
 {#                                    {{ form_widget(form) }}#}
-                                    <button type="submit" class="my-2 btn btn-outline-primary">Programme le match</button>
-{#                                    {{ form_end(form) }}#}
+                                    <button type="submit" class="my-2 btn btn-outline-primary">Confirmer le désistement</button>
+                                    {{ form_end(form) }}
                                 </div>
                             </div>
                         </div>

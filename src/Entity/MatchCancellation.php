@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MatchCancellationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MatchCancellationRepository::class)
@@ -36,6 +37,12 @@ class MatchCancellation
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *     min = 1,
+     *     max= 255,
+     *     minMessage= "Votre message doit avoir au moins {{ limit }} caractères",
+     *     maxMessage= "Votre message ne peut avoir plus de {{ limit }} caractères"
+     * )
      */
     private $content;
 

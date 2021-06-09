@@ -2,14 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\MatchCancellation;
 use App\Entity\MatchList;
-use App\Entity\User;
+use App\Form\MatchCancellationType;
 use App\Form\UserEditType;
 use App\Repository\MatchListRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
-use phpDocumentor\Reflection\Types\Object_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -176,10 +176,28 @@ class UserController extends AbstractController
             }
         }
 
+        // create cancellation match form
+        $cancellation = new MatchCancellation();
+        $form = $this->createForm(MatchCancellationType::class, $cancellation);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+            $cancellation->setMatchs($matchListRepository->find(1))
+                ->setCreatedAt($now)
+                ->setUser($user);
+
+            $manager->persist($cancellation);
+            $manager->flush();
+
+//            $this->addFlash('success', 'L\'utilisateur ' . $user->getEmail() . ' a bien été créé.');
+            return $this->redirectToRoute('user_match');
+        }
+
         return $this->render('user/user_matchs.html.twig', [
             'user' => $user,
             'subscribedMatchs' => $subscribedMatchs,
             'unSubscribedMatchs' => $unScribedMatchs,
+            'form' => $form->createView()
         ]);
     }
 
