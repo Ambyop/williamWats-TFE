@@ -177,27 +177,36 @@ class UserController extends AbstractController
         }
 
         // create cancellation match form
-        $cancellation = new MatchCancellation();
-        $form = $this->createForm(MatchCancellationType::class, $cancellation);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
-            $cancellation->setMatchs($matchListRepository->find(1))
-                ->setCreatedAt($now)
-                ->setUser($user);
+        $cancellations= [];
+        $forms= [];
 
-            $manager->persist($cancellation);
-            $manager->flush();
+        foreach ( $subscribedMatchs as $key => $match) {
+            $cancellations[$key] = new MatchCancellation();
+            $forms[$key] = $this->createForm(MatchCancellationType::class, $cancellations[$key]);
+            $forms[$key]->handleRequest($request);
+            if ($forms[$key]->isSubmitted() && $forms[$key]->isValid()) {
+                $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+                $cancellations[$key]->setMatchs($matchListRepository->find($match->getId()))
+                    ->setCreatedAt($now)
+                    ->setUser($user);
+
+                $manager->persist($cancellations[$key]);
+                $manager->flush();
 
 //            $this->addFlash('success', 'L\'utilisateur ' . $user->getEmail() . ' a bien été créé.');
-            return $this->redirectToRoute('user_match');
+                return $this->redirectToRoute('user_match');
+            }
+            $forms[$key] = $forms[$key]->createView();
         }
+
+//        var_dump($forms[0]);
+//        var_dump($forms[0]->createView());
 
         return $this->render('user/user_matchs.html.twig', [
             'user' => $user,
             'subscribedMatchs' => $subscribedMatchs,
             'unSubscribedMatchs' => $unScribedMatchs,
-            'form' => $form->createView()
+            'forms' => $forms
         ]);
     }
 
