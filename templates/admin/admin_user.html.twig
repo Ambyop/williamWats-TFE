@@ -154,7 +154,7 @@
                 <td class="align-middle">
                     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#cancellationListModal-{{ user.id }}"
                             title="Historique des annulations">
-                        <i class="icofont-list"></i>
+                        {{ user.matchCancellations.count }}
                     </button>
                     {% if app.user != user %}
                         {% if not user.isdisabled and user.roles[user.roles|length-1] != 'ROLE_SUPER_ADMIN' %}
