@@ -160,14 +160,13 @@ class UserController extends AbstractController
         $user = $userRepository->find($tokenStorage->getToken()->getUser());
         $allSubscribedMatchs = $user->getMatchLists()->toArray();
         $subscribedMatchs = [];
-        foreach ( $allSubscribedMatchs as $match) {
-            if ( $match->getDate() > $now)
-            {
-                array_push($subscribedMatchs,$match);
+        foreach ($allSubscribedMatchs as $match) {
+            if ($match->getDate() > $now) {
+                array_push($subscribedMatchs, $match);
             }
         }
 
-        $unScribedMatchs =$matchListRepository->findByTeamWithExpirationDate($user->getTeam(),$now);
+        $unScribedMatchs = $matchListRepository->findByTeamWithExpirationDate($user->getTeam(), $now);
         foreach ($unScribedMatchs as $key => $match) {
             foreach ($subscribedMatchs as $subscribedMatch) {
                 if ($match->getId() == $subscribedMatch->getId()) {
@@ -177,10 +176,10 @@ class UserController extends AbstractController
         }
 
         // create cancellation match form
-        $cancellations= [];
-        $forms= [];
+        $cancellations = [];
+        $forms = [];
 
-        foreach ( $subscribedMatchs as $key => $match) {
+        foreach ($subscribedMatchs as $key => $match) {
             $cancellations[$key] = new MatchCancellation();
             $forms[$key] = $this->createForm(MatchCancellationType::class, $cancellations[$key]);
             $forms[$key]->handleRequest($request);
@@ -190,10 +189,14 @@ class UserController extends AbstractController
                     ->setCreatedAt($now)
                     ->setUser($user);
 
+                $match->removeUser($user);
+                $match->setUpdatedAt($now);
+                $user->setUpdatedAt($now);
+
                 $manager->persist($cancellations[$key]);
                 $manager->flush();
 
-//            $this->addFlash('success', 'L\'utilisateur ' . $user->getEmail() . ' a bien été créé.');
+                $this->addFlash('info', 'Vous êtes bien désinscrit du match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation() . '.');
                 return $this->redirectToRoute('user_match');
             }
             $forms[$key] = $forms[$key]->createView();

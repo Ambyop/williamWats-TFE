@@ -18,12 +18,6 @@ class MatchCancellationType extends AbstractType
                 'label' => 'Raison du désistement',
                 'required' => true,
             ])
-//            ->add('matchs', HiddenType::class, [
-//
-//            ])
-//            ->add('user', HiddenType::class, [
-//
-//            ])
         ;
     }
 
