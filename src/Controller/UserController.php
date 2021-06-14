@@ -196,7 +196,7 @@ class UserController extends AbstractController
                 $manager->persist($cancellations[$key]);
                 $manager->flush();
 
-                $this->addFlash('info', 'Vous êtes bien désinscrit du match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation() . '.');
+                $this->addFlash('info', 'Vous êtes bien désinscrit du match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation()->getName() . '.');
                 return $this->redirectToRoute('user_match');
             }
             $forms[$key] = $forms[$key]->createView();
@@ -232,7 +232,7 @@ class UserController extends AbstractController
             $match->setUpdatedAt($now);
             $user->setUpdatedAt($now);
             $manager->flush();
-            $this->addFlash('success', 'Vous vous êtes inscrit au match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation() . '.');
+            $this->addFlash('success', 'Vous vous êtes inscrit au match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation()->getName() . '.');
         } else {
             $this->addFlash('danger', 'Vous ne pouvez pas vous inscrire au match d\'une autre équipe.');
         }
@@ -258,7 +258,7 @@ class UserController extends AbstractController
             $match->setUpdatedAt($now);
             $user->setUpdatedAt($now);
             $manager->flush();
-            $this->addFlash('warning', 'Vous n\'êtes plus inscrit au match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation() . '.');
+            $this->addFlash('warning', 'Vous n\'êtes plus inscrit au match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation()->getName() . '.');
         } else {
             $this->addFlash('danger', 'Vous ne pouvez pas faire ça au match d\'une autre équipe.');
         }

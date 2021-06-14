@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\ClubLists;
 use App\Entity\MatchList;
 use App\Entity\Teams;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -33,8 +34,10 @@ class MatchType extends AbstractType
                     'max' => $maximumDate,
                 )
             ])
-            ->add('location', TextType::class, [
-                'label' => 'Lieu du match'
+            ->add('location', EntityType::class, [
+                'class' => ClubLists::class,
+                'label' => 'Lieu du match',
+                'choice_label' => 'name'
             ])
             ->add('type', ChoiceType::class, [
                 'label' => 'Catégorie de match',
@@ -49,6 +52,7 @@ class MatchType extends AbstractType
             ])
             ->add('team', EntityType::class, [
                 'class' => Teams::class,
+                'label' => 'Equipe',
                 'choice_label' => 'name'
             ]);
     }

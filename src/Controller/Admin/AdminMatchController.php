@@ -44,7 +44,7 @@ class AdminMatchController extends AbstractController
             $match->setUpdatedAt($now);
             $manager->persist($match);
             $manager->flush();
-            $this->addFlash('success', 'Le Match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation() . ' a bien été créée.');
+            $this->addFlash('success', 'Le Match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation()->getName() . ' a bien été créé.');
 
             return $this->redirectToRoute('admin_match');
         }
@@ -70,7 +70,7 @@ class AdminMatchController extends AbstractController
             $match->setUpdatedAt($now);
             $manager->persist($match);
             $manager->flush();
-            $this->addFlash('success', 'Le Match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation() . '  a bien été modifié.');
+            $this->addFlash('success', 'Le Match du ' . date_format($match->getDate(), "d F Y") . ' à ' . $match->getLocation()->getName() . '  a bien été modifié.');
 
             return $this->redirectToRoute('admin_match');
         }

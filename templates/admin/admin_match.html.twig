@@ -29,7 +29,12 @@
                 {% set index = 4 %}
                 <tr>
                     <td class="align-middle">{{ match.date|date("d/m/Y à H:i") }}</td>
-                    <td class="align-middle">{{ match.location }}</td>
+                    <td class="align-middle">
+                        <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" data-bs-html="true" data-bs-placement="right"
+                                                title="Adresse:" data-bs-content="{{ match.location.address }}">
+                            {{ match.location.name }}
+                        </a>
+                    </td>
                     <td class="align-middle">{{ match.team.name }}</td>
                     {% set players = '' %}
                     {% set title = 'Joueur inscrit:' %}
@@ -72,7 +77,7 @@
                             <h5 class="modal-title" id="exampleModalLabel">Suppression d'un match</h5>
                         </div>
                         <div class="modal-body">
-                            Êtes-vous sur de vouloir supprimer le match du <strong>{{ match.date|date("d/m/Y") }} à {{ match.location }}</strong>
+                            Êtes-vous sur de vouloir supprimer le match du <strong>{{ match.date|date("d/m/Y") }} à {{ match.location.name }}</strong>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
