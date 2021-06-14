@@ -59,6 +59,11 @@ class Stage
      */
     private $days = [];
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -173,6 +178,18 @@ class Stage
     public function setDays(array $days): self
     {
         $this->days = $days;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

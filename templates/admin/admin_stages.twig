@@ -1,0 +1,79 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ parent() }}Stages{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+
+{% block body %}
+    <main>
+        <div class="container-fluid my-4">
+            <h2 class="d-inline">Gestion des Stages</h2>
+            <a href="{{ path('admin_match_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un match</a>
+        </div>
+        <table class="table table-striped" id="AdminTable">
+            <thead>
+            <tr>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Jours de la semaine</th>
+                <th>Heure de début</th>
+                <th>Heure de fin</th>
+                <th>Nombres d'inscrits</th>
+                <th>Prix</th>
+                <th>Dernière modification</th>
+                <th>Paramètres</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for stage in stages %}
+                {% set index = 4 %}
+                <tr>
+                    <td>{{ stage.beginAt|date("d/m/Y") }}</td>
+                    <td>{{ stage.endAt|date("d/m/Y") }}</td>
+                    <td>{{ stage.days|json_encode }}</td>
+                    <td>{{ stage.startHours }}</td>
+                    <td>{{ stage.endHours }}</td>
+                    <td>{{ stage.user.count }}</td>
+                    <td>{{ stage.price }}&euro;</td>
+                    <td>{{ stage.endAt|date("d/m/Y H:i") }}</td>
+                    <td>ddd</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Modal -->
+        {% for stage in stages %}
+
+        {% endfor %}
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script>
+        $(document).ready(function () {
+            $('#AdminTable').DataTable({
+                "bStateSave": true,
+                "bSort": true,
+                "bProcessing": true,
+                "bFilter": true,
+                "bInfo": false,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                },
+                "aoColumnDefs": [
+                    {"bSortable": false, "aTargets": [0]},
+                ]
+            });
+        });
+
+        $(function () {
+            $('[data-toggle="popover"]').popover({
+                trigger: 'focus'
+            })
+        })
+    </script>
+{% endblock %}
