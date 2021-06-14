@@ -85,7 +85,7 @@ class AdminMatchController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    public function deleteArticle(MatchList $match, EntityManagerInterface $manager): Response
+    public function deleteMatch(MatchList $match, EntityManagerInterface $manager): Response
     {
         $manager->remove($match);
         $manager->flush();

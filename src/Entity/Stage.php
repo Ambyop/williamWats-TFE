@@ -64,6 +64,11 @@ class Stage
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isDisabled;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -190,6 +195,18 @@ class Stage
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getIsDisabled(): ?bool
+    {
+        return $this->isDisabled;
+    }
+
+    public function setIsDisabled(bool $isDisabled): self
+    {
+        $this->isDisabled = $isDisabled;
 
         return $this;
     }

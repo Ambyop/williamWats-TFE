@@ -10,7 +10,7 @@
     <main>
         <div class="container-fluid my-4">
             <h2 class="d-inline">Gestion des Stages</h2>
-            <a href="{{ path('admin_match_add') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Ajouter un match</a>
+            <a href="" class="d-inline btn btn-primary float-end my-2 mx-4">Créer un stage</a>
         </div>
         <table class="table table-striped" id="AdminTable">
             <thead>
@@ -38,7 +38,14 @@
                     <td>{{ stage.user.count }}</td>
                     <td>{{ stage.price }}&euro;</td>
                     <td>{{ stage.endAt|date("d/m/Y H:i") }}</td>
-                    <td>ddd</td>
+                    <td>
+                        <a href="" class="btn btn-secondary" title="Modifier"><i
+                                    class="icofont-pencil-alt-5"></i></a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ stage.id }}"
+                                title="Supprimer">
+                            <i class="icofont-trash"></i>
+                        </button>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -46,7 +53,25 @@
 
         <!-- Modal -->
         {% for stage in stages %}
-
+            <!-- match {{ stage.id }} Delete Confirmation modal -->
+            <div class="modal fade" id="deleteModal-{{ stage.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Suppression d'un match</h5>
+                        </div>
+                        <div class="modal-body">
+                            Êtes-vous sur de vouloir supprimer le stage se déroulant du <strong>{{ stage.beginAt|date("d/m/Y") }} au {{ stage.endAt|date("d/m/Y") }}</strong>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <a href="{{ path('admin_stage_remove', {'id': stage.id}) }}" class="btn btn-outline-danger">
+                                Supprimer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
     </main>
 {% endblock %}
@@ -65,7 +90,7 @@
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
                 },
                 "aoColumnDefs": [
-                    {"bSortable": false, "aTargets": [0]},
+                    {"bSortable": false, "aTargets": [8]},
                 ]
             });
         });
