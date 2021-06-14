@@ -50,7 +50,7 @@ class AdminTeamsController extends AbstractController
                 ->setIsEnabled(true);
             $manager->persist($team);
             $manager->flush();
-            $this->addFlash('success', 'L\'Equipe ' . $team->getName() . ' a bien été créé.');
+            $this->addFlash('success', 'L\'equipe ' . $team->getName() . ' a bien été créé.');
 
             return $this->redirectToRoute('admin_teams');
         }
@@ -104,6 +104,19 @@ class AdminTeamsController extends AbstractController
         $manager->remove($team);
         $manager->flush();
         $this->addFlash('success', 'L\'équipe ' . $team->getName() . ' a été supprimé');
+        return $this->redirectToRoute('admin_teams');
+    }
+
+    /**
+     * @Route("/admin/equipe/activation/{id}", name="admin_team_activation")
+     * @param Teams $team;
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    public function viewTeam(Teams $team, EntityManagerInterface $manager): Response
+    {
+        $team->setIsEnabled(!$team->getIsEnabled());
+        $manager->flush();
         return $this->redirectToRoute('admin_teams');
     }
 

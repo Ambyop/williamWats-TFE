@@ -54,10 +54,10 @@
                     <td class="align-middle">{{ team.updatedAt|date("d/m/Y H:i:s") }}</td>
                     <td class="align-middle">
                         {% if team.isEnabled %}
-                            <a href="" class="btn btn-success"
+                            <a href="{{ path('admin_team_activation', { 'id': team.id}) }}" class="btn btn-success"
                                title="Activée"><i class="icofont-toggle-on"></i></a>
                         {% else %}
-                            <a href="" class="btn btn-warning"
+                            <a href="{{ path('admin_team_activation', { 'id': team.id}) }}" class="btn btn-warning"
                                title="Désactivée"><i class="icofont-toggle-off"></i></a>
                         {% endif %}
                         <a href="{{ path('admin_team_edit', { 'id': team.id}) }}" class="btn btn-secondary" title="Modifier"><i
