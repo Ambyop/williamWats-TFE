@@ -25,11 +25,6 @@ class MatchList
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $location;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Teams::class, inversedBy="user")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -55,6 +50,12 @@ class MatchList
      */
     private $matchCancellations;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=ClubLists::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $location;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -74,18 +75,6 @@ class MatchList
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getLocation(): ?string
-    {
-        return $this->location;
-    }
-
-    public function setLocation(string $location): self
-    {
-        $this->location = $location;
 
         return $this;
     }
@@ -176,6 +165,18 @@ class MatchList
                 $matchCancellation->setMatchs(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLocation(): ?ClubLists
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?ClubLists $location): self
+    {
+        $this->location = $location;
 
         return $this;
     }
