@@ -30,14 +30,14 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ path('homepage') }}">Accueil</a>
                     </li>
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link" href="">Stages</a>#}
-{#                    </li>#}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('about') }}">Club</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('interclubs') }}">Interclubs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Stages</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('articles') }}">Presse et Médias</a>
@@ -67,9 +67,9 @@
                             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ path('user_private_profile') }}">Mon profil</a></li>
                                 {% if is_granted('ROLE_PLAYER') %}
-                                <li><a class="dropdown-item" href="{{ path('user_team') }}">Mon équipe</a></li>
+                                <li><a class="dropdown-item" href="{{ path('user_team') }}">Mon Equipe</a></li>
                                 <li><a class="dropdown-item" href="{{ path('user_match') }}">Mes Matchs</a></li>
-{#                                <li><a class="dropdown-item" href="#">Mes Entrainements</a></li>#}
+                                <li><a class="dropdown-item" href="{{ path('user_stage') }}">Mes Stages</a></li>
                                 {% endif %}
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <li>

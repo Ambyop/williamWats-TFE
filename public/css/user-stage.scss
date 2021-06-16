@@ -1,0 +1,29 @@
+main {
+  background-color: #292929;
+  color: rgba(226, 226, 226, 0.81);
+  min-height: 85.96%;
+
+  h2 {
+    margin-top: 3%;
+    text-align: center;
+    color: #eee;
+  }
+
+  .card {
+    background-color: rgb(114, 110, 110);;
+    margin: 4% 25%;
+  }
+
+  .card-title {
+    color: #eaeaea;
+  }
+
+  .card-subtitle {
+    color: #d9d8d8;
+  }
+
+  a{
+    color: inherit;
+    float: right;
+  }
+}

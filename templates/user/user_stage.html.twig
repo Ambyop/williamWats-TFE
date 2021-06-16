@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }}Mes stages{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/user-stage.css') }}">
+{% endblock %}
+
+{% block body %}
+    <main>
+        {% if subscribedMatchs|length ==0 and  unSubscribedMatchs|length ==0 %}
+            <h2>Vous n'êtes inscrit a aucun stage. <a href="">Cliquez-ici pour afficher la liste des stages disponibles</a> </h2>
+        {% else %}
+
+        {% endif %}
+    </main>
+
+    <!-- Modals -->
+    {% for index, match in subscribedMatchs %}
+
+    {% endfor %}
+{% endblock %}

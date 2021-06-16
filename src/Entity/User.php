@@ -159,7 +159,7 @@ class User implements UserInterface
     private $matchLists;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Stage::class, mappedBy="User")
+     * @ORM\ManyToMany(targetEntity=Stage::class, mappedBy="user")
      */
     private $stages;
 

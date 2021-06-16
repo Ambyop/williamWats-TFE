@@ -7,6 +7,7 @@ use App\Entity\MatchList;
 use App\Form\MatchCancellationType;
 use App\Form\UserEditType;
 use App\Repository\MatchListRepository;
+use App\Repository\StageRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
@@ -202,9 +203,6 @@ class UserController extends AbstractController
             $forms[$key] = $forms[$key]->createView();
         }
 
-//        var_dump($forms[0]);
-//        var_dump($forms[0]->createView());
-
         return $this->render('user/user_matchs.html.twig', [
             'user' => $user,
             'subscribedMatchs' => $subscribedMatchs,
@@ -263,5 +261,44 @@ class UserController extends AbstractController
             $this->addFlash('danger', 'Vous ne pouvez pas faire ça au match d\'une autre équipe.');
         }
         return $this->redirectToRoute('user_match');
+    }
+
+    /**
+     * @Route("/profil/stages", name="user_stage")
+     * @param UserRepository $userRepository
+     * @param StageRepository $stageRepository
+     * @param TokenStorageInterface $tokenStorage
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     * @throws \Exception
+     */
+    public function stages(UserRepository $userRepository, StageRepository $stageRepository, TokenStorageInterface $tokenStorage, Request $request, EntityManagerInterface $manager): Response
+    {
+        // load user Data
+        $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+        $user = $userRepository->find($tokenStorage->getToken()->getUser());
+        $allSubscribedStages = $user->getStages()->toArray();
+        $subscribedStages = [];
+        foreach ($allSubscribedStages as $stage) {
+            if ($stage->getEndAt() > $now) {
+                array_push($subscribedStages, $stage);
+            }
+        }
+
+//        $unScribedStage = $matchListRepository->findByTeamWithExpirationDate($user->getTeam(), $now);
+//        foreach ($unScribedStage as $key => $stage) {
+//            foreach ($subscribedStages as $subscribedStage) {
+//                if ($stage->getId() == $subscribedStage->getId()) {
+//                    unset($subscribedStage[$key]);
+//                }
+//            }
+//        }
+
+        return $this->render('user/user_stage.html.twig', [
+            'user' => $user,
+            'subscribedMatchs' => $subscribedStages,
+            'unSubscribedMatchs' => $subscribedStages,
+        ]);
     }
 }
