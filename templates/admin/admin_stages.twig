@@ -10,7 +10,7 @@
     <main>
         <div class="container-fluid my-4">
             <h2 class="d-inline">Gestion des Stages</h2>
-            <a href="" class="d-inline btn btn-primary float-end my-2 mx-4">Créer un stage</a>
+            <a href="{{ path('admin_stage_create') }}" class="d-inline btn btn-primary float-end my-2 mx-4">Créer un stage</a>
         </div>
         <table class="table table-striped" id="AdminTable">
             <thead>
@@ -33,8 +33,8 @@
                     <td>{{ stage.beginAt|date("d/m/Y") }}</td>
                     <td>{{ stage.endAt|date("d/m/Y") }}</td>
                     <td>{{ stage.days|json_encode }}</td>
-                    <td>{{ stage.startHours }}</td>
-                    <td>{{ stage.endHours }}</td>
+                    <td>{{ stage.startHours|date("H:i") }}</td>
+                    <td>{{ stage.endHours|date("H:i") }}</td>
                     <td>{{ stage.user.count }}</td>
                     <td>{{ stage.price }}&euro;</td>
                     <td>{{ stage.endAt|date("d/m/Y H:i") }}</td>
