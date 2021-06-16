@@ -37,9 +37,16 @@
                     <td>{{ stage.endHours|date("H:i") }}</td>
                     <td>{{ stage.user.count }}</td>
                     <td>{{ stage.price }}&euro;</td>
-                    <td>{{ stage.endAt|date("d/m/Y H:i") }}</td>
+                    <td>{{ stage.updatedAt|date("d/m/Y H:i") }}</td>
                     <td>
-                        <a href="" class="btn btn-secondary" title="Modifier"><i
+                        {% if not stage.isDisabled %}
+                            <a href="{{ path('admin_stage_activation', {'id': stage.id}) }}" class="btn btn-success"
+                               title="Activée"><i class="icofont-toggle-on"></i></a>
+                        {% else %}
+                            <a href="{{ path('admin_stage_activation', {'id': stage.id}) }}" class="btn btn-warning"
+                               title="Désactivée"><i class="icofont-toggle-off"></i></a>
+                        {% endif %}
+                        <a href="{{ path('admin_stage_edit', {'id': stage.id}) }}" class="btn btn-secondary" title="Modifier"><i
                                     class="icofont-pencil-alt-5"></i></a>
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal-{{ stage.id }}"
                                 title="Supprimer">

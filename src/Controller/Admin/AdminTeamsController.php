@@ -76,7 +76,7 @@ class AdminTeamsController extends AbstractController
             $team->setUpdatedAt($now);
             $manager->persist($team);
             $manager->flush();
-            $this->addFlash('success', 'Le cours ' . $team->getName() . ' a bien été édité');
+            $this->addFlash('success', 'Le cours ' . $team->getName() . ' a bien été modifié.');
 
             return $this->redirectToRoute('admin_teams');
         }
