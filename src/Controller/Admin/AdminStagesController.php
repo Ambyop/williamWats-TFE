@@ -79,7 +79,7 @@ class AdminStagesController extends AbstractController
     }
 
     /**
-     * @Route("/admin/equipe/activation/{id}", name="admin_stage_activation")
+     * @Route("/admin/stage/activation/{id}", name="admin_stage_activation")
      * @param Stage $stage
      * @param EntityManagerInterface $manager
      * @return Response

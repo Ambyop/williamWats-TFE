@@ -133,9 +133,14 @@ class UserController extends AbstractController
         // load user Data
         $user = $userRepository->find($tokenStorage->getToken()->getUser());
         $team = $user->getTeam();
-        $partners = $userRepository->findBy([
-            'team' => $team->getId()
-        ]);
+        if ($team) {
+            $partners = $userRepository->findBy([
+                'team' => $team->getId()
+            ]);
+        }
+        else {
+            $partners = '';
+        }
 
         return $this->render('user/user_teams.html.twig', [
             'user' => $user,
@@ -288,7 +293,7 @@ class UserController extends AbstractController
 
         return $this->render('user/user_stage.html.twig', [
             'user' => $user,
-            'subscribedMatchs' => $subscribedStages,
+            'subscribedStages' => $subscribedStages,
         ]);
     }
 }

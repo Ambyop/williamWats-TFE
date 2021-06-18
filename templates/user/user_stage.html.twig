@@ -8,17 +8,34 @@
 
 {% block body %}
     <main>
-        {% if subscribedMatchs|length ==0 and  unSubscribedMatchs|length ==0 %}
-            <h2>Vous n'êtes inscrit a aucun stage. <a href="">Cliquez-ici pour afficher la liste des stages disponibles</a> </h2>
+        {% if subscribedStages|length ==0 %}
+            <h2>Vous n'êtes inscrit a aucun stage.</h2>
+            <a href="">Cliquez-ici pour afficher la liste des stages disponibles</a>
         {% else %}
             <div class="subscribed-stages">
-
+                <h2>Matchs auxquels vous êtes inscrits</h2>
+                {% for stage in subscribedStages %}
+                    <div class="card" style="width: 75%">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ stage.name }}</h5>
+                            <h6 class="card-subtitle mb-2">Type de tournoi: {{ match.type }}</h6>
+                            <p class="card-text">
+                                <b>Club:</b> {{ match.location.name }}
+                                <br>
+                                <b>Adresse:</b> {{ match.location.address }}
+                            </p>
+                            <a class="card-link" data-bs-toggle="modal" data-bs-target="#matchCancellationModal-{{ match.id }}">
+                                Annuler
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         {% endif %}
     </main>
 
     <!-- Modals -->
-    {% for index, match in subscribedMatchs %}
+    {% for index, match in subscribedStages %}
 
     {% endfor %}
 {% endblock %}

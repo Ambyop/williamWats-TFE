@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }}Equipe - {{ team.name }}{% endblock %}
+{% block title %}{{ parent() }}Equipe
+    {% if team %} - {{ team.name }} {% endif %}
+{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/user-teams.css') }}">
@@ -8,6 +10,9 @@
 
 {% block body %}
     <main>
+        {% if not team %}
+        <h2 class="my-4">Vous n'êtes dans aucune équipe</h2>
+        {% else %}
         <h2 class="my-4">{{ team.name }}</h2>
         <div class="container">
             <div class="row my-3">
@@ -152,5 +157,6 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     </main>
 {% endblock %}

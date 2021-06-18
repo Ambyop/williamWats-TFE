@@ -67,10 +67,10 @@
                             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ path('user_private_profile') }}">Mon profil</a></li>
                                 {% if is_granted('ROLE_PLAYER') %}
-                                <li><a class="dropdown-item" href="{{ path('user_team') }}">Mon Equipe</a></li>
-                                <li><a class="dropdown-item" href="{{ path('user_match') }}">Mes Matchs</a></li>
-                                <li><a class="dropdown-item" href="{{ path('user_stage') }}">Mes Stages</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('user_team') }}">Mon Equipe</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('user_match') }}">Mes Matchs</a></li>
                                 {% endif %}
+                                <li><a class="dropdown-item" href="{{ path('user_stage') }}">Mes Stages</a></li>
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <li>
                                         <hr class="dropdown-divider">
