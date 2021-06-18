@@ -35,7 +35,27 @@
                     <td>{{ stage.name }}</td>
                     <td>{{ stage.beginAt|date("d/m/Y") }}</td>
                     <td>{{ stage.endAt|date("d/m/Y") }}</td>
-                    <td>{{ stage.days|json_encode }}</td>
+                    <td>{% for index, day in stage.days %}
+                            {% if index != 0 and index != stage.days|length and index != stage.days|length -1 %}
+                                ,
+                            {% elseif index == stage.days|length -1 %}
+                            {% endif %}
+                            {% if day == 'Mo' %}
+                                Lu.
+                            {% elseif day == 'Tu' %}
+                                Ma.
+                            {% elseif day == 'We' %}
+                                Me.
+                            {% elseif day == 'Th' %}
+                                Je.
+                            {% elseif day == 'Fr' %}
+                                Ve.
+                            {% elseif day == 'Sa' %}
+                                Sa.
+                            {% elseif day == 'Su' %}
+                                Di.s
+                            {% endif %}
+                        {% endfor %}</td>
                     <td>{{ stage.startHours|date("H:i") }}</td>
                     <td>{{ stage.endHours|date("H:i") }}</td>
                     <td>{{ stage.user.count }}</td>

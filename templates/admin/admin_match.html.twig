@@ -114,7 +114,7 @@
                                         <td>{{ cancellation.user.firstname }}  {{ cancellation.user.lastname|upper }}</td>
                                         <td>{{ cancellation.content }}</td>
                                         <td>
-                                            {% if app.user != cancellation.user and cancellation.user.roles[app.user.roles|length-1] == 'ROLE_SUPER_ADMIN' %}
+                                            {% if app.user != cancellation.user and cancellation.user.roles[app.user.roles|length-1] != 'ROLE_SUPER_ADMIN' %}
                                                 {% if not cancellation.user.isdisabled %}
                                                     <a href="{{ path('admin_match_user_activation', {"id" : cancellation.user.id}) }}"
                                                        class="btn btn-success"
@@ -137,9 +137,6 @@
                                 </tbody>
                             </table>
                         </div>
-{#                        <div class="modal-footer">#}
-{#                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>#}
-{#                        </div>#}
                     </div>
                 </div>
             </div>
