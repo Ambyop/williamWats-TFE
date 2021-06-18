@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stages{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/stages.css') }}">
+{% endblock %}
+
+{% block body %}
+    <main>
+        <!--Header-->
+        <div class="header-image">
+            <img src="{{ asset('img/stages-header.jpg') }}" alt="">
+        </div>
+        <!--End Header-->
+        <div class="informations-box">
+            <h2 class="py-1">Stages</h2>
+            <p>
+                La Villette Charleroi organise au cours de chaque congés scolaire des stages de tennis de table pour les jeunes.
+            </p>
+            <p>
+                Ils ont pour but de faire progresser les jeunes tout en se divertissant dans une ambiance conviviale.
+                Les jeunes sont répartis en plusieurs groupes en fonction de leur âge et de leur niveau.
+                <br>
+                Ces stages sont ouverts aux jeunes de 6 à 17 ans.
+            </p>
+            <p>
+                Les inscriptions se font ci-dessous avec un compte <a href="{{ path('login') }}">Utilisateur</a>
+            </p>
+        </div>
+        <!-- Stage Explication -->
+    </main>
+{% endblock %}

@@ -10,7 +10,7 @@
     <main>
         {% if subscribedStages|length ==0 %}
             <h2>Vous n'êtes inscrit a aucun stage.</h2>
-            <a href="">Cliquez-ici pour afficher la liste des stages disponibles</a>
+            <a href="{{ path('stages') }}">Cliquez-ici pour afficher la liste des stages disponibles</a>
         {% else %}
             <div class="subscribed-stages">
                 <h2>Matchs auxquels vous êtes inscrits</h2>
