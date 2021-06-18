@@ -47,7 +47,7 @@ class AdminStagesController extends AbstractController
 
             return $this->redirectToRoute('admin_stages');
         }
-        return $this->render("admin/create_match.html.twig", [
+        return $this->render("admin/create_stage.html.twig", [
             'form' => $form->createView()
         ]);
     }
@@ -73,7 +73,7 @@ class AdminStagesController extends AbstractController
 
             return $this->redirectToRoute('admin_stages');
         }
-        return $this->render("admin/create_match.html.twig", [
+        return $this->render("admin/edit_stage.html.twig", [
             'form' => $form->createView()
         ]);
     }
