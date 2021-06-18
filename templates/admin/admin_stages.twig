@@ -20,7 +20,8 @@
                 <th>Jours de la semaine</th>
                 <th>Heure de début</th>
                 <th>Heure de fin</th>
-                <th>Nombres d'inscrits</th>
+                <th>Inscrits</th>
+                <th>Maximum d'inscrits</th>
                 <th>Prix</th>
                 <th>Dernière modification</th>
                 <th>Paramètres</th>
@@ -36,6 +37,7 @@
                     <td>{{ stage.startHours|date("H:i") }}</td>
                     <td>{{ stage.endHours|date("H:i") }}</td>
                     <td>{{ stage.user.count }}</td>
+                    <td>{{ stage.personNumber }}</td>
                     <td>{{ stage.price }}&euro;</td>
                     <td>{{ stage.updatedAt|date("d/m/Y H:i") }}</td>
                     <td>

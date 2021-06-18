@@ -69,6 +69,11 @@ class Stage
      */
     private $isDisabled;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $personNumber;
+
     public function __construct()
     {
         $this->user = new ArrayCollection();
@@ -207,6 +212,18 @@ class Stage
     public function setIsDisabled(bool $isDisabled): self
     {
         $this->isDisabled = $isDisabled;
+
+        return $this;
+    }
+
+    public function getPersonNumber(): ?int
+    {
+        return $this->personNumber;
+    }
+
+    public function setPersonNumber(int $personNumber): self
+    {
+        $this->personNumber = $personNumber;
 
         return $this;
     }

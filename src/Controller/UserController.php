@@ -286,19 +286,9 @@ class UserController extends AbstractController
             }
         }
 
-//        $unScribedStage = $matchListRepository->findByTeamWithExpirationDate($user->getTeam(), $now);
-//        foreach ($unScribedStage as $key => $stage) {
-//            foreach ($subscribedStages as $subscribedStage) {
-//                if ($stage->getId() == $subscribedStage->getId()) {
-//                    unset($subscribedStage[$key]);
-//                }
-//            }
-//        }
-
         return $this->render('user/user_stage.html.twig', [
             'user' => $user,
             'subscribedMatchs' => $subscribedStages,
-            'unSubscribedMatchs' => $subscribedStages,
         ]);
     }
 }
