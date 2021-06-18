@@ -13,9 +13,9 @@
             <a href="{{ path('stages') }}">Cliquez-ici pour afficher la liste des stages disponibles</a>
         {% else %}
             <div class="subscribed-stages">
-                <h2>Matchs auxquels vous êtes inscrits</h2>
+                <h2>Stages auxquels vous êtes inscrits</h2>
                 {% for stage in subscribedStages %}
-                    <div class="card" style="width: 50%">
+                    <div class="card">
                         <div class="card-body center">
                             <h5 class="card-title">{{ stage.name }}</h5>
                             <h6 class="card-subtitle mb-3 my-2">Du {{ stage.beginAt|format_datetime('full', 'none', locale='fr') }}

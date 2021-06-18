@@ -299,7 +299,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/profil/stages/desinscription/{stage}", name="unsubscribe_stage")
+     * @Route("/profil/stage/desinscription/{stage}", name="unsubscribe_stage")
      * @param Stage $stage
      * @param UserRepository $userRepository
      * @param TokenStorageInterface $tokenStorage
@@ -317,6 +317,28 @@ class UserController extends AbstractController
             $user->setUpdatedAt($now);
             $manager->flush();
             $this->addFlash('warning', 'Vous n\'êtes plus inscrit au ' . $stage->getName() .'.');
+        return $this->redirectToRoute('user_stage');
+    }
+
+    /**
+     * @Route("/stages/inscription/{stage}", name="subscribe_stage")
+     * @param Stage $stage
+     * @param UserRepository $userRepository
+     * @param TokenStorageInterface $tokenStorage
+     * @param EntityManagerInterface $manager
+     * @return Response
+     * @throws \Exception
+     */
+    public function SubscribeStage(Stage $stage, UserRepository $userRepository, TokenStorageInterface $tokenStorage, EntityManagerInterface $manager): Response
+    {
+        // load user Data
+        $user = $userRepository->find($tokenStorage->getToken()->getUser());
+        $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+        $stage->addUser($user);
+        $stage->setUpdatedAt($now);
+        $user->setUpdatedAt($now);
+        $manager->flush();
+        $this->addFlash('success', 'Vous avez été inscrit au ' . $stage->getName() .'.');
         return $this->redirectToRoute('user_stage');
     }
 }

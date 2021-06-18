@@ -13,6 +13,7 @@
             <img src="{{ asset('img/stages-header.jpg') }}" alt="">
         </div>
         <!--End Header-->
+        <!-- Explication -->
         <div class="informations-box">
             <h2 class="py-1">Stages</h2>
             <p>
@@ -28,6 +29,46 @@
                 Les inscriptions se font ci-dessous avec un compte <a href="{{ path('login') }}">Utilisateur</a>
             </p>
         </div>
-        <!-- Stage Explication -->
+        <!-- End Explication -->
+        <!-- Stage Boxes -->
+        <div class="stages-boxes">
+            {% for stage in stages %}
+                <div class="card">
+                    <div class="card-body center">
+                        <h5 class="card-title">{{ stage.name }}</h5>
+                        <h6 class="card-subtitle mb-3 my-2">Du {{ stage.beginAt|format_datetime('full', 'none', locale='fr') }}
+                            au {{ stage.endAt|format_datetime('full', 'none', locale='fr') }}</h6>
+                        <p class="card-text">
+                            <b>Horaire: </b>
+                            De {{ stage.startHours|date("H:i") }} jusqu'à {{ stage.endHours|date("H:i") }}
+                            <br>
+                            <b>Prix: </b>
+                            {{ stage.price|number_format(2, ',', ' ') }}€
+                        </p>
+                        {% if date(stage.beginAt) > date('+2 days', 'Europe/Paris') and stage.user.count < stage.personNumber %}
+                            {% if app.user %}
+                                {% if app.user.stages.contains(stage) %}
+                                    <a class="disabled">
+                                        Vous êtes déjà inscrit
+                                    </a>
+                                {% else %}
+                                    <a href="{{ path('subscribe_stage', { 'stage': stage.id}) }}" class="card-link" >
+                                        S'inscrire
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <a href="{{ path('login') }}" class="card-link">
+                                    S'inscrire
+                                </a>
+                            {% endif %}
+                        {% else %}
+                            <a class="disabled">
+                                Les inscriptions sont closes
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </main>
 {% endblock %}

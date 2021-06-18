@@ -23,6 +23,34 @@
   width: 84%;
 }
 
+.stages-boxes {
+  background: rgba(38, 38, 38, 0.83);
+  color: rgba(226, 226, 226, 0.81);
+  padding-top: 2%;
+  padding-bottom: 3%;
+}
+.stages-boxes .card {
+  width: 84%;
+  background-color: #726e6e;
+  margin: 4% 8%;
+}
+.stages-boxes .card-title {
+  color: #eaeaea;
+}
+.stages-boxes .card-subtitle {
+  color: #d9d8d8;
+}
+.stages-boxes .card:last-child {
+  margin-bottom: 0;
+}
+.stages-boxes a {
+  color: inherit;
+  float: right;
+}
+.stages-boxes a:hover {
+  color: rgba(226, 226, 226, 0.81);
+}
+
 @media screen and (min-width: 768px) {
   .informations-box h2 {
     width: 50%;
@@ -36,6 +64,33 @@
     margin: 0 25% 0 25%;
     font-size: 25px;
     line-height: 40px;
+  }
+
+  .stages-boxes {
+    padding: 2% 8% 2% 8%;
+  }
+  .stages-boxes .card {
+    width: 50%;
+    margin: 2% 25%;
+  }
+  .stages-boxes .card-title {
+    color: #eaeaea;
+  }
+  .stages-boxes .card-subtitle {
+    color: #d9d8d8;
+  }
+  .stages-boxes .card:first-child {
+    margin-top: 0;
+  }
+  .stages-boxes .card:last-child {
+    margin-bottom: 0;
+  }
+  .stages-boxes a {
+    color: inherit;
+    float: right;
+  }
+  .stages-boxes a:hover {
+    color: rgba(226, 226, 226, 0.81);
   }
 }
 

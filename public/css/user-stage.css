@@ -13,8 +13,9 @@ main h2 {
   color: #eee;
 }
 main .card {
+  width: 84%;
   background-color: #726e6e;
-  margin: 4% 25%;
+  margin: 4% 8%;
 }
 main .card-title {
   color: #eaeaea;
@@ -47,6 +48,7 @@ main a:hover {
     color: #eee;
   }
   main .card {
+    width: 50%;
     background-color: #726e6e;
     margin: 4% 25%;
   }
