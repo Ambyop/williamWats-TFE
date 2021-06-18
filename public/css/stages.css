@@ -50,6 +50,9 @@
 .stages-boxes a:hover {
   color: rgba(226, 226, 226, 0.81);
 }
+.stages-boxes h3 {
+  padding: 2% 8% 2% 8%;
+}
 
 @media screen and (min-width: 768px) {
   .informations-box h2 {
@@ -91,6 +94,9 @@
   }
   .stages-boxes a:hover {
     color: rgba(226, 226, 226, 0.81);
+  }
+  .stages-boxes h3 {
+    margin: 0 25% 0 25%;
   }
 }
 

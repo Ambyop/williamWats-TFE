@@ -32,7 +32,9 @@
         <!-- End Explication -->
         <!-- Stage Boxes -->
         <div class="stages-boxes">
+            {% if stages|length > 0 %}
             {% for stage in stages %}
+                {% if not stage.isDisabled %}
                 <div class="card">
                     <div class="card-body center">
                         <h5 class="card-title">{{ stage.name }}</h5>
@@ -68,7 +70,11 @@
                         {% endif %}
                     </div>
                 </div>
+                {% endif %}
             {% endfor %}
+            {% else %}
+            <h3>Aucun stage n'est organisé pour l'instant</h3>
+            {% endif %}
         </div>
     </main>
 {% endblock %}
