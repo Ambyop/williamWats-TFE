@@ -3,177 +3,168 @@ main {
   width: 100%;
   min-height: 85.7%;
 
-
-  //::before {
-  //  content: "";
-  //  position: fixed;
-  //  min-height: 100%;
-  //  width: 102%;
-  //  background-size: cover;
-  //  z-index: -1;
-  //  background: linear-gradient(0deg, rgba(55, 55, 55, 0.50), rgba(55, 55, 55, 0.50)), url(../img/cttSalle_auto_x2.jpg);
-  //  filter: blur(9px);
-  //  left: -20px;
-  //  top: -10px
-  //}
-
-  .title-box {
-    width: 100%;
-    height: 150px;
-
-    h1 {
-      padding: 75px 0 0 10%;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 35px;
-      color: #EEEEEE;
-    }
-  }
-
-  section {
-    padding-bottom: 5%;
-    .article-box {
-      width: 85%;
-      margin: 35px 0 3% 7.5%;
-      padding: 5% 0 8% 0;
-      background: rgba(34, 34, 34, 0.52);
-      border-radius: 30px;
-
-      img {
-        border-radius: 5%;
-        width: 90%;
-        height: auto;
-        margin: 0 5% 0 5%;
-      }
-
-      h3 {
-        text-align: center;
-        width: 95%;
-        padding: 15px 2.5% 6% 2.5%;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 28px;
-        line-height: 33px;
-        color: #D0D0D0;
-      }
-
-      p {
-        text-align: center;
-        width: 95%;
-        padding: 0 2.5% 6% 2.5%;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 25px;
-        line-height: 33px;
-        color: rgba(238, 238, 238, 0.81);
-      }
-
-      .read-article {
-        margin: 2% 24%;
-        padding: 3% 5%;
-        background: rgba(130, 130, 130, 0.9);
-        text-decoration: none;
-        overflow: hidden;
-        color: #DDDDDD;
-        font-style: normal;
-        font-size: 22px;
-        font-variant: all-small-caps;
-        text-align: center;
-        align-content: center;
-        vertical-align: center;
-      }
-
-      .go-facebook {
-        margin: 2% 9%;
-        padding: 3% 5%;
-        background: rgba(130, 130, 130, 0.9);
-        text-decoration: none;
-        overflow: hidden;
-        color: #DDDDDD;
-        font-style: normal;
-        font-size: 22px;
-        font-variant: all-small-caps;
-        text-align: center;
-        vertical-align: center;
-      }
-
-      a:hover {
-        color: #DDDDDD;
-      }
-
-      .fb-widget {
-        display: none;
-      }
-    }
-  }
-
-  /* Desktop */
-  @media screen and (min-width: 768px) {
-    header {
-      height: 85.85px;
-    }
+  div {
+    backdrop-filter: blur(9px);
 
     .title-box {
-      height: 200px;
+      width: 100%;
+      height: 150px;
 
       h1 {
-        font-size: 45px;
-        padding-left: 25%;
+        padding: 75px 0 0 10%;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 35px;
+        color: #EEEEEE;
       }
     }
 
     section {
+      padding-bottom: 5%;
+
       .article-box {
-        width: 45%;
-        margin: 2.5% 25%;
-        padding: 3% 0;
+        width: 85%;
+        margin: 35px 0 3% 7.5%;
+        padding: 5% 0 8% 0;
+        background: rgba(34, 34, 34, 0.52);
+        border-radius: 30px;
 
         img {
-          max-width: 80%;
-          margin: 0 7.5%;
+          border-radius: 5%;
+          width: 90%;
+          height: auto;
+          margin: 0 5% 0 5%;
         }
 
         h3 {
+          text-align: center;
+          width: 95%;
+          padding: 15px 2.5% 6% 2.5%;
+          font-style: normal;
           font-weight: 500;
-          font-size: 50px;
-          margin: 3% 0;
-          padding-bottom: 3%;
+          font-size: 28px;
+          line-height: 33px;
+          color: #D0D0D0;
+        }
+
+        p {
+          text-align: center;
+          width: 95%;
+          padding: 0 2.5% 6% 2.5%;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 25px;
+          line-height: 33px;
+          color: rgba(238, 238, 238, 0.81);
         }
 
         .read-article {
-          margin: 2% 38%;
-          padding: 0.6% 2%;
-          height: 75px;
-          font-size: 35px;
+          margin: 2% 24%;
+          padding: 3% 5%;
+          background: rgba(130, 130, 130, 0.9);
+          text-decoration: none;
+          overflow: hidden;
+          color: #DDDDDD;
+          font-style: normal;
+          font-size: 22px;
+          font-variant: all-small-caps;
+          text-align: center;
+          align-content: center;
+          vertical-align: center;
         }
 
         .go-facebook {
-          margin: 2% 28%;
-          padding: 0.6% 2%;
-          height: 75px;
-          font-size: 35px;
+          margin: 2% 9%;
+          padding: 3% 5%;
+          background: rgba(130, 130, 130, 0.9);
+          text-decoration: none;
+          overflow: hidden;
+          color: #DDDDDD;
+          font-style: normal;
+          font-size: 22px;
+          font-variant: all-small-caps;
+          text-align: center;
+          vertical-align: center;
         }
 
-        .fb-post-mobile {
-          display: none;
+        a:hover {
+          color: #DDDDDD;
         }
 
         .fb-widget {
-          display: initial;
-          margin-left: 85px;
+          display: none;
         }
-      }
-
-      :first-child {
-        margin-top: 0;
       }
     }
 
+    /* Desktop */
+    @media screen and (min-width: 768px) {
+      header {
+        height: 85.85px;
+      }
+
+      .title-box {
+        height: 200px;
+
+        h1 {
+          font-size: 45px;
+          padding-left: 25%;
+        }
+      }
+
+      section {
+        .article-box {
+          width: 45%;
+          margin: 2.5% 25%;
+          padding: 3% 0;
+
+          img {
+            max-width: 80%;
+            margin: 0 7.5%;
+          }
+
+          h3 {
+            font-weight: 500;
+            font-size: 50px;
+            margin: 3% 0;
+            padding-bottom: 3%;
+          }
+
+          .read-article {
+            margin: 2% 38%;
+            padding: 0.6% 2%;
+            height: 75px;
+            font-size: 35px;
+          }
+
+          .go-facebook {
+            margin: 2% 28%;
+            padding: 0.6% 2%;
+            height: 75px;
+            font-size: 35px;
+          }
+
+          .fb-post-mobile {
+            display: none;
+          }
+
+          .fb-widget {
+            display: initial;
+            margin-left: 85px;
+          }
+        }
+
+        :first-child {
+          margin-top: 0;
+        }
+      }
+
+    }
   }
 }
 
 .modal-content {
-  background: rgba(38, 38, 38, 0.90);
+  background: rgba(38, 38, 38, 1);
   color: rgba(238, 238, 238, 0.81);;
 
   .modal-title {
@@ -181,13 +172,14 @@ main {
   }
 
   .modal-body {
-      width: 100%;
-      img {
-        width: 100%;
-        border-radius: 5%;
-      }
+    width: 100%;
 
-    p{
+    img {
+      width: 100%;
+      border-radius: 5%;
+    }
+
+    p {
       margin: 5%;
       line-height: 30px;
     }
@@ -202,8 +194,8 @@ main {
       width: 100%;
 
       img {
-        margin: 1% 5%;
-        width: 90%;
+        margin: 1% 10%;
+        width: 80%;
         border-radius: 5%;
       }
 

@@ -2,36 +2,39 @@ main {
   background: linear-gradient(0deg, rgba(55, 55, 55, 0.55), rgba(55, 55, 55, 0.55)), url(../img/cttSalle_auto_x2.jpg);
   width: 100%;
   min-height: 85.7%;
+}
+main div {
+  backdrop-filter: blur(9px);
   /* Desktop */
 }
-main .title-box {
+main div .title-box {
   width: 100%;
   height: 150px;
 }
-main .title-box h1 {
+main div .title-box h1 {
   padding: 75px 0 0 10%;
   font-style: normal;
   font-weight: 500;
   font-size: 35px;
   color: #EEEEEE;
 }
-main section {
+main div section {
   padding-bottom: 5%;
 }
-main section .article-box {
+main div section .article-box {
   width: 85%;
   margin: 35px 0 3% 7.5%;
   padding: 5% 0 8% 0;
   background: rgba(34, 34, 34, 0.52);
   border-radius: 30px;
 }
-main section .article-box img {
+main div section .article-box img {
   border-radius: 5%;
   width: 90%;
   height: auto;
   margin: 0 5% 0 5%;
 }
-main section .article-box h3 {
+main div section .article-box h3 {
   text-align: center;
   width: 95%;
   padding: 15px 2.5% 6% 2.5%;
@@ -41,7 +44,7 @@ main section .article-box h3 {
   line-height: 33px;
   color: #D0D0D0;
 }
-main section .article-box p {
+main div section .article-box p {
   text-align: center;
   width: 95%;
   padding: 0 2.5% 6% 2.5%;
@@ -51,7 +54,7 @@ main section .article-box p {
   line-height: 33px;
   color: rgba(238, 238, 238, 0.81);
 }
-main section .article-box .read-article {
+main div section .article-box .read-article {
   margin: 2% 24%;
   padding: 3% 5%;
   background: rgba(130, 130, 130, 0.9);
@@ -65,7 +68,7 @@ main section .article-box .read-article {
   align-content: center;
   vertical-align: center;
 }
-main section .article-box .go-facebook {
+main div section .article-box .go-facebook {
   margin: 2% 9%;
   padding: 3% 5%;
   background: rgba(130, 130, 130, 0.9);
@@ -78,64 +81,64 @@ main section .article-box .go-facebook {
   text-align: center;
   vertical-align: center;
 }
-main section .article-box a:hover {
+main div section .article-box a:hover {
   color: #DDDDDD;
 }
-main section .article-box .fb-widget {
+main div section .article-box .fb-widget {
   display: none;
 }
 @media screen and (min-width: 768px) {
-  main header {
+  main div header {
     height: 85.85px;
   }
-  main .title-box {
+  main div .title-box {
     height: 200px;
   }
-  main .title-box h1 {
+  main div .title-box h1 {
     font-size: 45px;
     padding-left: 25%;
   }
-  main section .article-box {
+  main div section .article-box {
     width: 45%;
     margin: 2.5% 25%;
     padding: 3% 0;
   }
-  main section .article-box img {
+  main div section .article-box img {
     max-width: 80%;
     margin: 0 7.5%;
   }
-  main section .article-box h3 {
+  main div section .article-box h3 {
     font-weight: 500;
     font-size: 50px;
     margin: 3% 0;
     padding-bottom: 3%;
   }
-  main section .article-box .read-article {
+  main div section .article-box .read-article {
     margin: 2% 38%;
     padding: 0.6% 2%;
     height: 75px;
     font-size: 35px;
   }
-  main section .article-box .go-facebook {
+  main div section .article-box .go-facebook {
     margin: 2% 28%;
     padding: 0.6% 2%;
     height: 75px;
     font-size: 35px;
   }
-  main section .article-box .fb-post-mobile {
+  main div section .article-box .fb-post-mobile {
     display: none;
   }
-  main section .article-box .fb-widget {
+  main div section .article-box .fb-widget {
     display: initial;
     margin-left: 85px;
   }
-  main section :first-child {
+  main div section :first-child {
     margin-top: 0;
   }
 }
 
 .modal-content {
-  background: rgba(38, 38, 38, 0.9);
+  background: #262626;
   color: rgba(238, 238, 238, 0.81);
 }
 .modal-content .modal-title {
@@ -160,8 +163,8 @@ main section .article-box .fb-widget {
     width: 100%;
   }
   .modal-content .modal-body img {
-    margin: 1% 5%;
-    width: 90%;
+    margin: 1% 10%;
+    width: 80%;
     border-radius: 5%;
   }
   .modal-content .modal-body p {
