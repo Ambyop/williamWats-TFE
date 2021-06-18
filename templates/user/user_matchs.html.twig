@@ -18,7 +18,7 @@
                         <div class="card" style="width: 50%">
                             <div class="card-body">
                                 <h5 class="card-title">Match du {{ match.date|format_datetime('full', 'short', locale='fr') }}</h5>
-                                <h6 class="card-subtitle mb-2">Type de tournoi: {{ match.type }}</h6>
+                                <h6 class="card-subtitle mb-3 my-2">Type de tournoi: {{ match.type }}</h6>
                                 <p class="card-text">
                                     <b>Club:</b> {{ match.location.name }}
                                     <br>
@@ -63,7 +63,7 @@
         <!-- match {{ match.id }} cancellation form Modal -->
         <div class="modal fade" id="matchCancellationModal-{{ match.id }}" tabindex="-1" aria-labelledby="matchCancellationModal-{{ match.id }}Label"
              aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl modal-fullscreen-lg-down">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title" id="matchCancellationModal-{{ match.id }}Label">

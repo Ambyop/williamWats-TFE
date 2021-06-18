@@ -1,10 +1,14 @@
+header {
+  height: 85.85px;
+}
+
 main {
   background-color: #292929;
   color: rgba(226, 226, 226, 0.81);
-  min-height: 85.96%;
+  padding-bottom: 3%;
 }
 main h2 {
-  margin-top: 3%;
+  padding-top: 3%;
   text-align: center;
   color: #eee;
 }
@@ -18,9 +22,46 @@ main .card-title {
 main .card-subtitle {
   color: #d9d8d8;
 }
+main .card:last-child {
+  margin-bottom: 0;
+}
 main a {
   color: inherit;
   float: right;
+}
+main a:hover {
+  color: rgba(226, 226, 226, 0.81);
+}
+
+/* Desktop */
+@media screen and (min-width: 768px) {
+  main {
+    background-color: #292929;
+    color: rgba(226, 226, 226, 0.81);
+    min-height: 85.96%;
+    padding-bottom: 3%;
+  }
+  main h2 {
+    padding-top: 3%;
+    text-align: center;
+    color: #eee;
+  }
+  main .card {
+    background-color: #726e6e;
+    margin: 4% 25%;
+  }
+  main .card:first-child {
+    margin-top: 3%;
+  }
+  main .card:last-child {
+    margin-bottom: 0;
+  }
+  main .card-title {
+    color: #eaeaea;
+  }
+  main .card-subtitle {
+    color: #d9d8d8;
+  }
 }
 
 /*# sourceMappingURL=user-stage.css.map */

@@ -1,20 +1,14 @@
+header {
+  height: 85.85px;
+}
+
 main {
-  display: grid;
   background-color: #292929;
-  grid-template-areas: 'scribedMatchs unScribedMatchs';
   color: rgba(226, 226, 226, 0.81);
-  min-height: 85.96%;
-
-  .subscribed-matchs {
-    grid-area: scribedMatchs
-  }
-
-  .unsubscribed-matchs {
-    grid-area: unScribedMatchs
-  }
+  padding-bottom: 3%;
 
   h2 {
-    margin-top: 3%;
+    padding-top: 3%;
     text-align: center;
     color: #eee;
   }
@@ -32,8 +26,39 @@ main {
     color: #d9d8d8;
   }
 
-  a{
-    color: inherit;
-    float: right;
+  .card:last-child {
+    margin-bottom: 0;
+  }
+
+}
+
+/* Desktop */
+@media screen and (min-width: 768px) {
+  main {
+    display: grid;
+    grid-template-areas: 'scribedMatchs unScribedMatchs';
+    min-height: 85.96%;
+
+    .subscribed-matchs {
+      grid-area: scribedMatchs
+    }
+
+    .unsubscribed-matchs {
+      grid-area: unScribedMatchs
+    }
+
+    h2 {
+      padding-top: 0;
+      margin-top: 3%;
+    }
+
+    a {
+      color: inherit;
+      float: right;
+    }
+
+    a:hover {
+      color: rgba(226, 226, 226, 0.81);
+    }
   }
 }

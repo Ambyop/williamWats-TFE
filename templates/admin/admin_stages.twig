@@ -15,13 +15,14 @@
         <table class="table table-striped" id="AdminTable">
             <thead>
             <tr>
+                <th>Stage</th>
                 <th>Date de début</th>
                 <th>Date de fin</th>
                 <th>Jours de la semaine</th>
                 <th>Heure de début</th>
                 <th>Heure de fin</th>
                 <th>Inscrits</th>
-                <th>Maximum d'inscrits</th>
+                <th>Places</th>
                 <th>Prix</th>
                 <th>Dernière modification</th>
                 <th>Paramètres</th>
@@ -31,6 +32,7 @@
             {% for stage in stages %}
                 {% set index = 4 %}
                 <tr>
+                    <td>{{ stage.name }}</td>
                     <td>{{ stage.beginAt|date("d/m/Y") }}</td>
                     <td>{{ stage.endAt|date("d/m/Y") }}</td>
                     <td>{{ stage.days|json_encode }}</td>
@@ -99,7 +101,7 @@
                     "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
                 },
                 "aoColumnDefs": [
-                    {"bSortable": false, "aTargets": [8]},
+                    {"bSortable": false, "aTargets": [10]},
                 ]
             });
         });

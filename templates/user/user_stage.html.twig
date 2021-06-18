@@ -15,18 +15,58 @@
             <div class="subscribed-stages">
                 <h2>Matchs auxquels vous êtes inscrits</h2>
                 {% for stage in subscribedStages %}
-                    <div class="card" style="width: 75%">
-                        <div class="card-body">
+                    <div class="card" style="width: 50%">
+                        <div class="card-body center">
                             <h5 class="card-title">{{ stage.name }}</h5>
-                            <h6 class="card-subtitle mb-2">Type de tournoi: {{ match.type }}</h6>
+                            <h6 class="card-subtitle mb-3 my-2">Du {{ stage.beginAt|format_datetime('full', 'none', locale='fr') }}
+                                au {{ stage.endAt|format_datetime('full', 'none', locale='fr') }}</h6>
                             <p class="card-text">
-                                <b>Club:</b> {{ match.location.name }}
+                                <b>Jours de la semaine: </b>
+                                {% for index, day in stage.days %}
+                                    {% if index != 0 and index != stage.days|length and index != stage.days|length -1 %}
+                                        ,
+                                    {% elseif index == stage.days|length -1 %}
+                                        et
+                                    {% endif %}
+                                    {% if day == 'Mo' %}
+                                        Lundi
+                                    {% elseif day == 'Tu' %}
+                                        Mardi
+                                    {% elseif day == 'We' %}
+                                        Mercredi
+                                    {% elseif day == 'Th' %}
+                                        Jeudi
+                                    {% elseif day == 'Fr' %}
+                                        Vendredi
+                                    {% elseif day == 'Sa' %}
+                                        Samedi
+                                    {% elseif day == 'Su' %}
+                                        Dimanche
+                                    {% endif %}
+                                    {% if index == stage.days|length-1 %}
+                                        .
+                                    {% endif %}
+                                {% endfor %}
                                 <br>
-                                <b>Adresse:</b> {{ match.location.address }}
+                                <b>Horaire: </b>
+                                De {{ stage.startHours|date("H:i") }} jusqu'à {{ stage.endHours|date("H:i") }}
+                                <br><br>
+                                <b>Le coût du stage s'élève à </b>
+                                 {{ stage.price|number_format(2, ',', ' ') }}€
+                                <br> Le payement se fait via un virement bancaire sur le compte suivant: <b>BE68 1234 5678 9012</b>
+                                <br>
+                                avec les communications suivantes: <b>"Stage{{ stage.id }}-{{ user.id }} NOM PRENOM"</b>
+                                <br> ou en liquide lors de l'accueil au premier jour du stage.
                             </p>
-                            <a class="card-link" data-bs-toggle="modal" data-bs-target="#matchCancellationModal-{{ match.id }}">
-                                Annuler
-                            </a>
+                            {% if date(stage.beginAt) > date('+5days', 'Europe/Paris') %}
+                                <a class="card-link" data-bs-toggle="modal" data-bs-target="#stageCancellationModal-{{ stage.id }}">
+                                    Se désinscrire
+                                </a>
+                            {% else %}
+                                <a class="disabled">
+                                    Vous ne pouvez plus vous désinscrire
+                                </a>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}
@@ -35,7 +75,34 @@
     </main>
 
     <!-- Modals -->
-    {% for index, match in subscribedStages %}
-
+    {% for index, stage in subscribedStages %}
+        {% if date(stage.beginAt) > date('+5days', 'Europe/Paris') %}
+        <!-- Stage {{ stage.id }} cancellation form Modal -->
+        <div class="modal fade" id="stageCancellationModal-{{ stage.id }}" tabindex="-1" aria-labelledby="stageCancellationModal-{{ stage.id }}Label"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="stageCancellationModal-{{ stage.id }}Label">
+                            Confirmation de désinscription au {{ stage.name }}
+                        </h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <p>Êtes-vous sur de vouloir vous désinscrire?</p>
+                                <p><b>Attention</b> nous n'acceptons aucun désistement et remboursement en dessous des 5 jours avant le stage</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ path('unsubscribe_stage', {'stage': stage.id}) }}" class="btn btn-outline-danger">Se désinscrire</a>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     {% endfor %}
 {% endblock %}

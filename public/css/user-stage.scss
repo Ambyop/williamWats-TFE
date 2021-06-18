@@ -1,10 +1,14 @@
+header {
+  height: 85.85px;
+}
+
 main {
   background-color: #292929;
   color: rgba(226, 226, 226, 0.81);
-  min-height: 85.96%;
+  padding-bottom: 3%;
 
   h2 {
-    margin-top: 3%;
+    padding-top: 3%;
     text-align: center;
     color: #eee;
   }
@@ -22,8 +26,54 @@ main {
     color: #d9d8d8;
   }
 
+  .card:last-child {
+    margin-bottom: 0;
+  }
+
   a{
     color: inherit;
     float: right;
+  }
+
+  a:hover{
+    color: rgba(226, 226, 226, 0.81);
+  }
+
+}
+
+/* Desktop */
+@media screen and (min-width: 768px) {
+  main {
+    background-color: #292929;
+    color: rgba(226, 226, 226, 0.81);
+    min-height: 85.96%;
+    padding-bottom: 3%;
+
+    h2 {
+      padding-top: 3%;
+      text-align: center;
+      color: #eee;
+    }
+
+    .card {
+      background-color: rgb(114, 110, 110);
+      margin: 4% 25%;
+    }
+
+    .card:first-child {
+      margin-top: 3%;
+    }
+
+    .card:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-title {
+      color: #eaeaea;
+    }
+
+    .card-subtitle {
+      color: #d9d8d8;
+    }
   }
 }
